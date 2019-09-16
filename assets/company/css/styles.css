@@ -1,0 +1,691 @@
+@import url('https://fonts.googleapis.com/css?family=Righteous&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Acme&display=swap');
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	font-family: 'Roboto', sans-serif;
+}
+
+/* mobile version */
+
+.img-contact {
+	width: 19px;
+}
+
+.navbar-logo {
+	width: 90px;
+}
+
+.contact-id {
+	font-size: 10px;
+	margin-left: 2px;
+}
+
+.jumbotron {
+	background-image: url(/jibuhinbeta/assets/img/jumbo.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	height: 270px;
+	margin-top: 70px;
+}
+
+.display-4 {
+	color: white;
+	margin-top: 10px;
+	font-family: 'Righteous', cursive;
+	font-weight: bold;
+	font-size: 18px;
+	margin-top: 60px;
+}
+
+.display-4 span {
+	color: #38D39F;
+}
+
+.btn-services {
+	padding: .25rem .5rem;
+	color: #FFF;
+	border-radius: 0%;
+	margin-top: 10px;
+	font-weight: bold;
+	border: 3px solid #FFF;
+}
+
+.btn-services:hover {
+	color: black;
+	background: white;
+}
+
+.btn-get {
+	padding: .25rem .5rem;
+	border-radius: 0%;
+	margin-top: 10px;
+	font-weight: bold;
+	border: 3px solid #FFF;
+}
+
+.hr-short {
+	width: 70%;
+}
+
+.visi-gbr,
+.visi,
+.misi,
+.misi-gbr,
+.misi-gbr-mobile,
+.visi-gbr-mobile,
+.description-text,
+.brand-desktop,
+.before-footer {
+	display: none;
+}
+
+.visi-gbr-mobile {
+	width: 200px;
+}
+
+.misi-gbr-mobile {
+	width: 200px;
+}
+
+.description-text-mobile {
+	font-size: 12px;
+	padding: 20px;
+	text-align: justify;
+}
+
+.visi-mobile,
+.misi-mobile,
+.visi,
+.misi {
+	font-size: 19px;
+	font-weight: bold;
+	text-align: center;
+	font-family: 'Righteous', cursive;
+	border-bottom: 5px solid #38D39F;
+	width: 50px;
+}
+
+.footer {
+	background-color: #11BE85;
+	border-top: 5px solid #FFF;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.credit {
+	font-weight: bold;
+	font-size: 14px;
+	color: #FFF;
+}
+
+.produk {
+	margin-top: -1px;
+	padding-top: 5px;
+	padding-bottom: 60px;
+	background-color: #E2FFF5;
+}
+
+.box-produk {
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+	border-radius: 10px;
+	height: 169px;
+	width: 222px;
+	background-color: #ffffff;
+}
+
+.des-fw {
+	margin: 10px;
+	font-size: 13px;
+	text-align: center;
+}
+
+.des-rg {
+	margin: 10px;
+	font-size: 13px;
+	text-align: center;
+	margin-top: -2px;
+}
+
+.brand-mobile {
+	display: block;
+	padding-bottom: 30px;
+}
+
+.toyota,
+.mitsubishi,
+.isuzu,
+.daihatsu,
+.suzuki,
+.hino {
+	width: 80px;
+	height: 50px;
+	margin-bottom: 10px;
+	filter: grayscale(100%);
+	-webkit-filter: grayscale(100%);
+	opacity: .6;
+	-webkit-transition: .6s;
+	-moz-transition: .6s;
+	transition: .6s;
+}
+
+.toyota:hover,
+.mitsubishi:hover,
+.isuzu:hover,
+.daihatsu:hover,
+.suzuki:hover,
+.hino:hover {
+	filter: grayscale(0%);
+	opacity: 1;
+}
+
+.produk-text,
+.customer-text {
+	font-size: 24px;
+	font-weight: bold;
+	text-align: center;
+	font-family: 'Righteous', cursive;
+	border-bottom: 6px solid #38D39F;
+}
+
+.produk-text {
+	font-size: 24px;
+	width: 80px;
+	margin-top: 20px;
+	margin-bottom: 50px;
+}
+
+.customer-text {
+	font-size: 19px;
+	width: 150px;
+	margin-top: 20px;
+}
+
+.box-presiden {
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+	height: 250px;
+	width: 200px;
+	border-radius: 5px;
+	margin-left: 100px;
+}
+
+.presiden {
+	text-align: right;
+	margin-right: 40px;
+	font-weight: bold;
+	font-style: italic;
+	margin-top: 20px;
+}
+
+.word-press {
+	text-align: justify;
+	margin-right: 40px;
+}
+
+.language {
+	width: 25px;
+	border-radius: 50%;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+}
+
+.foto-presiden {
+	width: 176px;
+	margin-top: 31px;
+	margin-left: 11px;
+}
+
+.title-pesan,
+.title-berita,
+.title-group,
+.title-sejarah {
+	font-weight: bold;
+	text-align: center;
+	border-bottom: 5px solid #38D39F;
+	font-family: 'Righteous', cursive;
+}
+
+.title-group {
+	font-size: 23px;
+	margin-bottom: 25px;
+}
+
+.title-pesan {
+	font-size: 24px;
+}
+
+.title-berita {
+	font-size: 24px;
+	width: 220px;
+}
+
+.box-news {
+	margin-left: 150px;
+	border-radius: 15px;
+}
+
+.card-text,
+.cart-title {
+	font-size: 14px;
+	text-align: justify;
+}
+
+.card-title {
+	font-weight: bold;
+	font-size: 14px;
+}
+
+.card-text {
+	font-size: 14px;
+}
+
+.btn-lengkap {
+	border-radius: 6px;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+	font-size: 14px;
+}
+
+.vertical-line {
+	width: 0px;
+	height: 500px;
+	float: none;
+	border: 1px solid #b9b9b9;
+	align-content: center;
+	margin-left: -10px;
+}
+
+.box-vertical-news {
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+	border-radius: 10px;
+	height: 110px;
+	width: 400px;
+	background-color: #ffffff;
+	margin-left: 80px;
+	margin-top: 20px;
+	padding-right: 20px;
+}
+
+.crop {
+	width: 110px;
+	height: 110px;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+	border: 1px solid #dee2e6;
+	overflow: hidden
+}
+
+.crop-job {
+	margin-top: 10px;
+	margin-left: 50px;
+	width: 90px;
+	height: 90px;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+	border: 1px solid #dee2e6;
+	overflow: hidden
+}
+
+.border-radius {
+	border-radius: 50%;
+}
+
+.title-litle-news {
+	color: rgb(80, 80, 80);
+	height: 10px;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.title-litle-news:hover {
+	text-decoration: none;
+	color: #11BE85;
+}
+
+.tanggal-berita,
+.tanggal-berita-big {
+	font-size: 14px;
+	font-style: italic;
+	color: #6B6B6B;
+	margin-top: 10px;
+}
+
+.tanggal-berita-big {
+	margin-bottom: 10px;
+}
+
+.pagination .page-link {
+	color: #11BE85;
+}
+
+.page-item.active .page-link {
+	background-color: #11BE85;
+	border-color: #11BE85;
+}
+
+.description-of-group {
+	text-align: justify;
+}
+
+.box-group {
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+	border-radius: 10px;
+	height: 230px;
+	width: 1000px;
+	background-color: #ffffff;
+	margin-top: 40px;
+	padding-top: 20px;
+	padding-right: 30px;
+	padding-bottom: 20px;
+	padding-left: 20px;
+}
+
+.bingkai {
+	padding-bottom: 80px;
+}
+
+.partner {
+	width: 120px;
+}
+
+.crop-partner {
+	width: 120px;
+	height: 120px;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+	border: 1px solid #dee2e6;
+	overflow: hidden;
+	border-radius: 50%;
+	margin-top: 35px;
+	margin-left: 40px;
+}
+
+.name-group {
+	font-size: 21px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.group-deskripsi {
+	margin-top: 10px;
+	text-align: justify;
+	margin-right: 20px;
+}
+
+.btn-group {
+	margin-right: 20px;
+}
+
+.box-job {
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+	border-radius: 10px;
+	height: 130px;
+	width: 800px;
+	background-color: #ffffff;
+	margin-top: 40px;
+	padding: 10px;
+}
+
+.img-job {
+	width: 90px;
+	margin-top: 25px;
+}
+
+.loker {
+	font-weight: bold;
+	margin-top: 20px;
+	font-size: 15px
+}
+
+.loker-des {
+	text-align: left;
+}
+
+.btn-detail {
+	margin-top: 30px;
+}
+
+.big-news {
+	width: 350px;
+}
+
+.big-news-des {
+	text-align: justify;
+	margin-top: 10px;
+}
+
+.big-news-cover {
+	width: 350px;
+	height: 199px;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+	border: 1px solid #dee2e6;
+	overflow: hidden;
+}
+
+.big-title-news {
+	font-size: 18px;
+	font-weight: bold;
+	color: #000;
+}
+
+.big-title-news:hover {
+	color: #11BE85;
+	text-decoration: none;
+}
+
+
+/* Desktop Version */
+
+@media (min-width: 992px) {
+	.navbar {
+		height: 70px;
+		border-top: 1px solid #AFAFAF;
+		box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+	}
+
+	.nav-contact {
+		height: 30px;
+		background-image: linear-gradient(to top, #F2F2F2, white)
+	}
+
+	.jumbotron {
+		height: 430px;
+	}
+
+	.img-contact {
+		width: 19px;
+	}
+
+	.navbar-logo {
+		width: 118px;
+		height: 33px;
+		bottom: 18px;
+	}
+
+	.display-4 {
+		margin-top: 70px;
+		font-size: 37px;
+	}
+
+	.contact-id {
+		text-transform: uppercase;
+		font-size: 14px;
+		margin-left: 2px;
+		color: white;
+	}
+
+	.img-contact {
+		margin-left: 75px;
+	}
+
+	.nav-link {
+		font-size: 16px;
+		font-family: 'Roboto', sans-serif;
+	}
+
+	.navbar-nav .nav-item .active {
+		border-bottom: 3px solid #38D39F;
+	}
+
+	.nav-item .active {
+		border: 10px;
+		color: #38D39F;
+	}
+
+	/* Body */
+
+	.hr-short {
+		width: 85%;
+	}
+
+	.visi,
+	.misi {
+		margin-top: 20px;
+		font-size: 24px;
+		width: 50px;
+	}
+
+	.description-text {
+		display: block;
+		padding: 20px;
+		text-align: justify;
+	}
+
+	.customer-text {
+		font-size: 24px;
+		font-family: 'Righteous', cursive;
+		border-bottom: 7px solid #38D39F;
+		width: 190px;
+		margin-top: 20px;
+	}
+
+	.cover-gmbr {
+		margin-top: 19px;
+		margin-bottom: 19px;
+		width: 86px;
+		height: 86px;
+		border-radius: 50%;
+		box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+	}
+
+	.footer {
+		background-color: #11BE85;
+		padding-top: 30px;
+		padding-bottom: 30px;
+	}
+
+	.credit {
+		font-weight: bold;
+		color: #FFF;
+	}
+
+	.visi-gbr,
+	.misi-gbr,
+	.visi,
+	.misi,
+	.brand-desktop {
+		display: block;
+	}
+
+	.visi-gbr-mobile,
+	.description-text-mobile,
+	.visi-mobile,
+	.misi-mobile,
+	.brand-mobile,
+	.misi-gbr-mobile {
+		display: none;
+	}
+
+
+	.misi-gbr-mobile {
+		width: 200px;
+	}
+
+	.brand-desktop {
+		padding-bottom: 50px;
+	}
+
+	.customer-text {
+		font-size: 24px;
+		width: 190px;
+		margin-top: 20px;
+	}
+
+	.toyota,
+	.mitsubishi,
+	.isuzu,
+	.daihatsu,
+	.suzuki,
+	.hino {
+		margin-bottom: 10px;
+		margin-right: 15px;
+	}
+
+	.toyota,
+	.hino {
+		width: 80px;
+	}
+
+	.mitsubishi,
+	.suzuki {
+		width: 60px;
+	}
+
+	.before-footer {
+		display: block;
+		background-color: rgb(27, 173, 125);
+		padding-top: 60px;
+		padding-bottom: 80px;
+	}
+
+	.footer-alamat,
+	.footer-kontak {
+		font-weight: bold;
+		color: white;
+		margin-bottom: 30px;
+	}
+
+	.footer-alamat {
+		font-size: 30px;
+	}
+
+	.footer-kontak {
+		font-size: 16px;
+	}
+
+	.alamat-des {
+		font-size: 15px;
+		color: white;
+	}
+
+	.rounded-footer {
+		background-color: white;
+		padding-top: 6px;
+		padding-bottom: 6px;
+		padding-right: 7px;
+		padding-left: 7px;
+		border-radius: 50%;
+	}
+
+	.nope {
+		font-size: 12px;
+	}
+
+	.pages-color {
+		color: #FFF;
+		margin-left: 80px;
+	}
+
+	.pages-footer {
+		color: #FFF;
+		text-decoration: none;
+	}
+
+	.pages-footer:hover {
+		color: #ffffff;
+		text-decoration: none;
+	}
+
+}
