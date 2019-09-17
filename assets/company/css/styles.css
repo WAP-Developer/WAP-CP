@@ -256,13 +256,9 @@ body {
 	margin-bottom: 25px;
 }
 
-.title-pesan {
-	font-size: 24px;
-}
-
+.title-pesan,
 .title-berita {
 	font-size: 24px;
-	width: 220px;
 }
 
 .box-news {
@@ -475,6 +471,10 @@ body {
 	text-decoration: none;
 }
 
+.text-on-modal {
+	text-align: justify;
+	font-size: 14px;
+}
 
 /* Desktop Version */
 

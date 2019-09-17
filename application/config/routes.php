@@ -55,8 +55,12 @@ $route['account/logout'] = 'authentication/logout_process';
 $route['auth/login-process'] = 'authentication/login_process';
 $route['cp-admin/dashboard'] = 'admin/dashboard';
 $route['news'] = 'landing/news';
+$route['news/page/2'] = 'landing/news_page/(:any)';
 $route['group'] = 'landing/group';
 $route['job'] = 'landing/job';
+$route['achievement'] = 'landing/achievement';
+$route['gallery'] = 'landing/gallery';
+$route['gallery/detail/(:any)'] = 'landing/gallery_detail/(:any)';
 
 
 $route['default_controller'] = 'landing';

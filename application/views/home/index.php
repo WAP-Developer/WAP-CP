@@ -80,8 +80,10 @@
                 </div>
                 <div class="timeline-content right" data-aos="fade-up" data-aos-delay="50">
                     <div class="tag-line">
-                        <div class="tag-line-gradasi">
-                            <h3>1996</h3>
+                        <div class="row justify-content-end">
+                            <div class="tag-line-gradasi">
+                                <h3>1996</h3>
+                            </div>
                         </div>
                     </div>
                     <p>

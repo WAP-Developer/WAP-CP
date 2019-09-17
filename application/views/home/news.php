@@ -84,9 +84,9 @@
                 <li class="page-item disabled">
                     <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Sebelumnya</a>
                 </li>
-                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item active"><a class="page-link" href="<?= base_url('news'); ?>">1</a></li>
                 <li class="page-item" aria-current="page">
-                    <a class="page-link" href="#">2</a>
+                    <a class="page-link" href="<?= base_url('news/page/2'); ?>">2</a>
                 </li>
                 <li class="page-item"><a class="page-link" href="#">3</a></li>
                 <li class="page-item">

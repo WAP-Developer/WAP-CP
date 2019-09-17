@@ -10,6 +10,7 @@
     <title></title>
     <link rel="stylesheet" href="<?= base_url('assets/company/'); ?>css/bootstrap.css">
     <link rel="stylesheet" href="<?= base_url('assets/company/'); ?>css/styles.css">
+    <link rel="stylesheet" href="<?= base_url('assets/company/'); ?>css/hovereffect.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="stylesheet" href="<?= base_url('assets/company/'); ?>css/owl.carousel.css">

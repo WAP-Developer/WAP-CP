@@ -3,7 +3,7 @@
     <header id="header">
         <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
             <div class="container">
-                <img src="assets/img/logo.png" class="navbar-logo" alt="">
+                <img src="<?= base_url(); ?>assets/img/logo.png" class="navbar-logo" alt="">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -22,8 +22,8 @@
                                 <a class="dropdown-item" href="#">Produk</a>
                                 <a class="dropdown-item" href="#">Customer</a>
                                 <a class="dropdown-item" href="#">Organisasi</a>
-                                <a class="dropdown-item" href="#">Piagam</a>
-                                <a class="dropdown-item" href="#">Galeri</a>
+                                <a class="dropdown-item" href="<?= base_url('achievement') ?>">Piagam</a>
+                                <a class="dropdown-item" href="<?= base_url('gallery'); ?>">Galeri</a>
                             </div>
                         </li>
                         <li class="nav-item">
