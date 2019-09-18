@@ -168,6 +168,25 @@ header:before,
 		float: right;
 	}
 
+	#timeline .timeline-item .timeline-icon {
+		width: 40px;
+		height: 40px;
+	}
+
+	#timeline .timeline-item .timeline-content {
+		height: 150px;
+		margin-bottom: 20px;
+	}
+
+	#timeline p {
+		font-size: 12px;
+	}
+
+	#timeline .timeline-item .timeline-icon .dot-icon {
+		height: 20px;
+		width: 20px;
+	}
+
 	#timeline .timeline-item .timeline-content:before,
 	#timeline .timeline-item .timeline-content.right:before {
 		left: 10%;

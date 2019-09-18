@@ -26,7 +26,7 @@
                                 <a class="dropdown-item" href="#">Visi & Misi</a>
                                 <a class="dropdown-item" href="#">Produk</a>
                                 <a class="dropdown-item" href="#">Customer</a>
-                                <a class="dropdown-item" href="#">Organisasi</a>
+                                <a class="dropdown-item" href="<?= base_url('organization'); ?>">Organisasi</a>
                                 <a class="dropdown-item" href="<?= base_url('achievement') ?>">Piagam</a>
                                 <a class="dropdown-item" href="<?= base_url('gallery'); ?>">Galeri</a>
                             </div>

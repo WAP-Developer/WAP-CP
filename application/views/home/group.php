@@ -8,10 +8,8 @@
             </div>
         </div>
     </div>
-    <div class="col-12">
-        <div class="description-of-group" data-aos="fade-up">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent et justo vitae enim laoreet vestibulum eget id felis. Proin pellentesque tellus at ornare faucibus. Proin ultricies velit sit amet ipsum efficitur consequat. Donec sem ante, venenatis vel sapien non, bibendum laoreet mi. Ut quis felis quam. Duis sit amet rhoncus mi. Pellentesque id velit ullamcorper, bibendum quam vitae, suscipit ante. Donec maximus et neque et gravida. Pellentesque imperdiet faucibus metus, at vehicula massa
-        </div>
+    <div class="row justify-content-center">
+        <img src="<?= base_url('assets/img/group.png'); ?>" alt="" class="img-of-group">
     </div>
     <hr>
     <hr class="hr-short">

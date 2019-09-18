@@ -74,4 +74,13 @@ class Landing extends CI_Controller
         $this->load->view('home/achievement');
         $this->load->view('home/footer');
     }
+
+    public function organization()
+    {
+        $this->load->view('home/header');
+        $this->load->view('home/navbar');
+        $this->load->view('home/jumbotron');
+        $this->load->view('home/organization');
+        $this->load->view('home/footer');
+    }
 }

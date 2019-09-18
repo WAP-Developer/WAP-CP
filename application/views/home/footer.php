@@ -102,7 +102,7 @@
     $(document).ready(function() {
         setTimeout(function() {
             $('.preloader').fadeOut('slow', function() {});
-        }, 1000);
+        }, 500);
     })
 </script>
 </body>

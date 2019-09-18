@@ -6,13 +6,42 @@
             <h3 class="title-pesan pb-2 animated fadeIn">Pesan Presiden</h3>
         </div>
     </div>
-    <div class="row mt-3 about-comp">
-        <div class="col-4">
+
+    <div class="row mt-3">
+        <!-- Mobile -->
+        <div class="col-4 mobile">
             <div class="box-presiden">
                 <img src="<?= base_url('assets/img/businessman.png'); ?>" alt="" class="foto-presiden">
             </div>
         </div>
-        <div class="col-8">
+        <div class="col-8 mobile">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="word-press">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Etiam cursus eros vitae risus varius, vel luctus magna pulvinar.
+                        In ante nulla, tempor eu metus at, mattis commodo justo.
+                        Donec non facilisis mauris. Donec arcu mauris, suscipit ut elit id,
+                        mattis lacinia nisi. Cras ut maximus enim. Vivamus sagittis,
+                        diam et laoreet sodales, ligula purus porttitor eros.
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="presiden">-Naoki Sakashita</div>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile end -->
+
+        <!-- Desktop -->
+        <div class="col-4 desktop">
+            <div class="box-presiden">
+                <img src="<?= base_url('assets/img/businessman.png'); ?>" alt="" class="foto-presiden">
+            </div>
+        </div>
+        <div class="col-8 desktop">
             <div class="row">
                 <div class="col-12">
                     <div class="word-press">
@@ -34,11 +63,16 @@
                 </div>
             </div>
         </div>
+        <!-- Desktop End -->
     </div>
-    <!-- Pesan Presiden -->
+
+    <!-- Pesan Presiden End -->
     <hr>
     <hr class="hr-short">
 
+</div>
+
+<div class="container">
     <div class="row">
         <div class="col-12">
             <div class="row justify-content-center">
@@ -46,9 +80,6 @@
             </div>
         </div>
     </div>
-</div>
-
-<div class="container">
 
     <div id="timeline">
 

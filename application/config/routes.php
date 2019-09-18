@@ -60,6 +60,7 @@ $route['group'] = 'landing/group';
 $route['job'] = 'landing/job';
 $route['achievement'] = 'landing/achievement';
 $route['gallery'] = 'landing/gallery';
+$route['organization'] = 'landing/organization';
 $route['gallery/detail/(:any)'] = 'landing/gallery_detail/(:any)';
 
 

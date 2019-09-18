@@ -33,7 +33,7 @@ body {
 	background-position: center;
 	background-size: cover;
 	height: 270px;
-	margin-top: 70px;
+	margin-top: 50px;
 }
 
 .display-4 {
@@ -42,7 +42,7 @@ body {
 	font-family: 'Righteous', cursive;
 	font-weight: bold;
 	font-size: 18px;
-	margin-top: 60px;
+	margin-top: 40px;
 }
 
 .display-4 span {
@@ -79,12 +79,18 @@ body {
 .visi,
 .misi,
 .misi-gbr,
-.misi-gbr-mobile,
-.visi-gbr-mobile,
 .description-text,
 .brand-desktop,
-.before-footer {
+.before-footer,
+.desktop {
 	display: none;
+}
+
+.brand-mobile,
+.misi-gbr-mobile,
+.visi-gbr-mobile,
+.mobile {
+	display: block;
 }
 
 .visi-gbr-mobile {
@@ -133,12 +139,50 @@ body {
 	background-color: #E2FFF5;
 }
 
-.box-produk {
+.box-produk,
+.box-presiden,
+.box-vertical-news,
+.box-group,
+.box-job {
+	background-color: #ffffff;
 	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
 	border-radius: 10px;
+}
+
+.box-produk {
 	height: 169px;
 	width: 222px;
-	background-color: #ffffff;
+}
+
+.box-presiden {
+	height: 120px;
+	width: 100px;
+	border-radius: 5px;
+}
+
+.box-vertical-news {
+	height: 110px;
+	width: 400px;
+	margin-left: 80px;
+	margin-top: 20px;
+	padding-right: 20px;
+}
+
+.box-group {
+	height: 230px;
+	width: 1000px;
+	margin-top: 40px;
+	padding-top: 20px;
+	padding-right: 30px;
+	padding-bottom: 20px;
+	padding-left: 20px;
+}
+
+.box-job {
+	height: 130px;
+	width: 330px;
+	margin-top: 20px;
+	padding: 10px;
 }
 
 .des-fw {
@@ -155,7 +199,6 @@ body {
 }
 
 .brand-mobile {
-	display: block;
 	padding-bottom: 30px;
 }
 
@@ -208,25 +251,17 @@ body {
 	margin-top: 20px;
 }
 
-.box-presiden {
-	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
-	height: 250px;
-	width: 200px;
-	border-radius: 5px;
-	margin-left: 100px;
-}
-
 .presiden {
 	text-align: right;
-	margin-right: 40px;
 	font-weight: bold;
 	font-style: italic;
-	margin-top: 20px;
+	margin-top: 10px;
+	font-size: 11px;
 }
 
 .word-press {
 	text-align: justify;
-	margin-right: 40px;
+	font-size: 11px;
 }
 
 .language {
@@ -236,8 +271,8 @@ body {
 }
 
 .foto-presiden {
-	width: 176px;
-	margin-top: 31px;
+	width: 80px;
+	margin-top: 15px;
 	margin-left: 11px;
 }
 
@@ -251,6 +286,10 @@ body {
 	font-family: 'Righteous', cursive;
 }
 
+.title-sejarah {
+	font-size: 18px;
+}
+
 .title-group {
 	font-size: 23px;
 	margin-bottom: 25px;
@@ -258,7 +297,7 @@ body {
 
 .title-pesan,
 .title-berita {
-	font-size: 24px;
+	font-size: 18px;
 }
 
 .box-news {
@@ -296,33 +335,31 @@ body {
 	margin-left: -10px;
 }
 
-.box-vertical-news {
-	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
-	border-radius: 10px;
-	height: 110px;
-	width: 400px;
-	background-color: #ffffff;
-	margin-left: 80px;
-	margin-top: 20px;
-	padding-right: 20px;
+.crop,
+.crop-partner,
+.crop-job {
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+	border: 1px solid #dee2e6;
+	overflow: hidden;
 }
 
 .crop {
 	width: 110px;
 	height: 110px;
-	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-	border: 1px solid #dee2e6;
-	overflow: hidden
+}
+
+.crop-partner {
+	width: 120px;
+	height: 120px;
+	border-radius: 50%;
+	margin-top: 35px;
+	margin-left: 40px;
 }
 
 .crop-job {
-	margin-top: 10px;
-	margin-left: 50px;
-	width: 90px;
-	height: 90px;
-	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-	border: 1px solid #dee2e6;
-	overflow: hidden
+	margin-top: 20px;
+	width: 60px;
+	height: 60px;
 }
 
 .border-radius {
@@ -362,21 +399,8 @@ body {
 	border-color: #11BE85;
 }
 
-.description-of-group {
-	text-align: justify;
-}
-
-.box-group {
-	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
-	border-radius: 10px;
-	height: 230px;
+.img-of-group {
 	width: 1000px;
-	background-color: #ffffff;
-	margin-top: 40px;
-	padding-top: 20px;
-	padding-right: 30px;
-	padding-bottom: 20px;
-	padding-left: 20px;
 }
 
 .bingkai {
@@ -385,17 +409,6 @@ body {
 
 .partner {
 	width: 120px;
-}
-
-.crop-partner {
-	width: 120px;
-	height: 120px;
-	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-	border: 1px solid #dee2e6;
-	overflow: hidden;
-	border-radius: 50%;
-	margin-top: 35px;
-	margin-left: 40px;
 }
 
 .name-group {
@@ -414,25 +427,15 @@ body {
 	margin-right: 20px;
 }
 
-.box-job {
-	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
-	border-radius: 10px;
-	height: 130px;
-	width: 800px;
-	background-color: #ffffff;
-	margin-top: 40px;
-	padding: 10px;
-}
-
 .img-job {
-	width: 90px;
-	margin-top: 25px;
+	width: 60px;
+	margin-top: 20px;
 }
 
 .loker {
 	font-weight: bold;
 	margin-top: 20px;
-	font-size: 15px
+	font-size: 12px
 }
 
 .loker-des {
@@ -485,6 +488,12 @@ body {
 		box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
 	}
 
+	.title-pesan,
+	.title-berita,
+	.title-sejarah {
+		font-size: 24px;
+	}
+
 	.nav-contact {
 		height: 30px;
 		background-image: linear-gradient(to top, #F2F2F2, white)
@@ -492,6 +501,53 @@ body {
 
 	.jumbotron {
 		height: 430px;
+		margin-top: 70px;
+	}
+
+	.display-4 {
+		margin-top: 60px;
+	}
+
+	.box-presiden {
+		height: 250px;
+		width: 200px;
+		border-radius: 5px;
+		margin-left: 100px;
+	}
+
+	.foto-presiden {
+		width: 176px;
+		margin-top: 31px;
+		margin-left: 11px;
+	}
+
+	.word-press {
+		margin-right: 40px;
+		font-size: 16px;
+	}
+
+	.presiden {
+		margin-right: 40px;
+		margin-top: 20px;
+		font-size: 15px;
+	}
+
+	.crop-job {
+		margin-top: 10px;
+		margin-left: 50px;
+		width: 90px;
+		height: 90px;
+	}
+
+	.loker {
+		font-weight: bold;
+		margin-top: 20px;
+		font-size: 15px
+	}
+
+	.img-job {
+		width: 90px;
+		margin-top: 25px;
 	}
 
 	.img-contact {
@@ -553,6 +609,13 @@ body {
 		text-align: justify;
 	}
 
+	.box-job {
+		height: 130px;
+		width: 800px;
+		margin-top: 40px;
+		padding: 10px;
+	}
+
 	.customer-text {
 		font-size: 24px;
 		font-family: 'Righteous', cursive;
@@ -585,7 +648,8 @@ body {
 	.misi-gbr,
 	.visi,
 	.misi,
-	.brand-desktop {
+	.brand-desktop,
+	.desktop {
 		display: block;
 	}
 
@@ -594,7 +658,8 @@ body {
 	.visi-mobile,
 	.misi-mobile,
 	.brand-mobile,
-	.misi-gbr-mobile {
+	.misi-gbr-mobile,
+	.mobile {
 		display: none;
 	}
 
