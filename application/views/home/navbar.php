@@ -1,4 +1,9 @@
 <body>
+    <div class="preloader">
+        <div class="loading">
+            <img src="<?= base_url('assets/img/loader.gif'); ?>" width="64">
+        </div>
+    </div>
     <!-- navbar -->
     <header id="header">
         <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">

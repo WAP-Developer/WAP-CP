@@ -98,6 +98,12 @@
         autoWidth: true,
         items: 4
     });
+
+    $(document).ready(function() {
+        setTimeout(function() {
+            $('.preloader').fadeOut('slow', function() {});
+        }, 1000);
+    })
 </script>
 </body>
 
