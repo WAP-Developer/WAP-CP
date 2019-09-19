@@ -12,15 +12,15 @@
 						<div class="kt-login__head">
 							<h3 class="kt-login__title">Selamat Datang</h3>
 						</div>
-						<form class="kt-form" action="<?= base_url('auth/login'); ?>" method="post">
-						<?= $this->session->flashdata('notification'); ?>
-						<input type="hidden" name="<?= $name; ?>" value="<?= $hash; ?>" />
+						<form class="kt-form" action="<?= base_url('cp-admin/auth/login'); ?>" method="post">
+							<?= $this->session->flashdata('notification'); ?>
+							<input type="hidden" name="<?= $name; ?>" value="<?= $hash; ?>" />
 							<div class="input-group">
-								<input class="form-control" type="text" placeholder="Email" name="email" value="<?= set_value('email');?>" autocomplete="off">
+								<input class="form-control" type="text" placeholder="Email" name="email" value="<?= set_value('email'); ?>" autocomplete="off">
 								<?php echo form_error('email', '<div class="error invalid-feedback" style="display: block;"><b>', '</b></div>'); ?>
 							</div>
 							<div class="input-group">
-								<input class="form-control" type="password" placeholder="Password" value="<?= set_value('password');?>" name="password">
+								<input class="form-control" type="password" placeholder="Password" value="<?= set_value('password'); ?>" name="password">
 								<?php echo form_error('password', '<div class="error invalid-feedback" style="display: block;"><b>', '</b></div>'); ?>
 							</div>
 							<div class="kt-login__actions">

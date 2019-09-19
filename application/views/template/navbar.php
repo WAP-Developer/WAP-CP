@@ -44,7 +44,7 @@
                 <div class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-top-unround dropdown-menu-xl">
 
                     <!--begin: Head -->
-                    <div class="kt-user-card kt-user-card--skin-dark kt-notification-item-padding-x" style="background-image: url(../assets/media/misc/bg-1.jpg)">
+                    <div class="kt-user-card kt-user-card--skin-dark kt-notification-item-padding-x" style="background-image: url(../assets/media/misc/bg-1.png)">
                         <div class="kt-user-card__avatar">
                             <img class="kt-hidden" alt="Pic" src="../assets/media/users/300_25.jpg" />
 

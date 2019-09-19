@@ -128,6 +128,14 @@
 <!--begin::Global App Bundle(used by all pages) -->
 <script src="<?= base_url('assets'); ?>/app/bundle/app.bundle.js" type="text/javascript"></script>
 
+<script>
+    $(document).ready(function() {
+        setTimeout(function() {
+            $('.preloader').fadeOut('slow', function() {});
+        }, 500);
+    });
+</script>
+
 <!--end::Global App Bundle -->
 </body>
 

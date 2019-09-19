@@ -9,8 +9,24 @@
     </div>
 
     <div class="row">
-        <?php for ($i = 1; $i <= 12; $i++) { ?>
-            <div class="col-3 mt-5">
+        <!-- Mobile -->
+        <?php for ($i = 1; $i <= 8; $i++) { ?>
+            <div class="col-6 mb-3 mobile">
+                <div class="hovereffect">
+                    <img class="img-thumbnail" src="<?= base_url('assets/img/p14.jpg'); ?>" alt="">
+                    <div class="overlay">
+                        <p>
+                            <a href="javascript:;" class="title-hover" data-toggle="modal" data-target="#viewDetail">LIHAT</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
+        <!-- Mobile End -->
+
+        <!-- Desktop -->
+        <?php for ($i = 1; $i <= 8; $i++) { ?>
+            <div class="col-3 mt-5 desktop">
                 <div class="hovereffect">
                     <img class="img-thumbnail" src="<?= base_url('assets/img/p14.jpg'); ?>" alt="">
                     <div class="overlay">
@@ -22,10 +38,30 @@
                 </div>
             </div>
         <?php } ?>
+        <!-- Desktop End -->
     </div>
 
     <div class="row justify-content-center mt-5">
-        <nav aria-label="...">
+        <!-- Mobile -->
+        <nav aria-label="..." class="mobile">
+            <ul class="pagination pagination-sm">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Sebelumnya</a>
+                </li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item" aria-current="page">
+                    <a class="page-link" href="#">2</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#">Selanjutnya</a>
+                </li>
+            </ul>
+        </nav>
+        <!-- Mobile End -->
+
+        <!-- Desktop -->
+        <nav aria-label="..." class="desktop">
             <ul class="pagination">
                 <li class="page-item disabled">
                     <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Sebelumnya</a>
@@ -40,6 +76,7 @@
                 </li>
             </ul>
         </nav>
+        <!-- Desktop -->
     </div>
 
     <div class="modal fade" id="viewDetail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

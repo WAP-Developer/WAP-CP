@@ -8,7 +8,24 @@
     </div>
 
     <div class="row mt-3">
-        <div class="col-6 mt-4" data-aos="fade-up">
+        <!-- Mobile -->
+        <?php for ($i = 1; $i <= 5; $i++) { ?>
+            <div class="col-12 mobile mb-4">
+                <div class="row justify-content-center">
+                    <div class="card" style="width: 18rem; border-radius: 15px;">
+                        <img src="<?= base_url('assets/img/bisnis.jpg'); ?>" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <a href="" class="card-title" style="color:black; text-decoration: none;">Card title</a>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
+        <!-- Mobile End -->
+
+        <!-- Desktop -->
+        <div class="col-6 mt-4 desktop" data-aos="fade-up">
             <div class="card box-news" style="width: 18rem;">
                 <img src="<?= base_url('assets/img/mmmm.jpg'); ?>" alt="..." class="card-img-top" height="150px">
                 <div class="card-body">
@@ -21,8 +38,8 @@
                 </div>
             </div>
         </div>
-        <div class="vertical-line"></div>
-        <div class="col-6">
+        <div class="vertical-line desktop"></div>
+        <div class="col-6 desktop">
             <?php for ($i = 1; $i <= 4; $i++) { ?>
                 <div class="box-vertical-news" data-aos="fade-left">
                     <div class="row">
@@ -43,22 +60,22 @@
                 </div>
             <?php } ?>
         </div>
-
+        <!-- Desktop End -->
     </div>
 
-    <hr>
-    <hr class="hr-short">
+    <hr class="desktop">
+    <hr class="hr-short desktop">
 
     <?php for ($i = 1; $i <= 2; $i++) { ?>
-        <div class="row mt-5" data-aos="fade-up">
-            <div class="col-6">
+        <div class="row mt-5 desktop" data-aos="fade-up">
+            <div class="col-6 desktop">
                 <div class="row justify-content-end mr-4">
                     <div class="big-news-cover">
                         <img src="<?= base_url('assets/img/bisnis.jpg'); ?>" alt="" class="big-news">
                     </div>
                 </div>
             </div>
-            <div class="col-5">
+            <div class="col-5 desktop">
                 <div class="row">
                     <a href="#" class="big-title-news mt-3">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -79,7 +96,26 @@
     <?php } ?>
 
     <div class="row justify-content-center pt-4 pb-3">
-        <nav aria-label="...">
+        <!-- Mobile -->
+        <nav aria-label="..." class="mobile">
+            <ul class="pagination pagination-sm">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Sebelumnya</a>
+                </li>
+                <li class="page-item active"><a class="page-link" href="<?= base_url('news'); ?>">1</a></li>
+                <li class="page-item" aria-current="page">
+                    <a class="page-link" href="<?= base_url('news/page/2'); ?>">2</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#">Selanjutnya</a>
+                </li>
+            </ul>
+        </nav>
+        <!-- Mobile End -->
+
+        <!-- Desktop -->
+        <nav aria-label="..." class="desktop">
             <ul class="pagination">
                 <li class="page-item disabled">
                     <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Sebelumnya</a>
@@ -94,5 +130,7 @@
                 </li>
             </ul>
         </nav>
+        <!-- Desktop End -->
+
     </div>
 </div>

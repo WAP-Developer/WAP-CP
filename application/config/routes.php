@@ -50,7 +50,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 */
 
 $route['cp-admin'] = 'authentication';
-$route['auth/login'] = 'authentication/login';
+$route['cp-admin/auth/login'] = 'authentication/login';
 $route['account/logout'] = 'authentication/logout_process';
 $route['auth/login-process'] = 'authentication/login_process';
 $route['cp-admin/dashboard'] = 'admin/dashboard';

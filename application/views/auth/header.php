@@ -26,6 +26,7 @@
 
     <!--begin::Page Custom Styles(used by this page) -->
     <link href="<?= base_url('assets'); ?>/app/custom/login/login-v3.default.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="<?= base_url('assets/company/'); ?>css/preloader.css">
 
     <!--end::Page Custom Styles -->
 
@@ -83,3 +84,8 @@
 <!-- begin::Body -->
 
 <body class="kt-header--fixed kt-header-mobile--fixed kt-subheader--fixed kt-subheader--enabled kt-subheader--solid kt-aside--enabled kt-aside--fixed kt-page--loading">
+    <div class="preloader">
+        <div class="loading">
+            <img src="<?= base_url('assets/img/loader.gif'); ?>" width="64">
+        </div>
+    </div>

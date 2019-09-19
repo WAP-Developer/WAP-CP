@@ -8,7 +8,7 @@ class Admin extends CI_Controller
         parent::__construct();
         if (!$this->session->userdata('email')) {
             $this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>Maaf! Silakan masuk terlebih dahulu.</span></div>');
-            redirect('auth/login');
+            redirect('cp-admin/auth/login');
         }
     }
 

@@ -26,7 +26,7 @@
 
     <!--begin::Page Vendors Styles(used by this page) -->
     <link href="<?= base_url('assets'); ?>/vendors/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
-
+    <link rel="stylesheet" href="<?= base_url('assets/company/'); ?>css/preloader.css">
     <!--end::Page Vendors Styles -->
 
     <!--begin:: Global Mandatory Vendors -->
@@ -83,7 +83,11 @@
 <!-- begin::Body -->
 
 <body class="kt-header--fixed kt-header-mobile--fixed kt-subheader--fixed kt-subheader--enabled kt-subheader--solid kt-aside--enabled kt-aside--fixed kt-page--loading">
-
+    <div class="preloader">
+        <div class="loading">
+            <img src="<?= base_url('assets/img/loader.gif'); ?>" width="64">
+        </div>
+    </div>
     <!-- begin:: Page -->
 
     <!-- begin:: Header Mobile -->

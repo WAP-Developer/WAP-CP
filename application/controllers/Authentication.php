@@ -6,7 +6,7 @@ class Authentication extends CI_Controller
 	public function index()
 	{
 		if (!$this->session->userdata('email')) {
-			redirect('auth/login');
+			redirect('cp-admin/auth/login');
 		} else {
 			redirect('cp-admin/dashboard');
 		}
@@ -56,11 +56,11 @@ class Authentication extends CI_Controller
 				redirect('cp-admin/dashboard');
 			} else {
 				$this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>Maaf! Password anda salah.</span></div>');
-				redirect('auth/login');
+				redirect('cp-admin/auth/login');
 			}
 		} else {
 			$this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>Maaf! Email tidak ditemukan.</span></div>');
-			redirect('auth/login');
+			redirect('cp-admin/auth/login');
 		}
 	}
 
@@ -73,6 +73,6 @@ class Authentication extends CI_Controller
 	public function logout()
 	{
 		$this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>Terimakasih telah menggunakan layanan ini.</span></div>');
-		redirect('auth/login');
+		redirect('cp-admin/auth/login');
 	}
 }

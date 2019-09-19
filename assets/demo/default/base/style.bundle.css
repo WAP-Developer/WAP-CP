@@ -18336,13 +18336,13 @@ code {
 
 .kt-subheader .kt-subheader__btn-daterange .kt-subheader__btn-daterange-date {
 	display: inline-block;
-	color: #5d78ff;
+	color: #38D39F;
 	margin-right: 0.75rem;
 	font-weight: 500;
 }
 
 .kt-subheader .kt-subheader__btn-daterange i {
-	color: #5d78ff;
+	color: #38D39F;
 }
 
 .kt-subheader .kt-subheader__btn-daterange:hover,
@@ -18356,7 +18356,7 @@ code {
 .kt-subheader .kt-subheader__btn-daterange.active i,
 .kt-subheader .kt-subheader__btn-daterange:active i,
 .kt-subheader .kt-subheader__btn-daterange:focus i {
-	color: #5d78ff;
+	color: #38D39F;
 }
 
 .kt-subheader .kt-subheader__search {
@@ -19240,11 +19240,11 @@ code {
 }
 
 .kt-svg-icon g [fill] {
-	fill: #5d78ff;
+	fill: #38D39F;
 }
 
 .kt-svg-icon.kt-svg-icon--brand g [fill] {
-	fill: #5d78ff;
+	fill: #38D39F;
 }
 
 .kt-svg-icon.kt-svg-icon--light g [fill] {
@@ -19256,7 +19256,7 @@ code {
 }
 
 .kt-svg-icon.kt-svg-icon--primary g [fill] {
-	fill: #5867dd;
+	fill: #38D39F;
 }
 
 .kt-svg-icon.kt-svg-icon--success g [fill] {

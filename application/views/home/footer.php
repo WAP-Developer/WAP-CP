@@ -103,7 +103,7 @@
         setTimeout(function() {
             $('.preloader').fadeOut('slow', function() {});
         }, 500);
-    })
+    });
 </script>
 </body>
 
