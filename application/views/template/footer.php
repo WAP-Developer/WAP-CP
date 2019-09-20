@@ -125,6 +125,8 @@
 
 <!--end::Page Scripts -->
 
+<script src="<?= base_url('assets'); ?>/app/custom/general/crud/metronic-datatable/base/html-table.js" type="text/javascript"></script>
+
 <!--begin::Global App Bundle(used by all pages) -->
 <script src="<?= base_url('assets'); ?>/app/bundle/app.bundle.js" type="text/javascript"></script>
 

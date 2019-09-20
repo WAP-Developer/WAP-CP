@@ -4,6 +4,8 @@
     <div class="kt-subheader   kt-grid__item" id="kt_subheader">
         <div class="kt-subheader__main">
             <h3 class="kt-subheader__title">Dashboard</h3>
+            <a href="javascript:;" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+            <span class="kt-subheader__breadcrumbs-separator"></span>
             <div class="kt-input-icon kt-input-icon--right kt-subheader__search kt-hidden">
                 <input type="text" class="form-control" placeholder="Search order..." id="generalSearch">
                 <span class="kt-input-icon__icon kt-input-icon__icon--right">
@@ -47,18 +49,17 @@
 
     <!-- begin:: Content -->
     <div class="kt-content  kt-grid__item kt-grid__item--fluid" id="kt_content">
-
         <!--Begin::Dashboard 1-->
 
         <!--Begin::Section-->
         <div class="row justify-content-center">
-            <div class="col-xl-4">
+            <div class="col-sm-4">
                 <!--begin:: Widgets/Activity-->
                 <div class="kt-portlet kt-portlet--fit kt-portlet--head-lg kt-portlet--head-overlay kt-portlet--height-fluid">
                     <div class="kt-portlet__head kt-portlet__space-x">
                         <div class="kt-portlet__head-label">
                             <h3 class="kt-portlet__head-title kt-font-light">
-                                Profile Pengguna
+                                Pengguna
                             </h3>
                         </div>
                     </div>
@@ -75,22 +76,34 @@
                             </div>
                             <div class="kt-widget27__container kt-portlet__space-x">
                                 <div style="margin-left: 50px;">
-                                    <tr>
-                                        <td>
-                                            <span style="font-weight: bold; color: black; font-size: 15px;">Email</span>
-                                        </td>
-                                        <td width="30%">
-                                            <span style="font-weight: bold; color: black; font-size: 15px;">:</span>
-                                        </td>
-                                        <td>
-                                            <span style="font-weight: bold; color: black; font-size: 15px;"><?= $this->session->userdata('email'); ?></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <span style="font-weight: bold; color: black; font-size: 15px;">Email</span>
+                                            </td>
+                                            <td width="20px">
+                                                <span style="font-weight: bold; color: black; font-size: 15px;">
+                                                    <center>:</center>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span style="font-weight: bold; color: black; font-size: 15px;"><?= $this->session->userdata('email'); ?></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <span style="font-weight: bold; color: black; font-size: 15px;">Role</span>
+                                            </td>
+                                            <td width="20px">
+                                                <span style="font-weight: bold; color: black; font-size: 15px;">
+                                                    <center>:</center>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span style="font-weight: bold; color: black; font-size: 15px;"><?= $role['role']; ?></span>
+                                            </td>
+                                        </tr>
+                                    </table>
                                 </div>
                             </div>
                         </div>

@@ -4,7 +4,7 @@
 			<div class="kt-grid__item kt-grid__item--fluid kt-login__wrapper">
 				<div class="kt-login__container">
 					<div class="kt-login__logo">
-						<a href="#">
+						<a href="<?= base_url(); ?>">
 							<img src="<?= base_url('assets'); ?>/img/jbi.png" width="150px">
 						</a>
 					</div>

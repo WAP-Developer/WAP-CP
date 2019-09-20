@@ -5,7 +5,11 @@ class Landing extends CI_Controller
 {
     public function index()
     {
-        $this->load->view('home/header');
+        $data = array(
+            'title' => "",
+            'check' => $this->db->get('wb_seo')->row_array()
+        );
+        $this->load->view('home/header', $data);
         $this->load->view('home/navbar');
         $this->load->view('home/jumbotron');
         $this->load->view('home/index');
@@ -14,7 +18,11 @@ class Landing extends CI_Controller
 
     public function news()
     {
-        $this->load->view('home/header');
+        $data = array(
+            'title' => "Berita",
+            'check' => $this->db->get('wb_seo')->row_array()
+        );
+        $this->load->view('home/header', $data);
         $this->load->view('home/navbar');
         $this->load->view('home/jumbotron');
         $this->load->view('home/news');
@@ -32,7 +40,11 @@ class Landing extends CI_Controller
 
     public function group()
     {
-        $this->load->view('home/header');
+        $data = array(
+            'title' => "JBI Group",
+            'check' => $this->db->get('wb_seo')->row_array()
+        );
+        $this->load->view('home/header', $data);
         $this->load->view('home/navbar');
         $this->load->view('home/jumbotron');
         $this->load->view('home/group');
@@ -41,7 +53,11 @@ class Landing extends CI_Controller
 
     public function job()
     {
-        $this->load->view('home/header');
+        $data = array(
+            'title' => "Karir",
+            'check' => $this->db->get('wb_seo')->row_array()
+        );
+        $this->load->view('home/header', $data);
         $this->load->view('home/navbar');
         $this->load->view('home/jumbotron');
         $this->load->view('home/job');
@@ -50,7 +66,11 @@ class Landing extends CI_Controller
 
     public function gallery()
     {
-        $this->load->view('home/header');
+        $data = array(
+            'title' => "Galeri",
+            'check' => $this->db->get('wb_seo')->row_array()
+        );
+        $this->load->view('home/header', $data);
         $this->load->view('home/navbar');
         $this->load->view('home/jumbotron');
         $this->load->view('home/gallery');
@@ -59,7 +79,11 @@ class Landing extends CI_Controller
 
     public function gallery_detail($id)
     {
-        $this->load->view('home/header');
+        $data = array(
+            'title' => "Detail Album",
+            'check' => $this->db->get('wb_seo')->row_array()
+        );
+        $this->load->view('home/header', $data);
         $this->load->view('home/navbar');
         $this->load->view('home/jumbotron');
         $this->load->view('home/gallery_detail');
@@ -68,7 +92,11 @@ class Landing extends CI_Controller
 
     public function achievement()
     {
-        $this->load->view('home/header');
+        $data = array(
+            'title' => "Piagam",
+            'check' => $this->db->get('wb_seo')->row_array()
+        );
+        $this->load->view('home/header', $data);
         $this->load->view('home/navbar');
         $this->load->view('home/jumbotron');
         $this->load->view('home/achievement');
@@ -77,7 +105,11 @@ class Landing extends CI_Controller
 
     public function organization()
     {
-        $this->load->view('home/header');
+        $data = array(
+            'title' => "Organisasi",
+            'check' => $this->db->get('wb_seo')->row_array()
+        );
+        $this->load->view('home/header', $data);
         $this->load->view('home/navbar');
         $this->load->view('home/jumbotron');
         $this->load->view('home/organization');

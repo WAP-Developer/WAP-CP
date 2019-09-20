@@ -67,28 +67,30 @@
     <hr class="hr-short desktop">
 
     <?php for ($i = 1; $i <= 2; $i++) { ?>
-        <div class="row mt-5 desktop" data-aos="fade-up">
-            <div class="col-6 desktop">
-                <div class="row justify-content-end mr-4">
-                    <div class="big-news-cover">
-                        <img src="<?= base_url('assets/img/bisnis.jpg'); ?>" alt="" class="big-news">
+        <div class="desktop">
+            <div class="row mt-5" data-aos="fade-up">
+                <div class="col-6 desktop">
+                    <div class="row justify-content-end mr-4">
+                        <div class="big-news-cover">
+                            <img src="<?= base_url('assets/img/bisnis.jpg'); ?>" alt="" class="big-news">
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-5 desktop">
-                <div class="row">
-                    <a href="#" class="big-title-news mt-3">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    </a>
-                </div>
-                <div class="row">
-                    <div class="tanggal-berita">
-                        <i class="fas fa-calendar-alt"></i> 12 September 2019
+                <div class="col-5 desktop">
+                    <div class="row">
+                        <a href="#" class="big-title-news mt-3">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </a>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="big-news-des">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras lorem ante, pulvinar sed tincidunt eu, tristique vitae dolor. In hac habitasse platea dictumst. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                    <div class="row">
+                        <div class="tanggal-berita">
+                            <i class="fas fa-calendar-alt"></i> 12 September 2019
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="big-news-des">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras lorem ante, pulvinar sed tincidunt eu, tristique vitae dolor. In hac habitasse platea dictumst. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                        </div>
                     </div>
                 </div>
             </div>

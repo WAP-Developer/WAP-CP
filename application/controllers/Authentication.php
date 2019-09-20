@@ -29,9 +29,11 @@ class Authentication extends CI_Controller
 		if ($this->form_validation->run() == FALSE) {
 			$data = array(
 				'name' => $this->security->get_csrf_token_name(),
-				'hash' => $this->security->get_csrf_hash()
+				'hash' => $this->security->get_csrf_hash(),
+				'check' => $this->db->get('wb_seo')->row_array(),
+				'title' => "Admin Login"
 			);
-			$this->load->view('auth/header');
+			$this->load->view('auth/header', $data);
 			$this->load->view('auth/index', $data);
 			$this->load->view('auth/footer');
 		} else {
@@ -47,6 +49,7 @@ class Authentication extends CI_Controller
 		if ($check) {
 			if ($check['password'] == md5($password)) {
 				$session = array(
+					'id' => $check['id'],
 					'name'  => $check['name'],
 					'email'     => $check['email'],
 					'role'     => $check['role_id'],
