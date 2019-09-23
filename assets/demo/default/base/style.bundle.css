@@ -12339,18 +12339,18 @@ a.text-dark:focus {
 .btn.btn-clean {
 	border: 0;
 	background: transparent;
-	color: #93a2dd;
+	color: #38D39F;
 }
 
 .btn.btn-clean i {
-	color: #93a2dd;
+	color: #38D39F;
 }
 
 .show>.btn.btn-clean,
 .btn.btn-clean.active,
 .btn.btn-clean:active,
 .btn.btn-clean:hover {
-	color: #5d78ff;
+	color: #38D39F;
 	background: #f0f3ff;
 }
 
@@ -12358,7 +12358,7 @@ a.text-dark:focus {
 .btn.btn-clean.active i,
 .btn.btn-clean:active i,
 .btn.btn-clean:hover i {
-	color: #5d78ff;
+	color: rgb(36, 153, 114);
 }
 
 .btn.btn-default {
@@ -28352,7 +28352,7 @@ strong {
 }
 
 .kt-font-brand {
-	color: #5d78ff !important;
+	color: #38D39F !important;
 }
 
 .kt-font-hover-brand:hover {

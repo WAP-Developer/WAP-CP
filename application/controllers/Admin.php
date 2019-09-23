@@ -10,19 +10,16 @@ class Admin extends CI_Controller
             $this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>Maaf! Silakan masuk terlebih dahulu.</span></div>');
             redirect('cp-admin/auth/login');
         }
+
+        $this->load->model('admin_m', 'admin');
     }
 
     public function dashboard()
     {
-        $this->db->select('*');
-        $this->db->from('wb_admin');
-        $this->db->join('wb_role', 'wb_admin.role_id = wb_role.id');
-        $role = $this->db->get()->row_array();
-
         $data = array(
-            'role' => $role,
-            'user' => $this->db->get_where('wb_admin', array('id' => $this->session->userdata('id')))->row_array(),
-            'check' => $this->db->get('wb_seo')->row_array(),
+            'role' => $this->admin->getCurrentRole(),
+            'user' => $this->admin->getActiveUser(),
+            'check' => $this->admin->getSeo(),
             'title' => 'Dashboard'
         );
 
@@ -57,10 +54,10 @@ class Admin extends CI_Controller
 
         if ($this->form_validation->run() == FALSE) {
             $data = array(
-                'user' => $this->db->get_where('wb_admin', array('id' => $this->session->userdata('id')))->row_array(),
+                'user' => $this->admin->getActiveUser(),
                 'name' => $this->security->get_csrf_token_name(),
                 'hash' => $this->security->get_csrf_hash(),
-                'check' => $this->db->get('wb_seo')->row_array(),
+                'check' => $this->admin->getSeo(),
                 'title' => "SEO Management"
             );
             $this->load->view('template/header', $data);
@@ -76,6 +73,7 @@ class Admin extends CI_Controller
             $fl = $this->input->post('follow_landing');
             $ca = $this->input->post('crawl_admin');
             $fa = $this->input->post('follow_admin');
+            $check = $this->admin->getSeo();
 
             $data = [
                 'title' => $title,
@@ -85,16 +83,13 @@ class Admin extends CI_Controller
                 'follow_landing' => $fl,
                 'crawl_admin' => $ca,
                 'follow_admin' => $fa,
-                'created_at' => date('Y-m-d', time())
+                'update_at' => date('Y-m-d', time())
             ];
 
-            $check = $this->db->get('wb_seo')->row_array();
-
             if (!$check) {
-                $this->db->insert('wb_seo', $data);
+                $this->admin->insertSeo($data);
             } else {
-                $this->db->where('title', $title);
-                $this->db->update('wb_seo', $data);
+                $this->admin->updateSeo($title, $data);
             }
 
             $this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>Selamat! SEO Website Telah di Simpan.</span></div>');
@@ -130,8 +125,8 @@ class Admin extends CI_Controller
             $data = array(
                 'name' => $this->security->get_csrf_token_name(),
                 'hash' => $this->security->get_csrf_hash(),
-                'user' => $this->db->get_where('wb_admin', array('id' => $this->session->userdata('id')))->row_array(),
-                'check' => $this->db->get('wb_seo')->row_array(),
+                'user' => $this->admin->getActiveUser(),
+                'check' => $this->admin->getSeo(),
                 'title' => 'Profile Pengguna'
             );
             $this->load->view('template/header', $data);
@@ -143,7 +138,7 @@ class Admin extends CI_Controller
             $id = $this->session->userdata('id');
             $name = $this->input->post('name');
             $email = $this->input->post('email');
-            $oldpassword = $this->db->get_where('wb_admin', array('id' => $this->session->userdata('id')))->row_array();
+            $oldpassword = $this->admin->getOldPassword();
 
             if ($password != NULL || $confirm != NULL) {
                 $pwd = md5($password);
@@ -157,8 +152,7 @@ class Admin extends CI_Controller
                 'password' => $pwd
             ];
 
-            $this->db->where('id', $id);
-            $this->db->update('wb_admin', $data);
+            $this->admin->updateUser($id, $data);
 
             $this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>Selamat! Profil anda berhasil diupdate.</span></div>');
             redirect('cp-admin/profile');
@@ -170,14 +164,162 @@ class Admin extends CI_Controller
         $data = array(
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash(),
-            'user' => $this->db->get_where('wb_admin', array('id' => $this->session->userdata('id')))->row_array(),
-            'check' => $this->db->get('wb_seo')->row_array(),
+            'user' => $this->admin->getActiveUser(),
+            'check' => $this->admin->getSeo(),
             'title' => 'Album Kegiatan'
         );
         $this->load->view('template/header', $data);
         $this->load->view('template/sidebar');
         $this->load->view('template/navbar', $data);
         $this->load->view('admin/album', $data);
+        $this->load->view('template/footer');
+    }
+
+    public function role()
+    {
+        $this->form_validation->set_rules('role', 'Role', 'required', array(
+            'required' => '%s Harus diisi.'
+        ));
+
+        if ($this->form_validation->run() == FALSE) {
+            $data = array(
+                'name' => $this->security->get_csrf_token_name(),
+                'hash' => $this->security->get_csrf_hash(),
+                'user' => $this->admin->getActiveUser(),
+                'check' => $this->admin->getSeo(),
+                'roles' => $this->admin->getRoles(),
+                'title' => 'Role Management'
+            );
+            $this->load->view('template/header', $data);
+            $this->load->view('template/sidebar');
+            $this->load->view('template/navbar', $data);
+            $this->load->view('admin/role', $data);
+            $this->load->view('template/footer');
+        } else {
+            if ($this->input->post('add')) {
+                $roleInput = $this->input->post('role');
+                $data = [
+                    'role' => $roleInput,
+                    'create_at' => date('Y-m-d', time())
+                ];
+
+                $this->admin->insertRole($data);
+
+                $this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>Selamat! Role berhasil ditambahkan.</span></div>');
+                redirect('cp-admin/role-management');
+            }
+
+            if ($this->input->post('edit')) {
+                $id = $this->input->post('id');
+                $roleInput = $this->input->post('role');
+                $data = [
+                    'role' => $roleInput,
+                    'create_at' => date('Y-m-d', time())
+                ];
+
+                $this->admin->updateRole($id, $data);
+
+                $this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>Selamat! Role berhasil ditambahkan.</span></div>');
+                redirect('cp-admin/role-management');
+            }
+        }
+    }
+
+    public function delete_role($id)
+    {
+        $this->admin->deleteRole($id);
+        $this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>Selamat! Role berhasil ditambahkan.</span></div>');
+        redirect('cp-admin/role-management');
+    }
+
+    public function menu()
+    {
+        if ($this->input->post('addMenu')) {
+            $menu = $this->input->post('menu');
+            $icon = $this->input->post('icon');
+            $url = $this->input->post('url');
+
+            $data = [
+                'menu' => $menu,
+                'icon' => $icon,
+                'url' => $url,
+                'update_at' => date('Y-m-d', time())
+            ];
+
+            $this->admin->insertMenu($data);
+            $this->session->set_flashdata('notificationa', '<div class="kt-alert kt-alert--outline alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>Selamat! Menu berhasil ditambahkan.</span></div>');
+            redirect('cp-admin/menu-management/');
+        } else if ($this->input->post('addSub')) {
+            $menu = $this->input->post('menu');
+            $sub = $this->input->post('sub');
+            $url = $this->input->post('url');
+
+            $data = [
+                'menu_id' => $menu,
+                'sub_menu' => $sub,
+                'sub_url' => $url,
+                'update_at' => date('Y-m-d', time())
+            ];
+
+            $this->admin->insertSubMenu($data);
+            $this->session->set_flashdata('notificationb', '<div class="kt-alert kt-alert--outline alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>Selamat! Sub-Menu berhasil ditambahkan.</span></div>');
+            redirect('cp-admin/menu-management/');
+        } else if ($this->input->post('editMenu')) {
+            $id = $this->input->post('id');
+            $menu = $this->input->post('menu');
+            $icon = $this->input->post('icon');
+            $url = $this->input->post('url');
+
+            $data = [
+                'menu' => $menu,
+                'icon' => $icon,
+                'url' => $url,
+                'update_at' => date('Y-m-d', time())
+            ];
+
+            $this->admin->updateMenu($id, $data);
+            $this->session->set_flashdata('notificationa', '<div class="kt-alert kt-alert--outline alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>Selamat! Menu berhasil diubah.</span></div>');
+            redirect('cp-admin/menu-management/');
+        }
+
+        $data = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash(),
+            'getMenus' => $this->admin->getMenu(),
+            'getSubMenus' => $this->admin->getSubMenu(),
+            'user' => $this->admin->getActiveUser(),
+            'check' => $this->admin->getSeo(),
+            'roles' => $this->admin->getRoles(),
+            'title' => 'Menu Manajemen'
+        );
+        $this->load->view('template/header', $data);
+        $this->load->view('template/sidebar');
+        $this->load->view('template/navbar', $data);
+        $this->load->view('admin/menu', $data);
+        $this->load->view('template/footer');
+    }
+
+    public function delete_menu($id)
+    {
+        $this->admin->deleteMenu($id);
+        $this->session->set_flashdata('notificationa', '<div class="kt-alert kt-alert--outline alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>Selamat! Menu berhasil dihapus.</span></div>');
+        redirect('cp-admin/menu-management/');
+    }
+
+    public function menu_role($id)
+    {
+        $data = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash(),
+            'user' => $this->admin->getActiveUser(),
+            'check' => $this->admin->getSeo(),
+            'roles' => $this->admin->getRoles(),
+            'title' => 'Role Menu'
+        );
+        $this->load->view('template/header', $data);
+        $this->load->view('template/sidebar');
+        $this->load->view('template/navbar', $data);
+        $this->load->view('admin/role_menu', $data);
         $this->load->view('template/footer');
     }
 }

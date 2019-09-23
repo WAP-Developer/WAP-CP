@@ -27,6 +27,7 @@
     <!--begin::Page Vendors Styles(used by this page) -->
     <link href="<?= base_url('assets'); ?>/vendors/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="<?= base_url('assets/company/'); ?>css/preloader.css">
+    <link href="<?= base_url('assets'); ?>/vendors/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
     <!--end::Page Vendors Styles -->
 
     <!--begin:: Global Mandatory Vendors -->
@@ -54,7 +55,7 @@
     <link href="<?= base_url('assets'); ?>/vendors/general/animate.css/animate.css" rel="stylesheet" type="text/css" />
     <link href="<?= base_url('assets'); ?>/vendors/general/toastr/build/toastr.css" rel="stylesheet" type="text/css" />
     <link href="<?= base_url('assets'); ?>/vendors/general/morris.js/morris.css" rel="stylesheet" type="text/css" />
-    <link href="<?= base_url('assets'); ?>/vendors/general/sweetalert2/dist/sweetalert2.css" rel="stylesheet" type="text/css" />
+    <link href="<?= base_url('assets'); ?>/swal/sweetalert2.css" rel="stylesheet" type="text/css" />
     <link href="<?= base_url('assets'); ?>/vendors/general/socicon/css/socicon.css" rel="stylesheet" type="text/css" />
     <link href="<?= base_url('assets'); ?>/vendors/custom/vendors/line-awesome/css/line-awesome.css" rel="stylesheet" type="text/css" />
     <link href="<?= base_url('assets'); ?>/vendors/custom/vendors/flaticon/flaticon.css" rel="stylesheet" type="text/css" />
