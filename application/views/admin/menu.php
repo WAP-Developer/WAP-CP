@@ -143,8 +143,8 @@
                                         <td><?= $getSubMenu['sub_menu'] ?></td>
                                         <td><?= $getSubMenu['sub_url'] ?></td>
                                         <td>
-                                            <a href="javascript:;" title="Edit details" class="btn btn-sm btn-clean btn-icon btn-icon-md" data-toggle="modal" data-target="#edit"> <i class="la la-edit"></i> </a>
-                                            <a href="<?= base_url('cp-admin/delete-role/'); ?>" title="Delete" class="btn btn-sm btn-clean btn-icon btn-icon-md delete-button"> <i class="la la-trash"></i> </a>
+                                            <a href="javascript:;" title="Edit details" class="btn btn-sm btn-clean btn-icon btn-icon-md" data-toggle="modal" data-target="#editSub<?= $getSubMenu['id']; ?>"> <i class="la la-edit"></i> </a>
+                                            <a href="<?= base_url('cp-admin/delete-sub-menu/' . $getSubMenu['menu_id']); ?>" title="Delete" class="btn btn-sm btn-clean btn-icon btn-icon-md delete-button"> <i class="la la-trash"></i> </a>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
@@ -265,6 +265,51 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
                             <input type="submit" name="editMenu" class="btn btn-success" value="Simpan">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    <?php endforeach; ?>
+    <!-- Modal Edit End -->
+
+    <!-- Modal Edit Sub -->
+    <?php foreach ($getSubMenus as $getSubMenu) : ?>
+        <div class="modal fade" id="editSub<?= $getSubMenu['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <form action="<?= base_url('cp-admin/menu-management'); ?>" method="post">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Edit Menu</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="menu">Menu</label>
+                                <input type="hidden" name="<?= $name; ?>" value="<?= $hash; ?>" />
+                                <select class="form-control" name="menu" required>
+                                    <option value="<?= $getSubMenu['menu_id']; ?>"><?= $getSubMenu['menu']; ?></option>
+                                    <option value="">-------------</option>
+                                    <?php foreach ($getMenus as $getMenu) : ?>
+                                        <option value="<?= $getMenu['id']; ?>"><?= $getMenu['menu']; ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="sub">Sub-Menu</label>
+                                <input type="hidden" name="id" value="<?= $getSubMenu['menu_id']; ?>">
+                                <input type="text" class="form-control" id="sub" name="sub" value="<?= $getSubMenu['sub_menu']; ?>" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="url">URL</label>
+                                <input type="text" class="form-control" id="url" name="url" value="<?= $getSubMenu['sub_url'] ?>" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+                            <input type="submit" name="editSubMenu" class="btn btn-success" value="Simpan">
                         </div>
                     </form>
                 </div>

@@ -17,6 +17,8 @@ class Admin extends CI_Controller
     public function dashboard()
     {
         $data = array(
+            'user' => $this->admin->getActiveUser(),
+            'name' => $this->security->get_csrf_token_name(),
             'role' => $this->admin->getCurrentRole(),
             'user' => $this->admin->getActiveUser(),
             'check' => $this->admin->getSeo(),
@@ -27,7 +29,7 @@ class Admin extends CI_Controller
         $this->load->view('template/sidebar');
         $this->load->view('template/navbar', $data);
         $this->load->view('admin/dashboard', $data);
-        $this->load->view('template/footer');
+        $this->load->view('template/footer',);
     }
 
     public function seo()
@@ -280,6 +282,22 @@ class Admin extends CI_Controller
             $this->admin->updateMenu($id, $data);
             $this->session->set_flashdata('notificationa', '<div class="kt-alert kt-alert--outline alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>Selamat! Menu berhasil diubah.</span></div>');
             redirect('cp-admin/menu-management/');
+        } else if ($this->input->post('editSubMenu')) {
+            $id = $this->input->post('id');
+            $menu = $this->input->post('menu');
+            $sub = $this->input->post('sub');
+            $url = $this->input->post('url');
+
+            $data = [
+                'menu_id' => $menu,
+                'sub_menu' => $sub,
+                'sub_url' => $url,
+                'update_at' => date('Y-m-d', time())
+            ];
+
+            $this->admin->updateSubMenu($id, $data);
+            $this->session->set_flashdata('notificationb', '<div class="kt-alert kt-alert--outline alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>Selamat! Sub-Menu berhasil diubah.</span></div>');
+            redirect('cp-admin/menu-management/');
         }
 
         $data = array(
@@ -306,20 +324,63 @@ class Admin extends CI_Controller
         redirect('cp-admin/menu-management/');
     }
 
-    public function menu_role($id)
+    public function delete_sub_menu($id)
     {
+        $this->admin->deleteSubMenu($id);
+        $this->session->set_flashdata('notificationb', '<div class="kt-alert kt-alert--outline alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>Selamat! Sub-Menu berhasil dihapus.</span></div>');
+        redirect('cp-admin/menu-management/');
+    }
+
+    public function menu_role()
+    {
+
+        if ($this->input->post('addRoleMenu')) {
+            $currentRole = $this->session->userdata('currentId');
+            $menu = $this->input->post('menu');
+
+            $data = [
+                'menu_id' => $menu,
+                'role_id' => $currentRole
+            ];
+
+            $this->admin->insertRoleMenu($data);
+            $this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>Selamat! Sub-Menu berhasil ditambahkan.</span></div>');
+            redirect('cp-admin/menu-role/' . $currentRole);
+        }
+
+        $id = $this->uri->segment(3);
+        $this->session->set_userdata('currentId', $id);
         $data = array(
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash(),
+            'getRoleMenus' => $this->admin->getRoleMenu($id),
+            'getMenus' => $this->admin->getMenu(),
             'user' => $this->admin->getActiveUser(),
             'check' => $this->admin->getSeo(),
             'roles' => $this->admin->getRoles(),
             'title' => 'Role Menu'
         );
+
         $this->load->view('template/header', $data);
         $this->load->view('template/sidebar');
         $this->load->view('template/navbar', $data);
         $this->load->view('admin/role_menu', $data);
-        $this->load->view('template/footer');
+        $this->load->view('template/footer', $data);
+    }
+
+    public function delete_m_role($id)
+    {
+        $currentRole = $this->session->userdata('currentId');
+        $this->admin->deleteMenuRole($id);
+        $this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>Selamat! Sub-Menu berhasil dihapus.</span></div>');
+        redirect('cp-admin/menu-role/' . $currentRole);
+    }
+
+    public function fetch_menu()
+    {
+        $idMenu = $this->input->post('id');
+        if ($idMenu) {
+            echo $this->admin->fetchMenu($idMenu);
+        }
     }
 }

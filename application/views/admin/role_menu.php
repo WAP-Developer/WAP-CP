@@ -61,9 +61,9 @@
                         <div class="kt-portlet__head-toolbar">
                             <div class="kt-portlet__head-wrapper">
                                 <div class="kt-portlet__head-actions">
-                                    <a href="javascript:;" class="btn btn-brand btn-elevate btn-icon-sm" data-toggle="modal" data-target="#addRole">
+                                    <a href="javascript:;" class="btn btn-brand btn-elevate btn-icon-sm" data-toggle="modal" data-target="#addRoleMenu">
                                         <i class="la la-plus"></i>
-                                        Role
+                                        Role Menu
                                     </a>
                                 </div>
                             </div>
@@ -76,20 +76,20 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Menu</th>
-                                    <th scope="col">Sub-Menu</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>12</td>
-                                    <td>12</td>
-                                    <td>
-                                        <a href="javascript:;" title="Edit details" class="btn btn-sm btn-clean btn-icon btn-icon-md" data-toggle="modal" data-target="#edit"> <i class="la la-edit"></i> </a>
-                                        <a href="<?= base_url('cp-admin/delete-role/'); ?>" title="Delete" class="btn btn-sm btn-clean btn-icon btn-icon-md delete-button"> <i class="la la-trash"></i> </a>
-                                    </td>
-                                </tr>
+                                <?php $no = 1;
+                                foreach ($getRoleMenus as $getRoleMenu) : ?>
+                                    <tr>
+                                        <th scope="row"><?= $no++; ?></th>
+                                        <td><?= $getRoleMenu['menu']; ?></td>
+                                        <td>
+                                            <a href="<?= base_url('cp-admin/delete-menu-role/' . $getRoleMenu['id_akses']); ?>" title="Delete" class="btn btn-sm btn-clean btn-icon btn-icon-md delete-button"> <i class="la la-trash"></i> </a>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
                             </tbody>
                         </table>
                     </div>
@@ -98,4 +98,38 @@
         </div>
     </div>
     <!-- end:: Content -->
+
+    <!-- Modal add -->
+    <div class="modal fade" id="addRoleMenu" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <form action="<?= base_url('cp-admin/menu-role/' . $this->session->userdata('currentId')); ?>" method="post">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add Menu</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <input type="hidden" name="<?= $name; ?>" value="<?= $hash; ?>" />
+                            <label for="menu">Menu</label>
+                            <select class="form-control" id="menu" name="menu">
+                                <option value="">---Pilih---</option>
+                                <?php foreach ($getMenus as $getMenu) : ?>
+                                    <option value="<?= $getMenu['id']; ?>"><?= $getMenu['menu']; ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+                        <input type="submit" name="addRoleMenu" class="btn btn-success" value="Simpan">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Modal add End -->
+
 </div>

@@ -43,6 +43,7 @@ class Admin_m extends CI_Model
         $menu = $this->db->get('wb_menu')->result_array();
         return $menu;
     }
+
     public function getSubMenu()
     {
         $this->db->select('*');
@@ -50,6 +51,24 @@ class Admin_m extends CI_Model
         $this->db->join('wb_menu', 'wb_menu.id = wb_sub_menu.menu_id');
         $query = $this->db->get()->result_array();
         return $query;
+    }
+
+    public function getRoleMenu($id)
+    {
+        $query = $this->db->query("SELECT * FROM wb_menu_akses a, wb_menu b, wb_role d WHERE a.menu_id=b.id AND a.role_id=d.id AND a.role_id=$id")->result_array();
+        return $query;
+    }
+
+    function fetchMenu($menuId)
+    {
+        $data = $this->db->query("SELECT * FROM wb_sub_menu WHERE menu_id=$menuId")->result();
+        $output = '<option value="">---Pilih---</option>';
+
+        foreach ($data as $d) {
+            $output .= '<option value="' . $d->id . '">' . $d->sub_menu . '</option>';
+        }
+
+        return $output;
     }
 
     // Insert Data
@@ -67,9 +86,15 @@ class Admin_m extends CI_Model
     {
         $this->db->insert('wb_menu', $data);
     }
+
     public function insertSubMenu($data)
     {
         $this->db->insert('wb_sub_menu', $data);
+    }
+
+    public function insertRoleMenu($data)
+    {
+        $this->db->insert('wb_menu_akses', $data);
     }
 
     // Update Data
@@ -97,6 +122,12 @@ class Admin_m extends CI_Model
         $this->db->update('wb_menu', $data);
     }
 
+    public function updateSubMenu($id, $data)
+    {
+        $this->db->where('menu_id', $id);
+        $this->db->update('wb_sub_menu', $data);
+    }
+
     // Delete Data
 
     public function deleteRole($id)
@@ -107,5 +138,15 @@ class Admin_m extends CI_Model
     public function deleteMenu($id)
     {
         $this->db->delete('wb_menu', array('id' => $id));
+    }
+
+    public function deleteSubMenu($id)
+    {
+        $this->db->delete('wb_sub_menu', array('menu_id' => $id));
+    }
+
+    public function deleteMenuRole($id)
+    {
+        $this->db->delete('wb_menu_akses', array('id_akses' => $id));
     }
 }
