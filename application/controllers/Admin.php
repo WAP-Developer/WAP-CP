@@ -229,10 +229,47 @@ class Admin extends CI_Controller
     public function gallery_photo()
     {
         $idAlbum = $this->uri->segment(3);
+        if ($this->input->post('addFoto')) {
+            $title = $this->input->post('judul');
+
+            $config['upload_path'] = './assets/img/gallery';
+            $config['allowed_types'] = 'gif|jpg|png';
+            $config['max_size'] = '2048';
+            $config['file_name'] = 'foto' . time();
+
+            $this->load->library('upload', $config);
+
+            if (!$this->upload->do_upload('photo')) {
+                $this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>' . $this->upload->display_errors() . '</span></div>');
+            } else {
+                $img = $this->upload->data('file_name');
+                $config['image_library'] = 'gd2';
+                $config['source_image'] = './assets/img/gallery/' . $img;
+                $config['create_thumb'] = FALSE;
+                $config['maintain_ratio'] = FALSE;
+                $config['quality'] = '60%';
+                $config['new_image'] = './assets/img/gallery/' . $img;
+                $this->load->library('image_lib', $config);
+                $this->image_lib->resize();
+
+                $data = [
+                    'album_id' => $idAlbum,
+                    'title_photo' => $title,
+                    'photo' => $img,
+                    'update_at' => date('Y-m-d', time())
+                ];
+
+                $this->admin->insertGalleryPhoto($data);
+                $this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>Selamat! Photo berhasil ditambahkan.</span></div>');
+                redirect('cp-admin/gallery-photo/' . $idAlbum);
+            }
+        }
+
         $id = $this->session->userdata('id');
         $data = array(
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash(),
+            'idAlbum' => $idAlbum,
             'user' => $this->admin->getActiveUser(),
             'getOneAlbums' => $this->admin->getOneAlbum($idAlbum),
             'sidebars' => $this->admin->getSidebar($id),

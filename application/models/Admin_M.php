@@ -126,6 +126,11 @@ class Admin_m extends CI_Model
         $this->db->insert('wb_album', $data);
     }
 
+    public function insertGalleryPhoto($data)
+    {
+        $this->db->insert('wb_album_foto', $data);
+    }
+
     // Update Data
     public function updateSeo($where, $data)
     {
