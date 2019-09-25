@@ -59,7 +59,7 @@ class Admin_m extends CI_Model
         return $query;
     }
 
-    function fetchMenu($menuId)
+    public function fetchMenu($menuId)
     {
         $data = $this->db->query("SELECT * FROM wb_sub_menu WHERE menu_id=$menuId")->result();
         $output = '<option value="">---Pilih---</option>';
@@ -69,6 +69,30 @@ class Admin_m extends CI_Model
         }
 
         return $output;
+    }
+
+    public function getSidebar($id)
+    {
+        $query = $this->db->query("SELECT * FROM wb_menu a, wb_menu_akses c WHERE a.id=c.menu_id AND c.role_id=$id")->result_array();
+        return $query;
+    }
+
+    public function getSubSidebar($role, $id)
+    {
+        $query = $this->db->query("SELECT * FROM wb_menu a, wb_sub_menu b, wb_menu_akses c WHERE a.id=b.menu_id AND a.id=c.menu_id AND c.role_id=$role AND c.menu_id=$id")->result_array();
+        return $query;
+    }
+
+    public function getAlbum()
+    {
+        $query = $this->db->get('wb_album')->result_array();
+        return $query;
+    }
+
+    public function getOneAlbum($id)
+    {
+        $user = $this->db->query("SELECT * FROM wb_album_foto a, wb_album b WHERE a.album_id=b.id AND a.album_id=$id")->result_array();
+        return $user;
     }
 
     // Insert Data
@@ -95,6 +119,11 @@ class Admin_m extends CI_Model
     public function insertRoleMenu($data)
     {
         $this->db->insert('wb_menu_akses', $data);
+    }
+
+    public function insertAlbum($data)
+    {
+        $this->db->insert('wb_album', $data);
     }
 
     // Update Data
@@ -124,8 +153,14 @@ class Admin_m extends CI_Model
 
     public function updateSubMenu($id, $data)
     {
-        $this->db->where('menu_id', $id);
+        $this->db->where('id_sub', $id);
         $this->db->update('wb_sub_menu', $data);
+    }
+
+    public function updateAlbum($id, $data)
+    {
+        $this->db->where('id', $id);
+        $this->db->update('wb_album', $data);
     }
 
     // Delete Data
@@ -142,11 +177,16 @@ class Admin_m extends CI_Model
 
     public function deleteSubMenu($id)
     {
-        $this->db->delete('wb_sub_menu', array('menu_id' => $id));
+        $this->db->delete('wb_sub_menu', array('id_sub' => $id));
     }
 
     public function deleteMenuRole($id)
     {
         $this->db->delete('wb_menu_akses', array('id_akses' => $id));
+    }
+
+    public function deleteAlbum($id)
+    {
+        $this->db->delete('wb_album', array('id' => $id));
     }
 }

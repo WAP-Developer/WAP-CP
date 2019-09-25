@@ -28,6 +28,7 @@
     <link href="<?= base_url('assets'); ?>/vendors/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="<?= base_url('assets/company/'); ?>css/preloader.css">
     <link href="<?= base_url('assets'); ?>/vendors/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
+
     <!--end::Page Vendors Styles -->
 
     <!--begin:: Global Mandatory Vendors -->
@@ -74,6 +75,7 @@
     <link href="<?= base_url('assets'); ?>/demo/default/skins/header/menu/light.css" rel="stylesheet" type="text/css" />
     <link href="<?= base_url('assets'); ?>/demo/default/skins/brand/dark.css" rel="stylesheet" type="text/css" />
     <link href="<?= base_url('assets'); ?>/demo/default/skins/aside/dark.css" rel="stylesheet" type="text/css" />
+    <link href="<?= base_url('assets/dropify'); ?>/css/dropify.css" rel="stylesheet" type="text/css" />
 
     <!--end::Layout Skins -->
     <link rel="shortcut icon" href="<?= base_url('assets'); ?>/img/logo.ico" />

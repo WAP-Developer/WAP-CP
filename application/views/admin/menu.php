@@ -143,8 +143,8 @@
                                         <td><?= $getSubMenu['sub_menu'] ?></td>
                                         <td><?= $getSubMenu['sub_url'] ?></td>
                                         <td>
-                                            <a href="javascript:;" title="Edit details" class="btn btn-sm btn-clean btn-icon btn-icon-md" data-toggle="modal" data-target="#editSub<?= $getSubMenu['id']; ?>"> <i class="la la-edit"></i> </a>
-                                            <a href="<?= base_url('cp-admin/delete-sub-menu/' . $getSubMenu['menu_id']); ?>" title="Delete" class="btn btn-sm btn-clean btn-icon btn-icon-md delete-button"> <i class="la la-trash"></i> </a>
+                                            <a href="javascript:;" title="Edit details" class="btn btn-sm btn-clean btn-icon btn-icon-md" data-toggle="modal" data-target="#editSub<?= $getSubMenu['id_sub']; ?>"> <i class="la la-edit"></i> </a>
+                                            <a href="<?= base_url('cp-admin/delete-sub-menu/' . $getSubMenu['id_sub']); ?>" title="Delete" class="btn btn-sm btn-clean btn-icon btn-icon-md delete-button"> <i class="la la-trash"></i> </a>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
@@ -217,7 +217,7 @@
                         </div>
                         <div class="form-group">
                             <label for="sub">Sub-Menu</label>
-                            <textarea type="text" class="form-control" id="sub" name="sub" placeholder="Masukan Menu" required></textarea>
+                            <input type="text" class="form-control" id="sub" name="sub" placeholder="Masukan Menu" required>
                         </div>
                         <div class="form-group">
                             <label for="url">URL</label>
@@ -275,7 +275,7 @@
 
     <!-- Modal Edit Sub -->
     <?php foreach ($getSubMenus as $getSubMenu) : ?>
-        <div class="modal fade" id="editSub<?= $getSubMenu['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="editSub<?= $getSubMenu['id_sub']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <form action="<?= base_url('cp-admin/menu-management'); ?>" method="post">
@@ -299,7 +299,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="sub">Sub-Menu</label>
-                                <input type="hidden" name="id" value="<?= $getSubMenu['menu_id']; ?>">
+                                <input type="hidden" name="id" value="<?= $getSubMenu['id_sub']; ?>">
                                 <input type="text" class="form-control" id="sub" name="sub" value="<?= $getSubMenu['sub_menu']; ?>" required>
                             </div>
                             <div class="form-group">

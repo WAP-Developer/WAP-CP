@@ -16,20 +16,22 @@ class Admin extends CI_Controller
 
     public function dashboard()
     {
+        $id = $this->session->userdata('id');
+
         $data = array(
-            'user' => $this->admin->getActiveUser(),
             'name' => $this->security->get_csrf_token_name(),
             'role' => $this->admin->getCurrentRole(),
             'user' => $this->admin->getActiveUser(),
             'check' => $this->admin->getSeo(),
+            'sidebars' => $this->admin->getSidebar($id),
             'title' => 'Dashboard'
         );
 
         $this->load->view('template/header', $data);
-        $this->load->view('template/sidebar');
+        $this->load->view('template/sidebar', $data);
         $this->load->view('template/navbar', $data);
         $this->load->view('admin/dashboard', $data);
-        $this->load->view('template/footer',);
+        $this->load->view('template/footer');
     }
 
     public function seo()
@@ -55,15 +57,17 @@ class Admin extends CI_Controller
         ));
 
         if ($this->form_validation->run() == FALSE) {
+            $id = $this->session->userdata('id');
             $data = array(
                 'user' => $this->admin->getActiveUser(),
                 'name' => $this->security->get_csrf_token_name(),
                 'hash' => $this->security->get_csrf_hash(),
+                'sidebars' => $this->admin->getSidebar($id),
                 'check' => $this->admin->getSeo(),
                 'title' => "SEO Management"
             );
             $this->load->view('template/header', $data);
-            $this->load->view('template/sidebar');
+            $this->load->view('template/sidebar', $data);
             $this->load->view('template/navbar', $data);
             $this->load->view('admin/seo', $data);
             $this->load->view('template/footer');
@@ -124,15 +128,17 @@ class Admin extends CI_Controller
         }
 
         if ($this->form_validation->run() == FALSE) {
+            $id = $this->session->userdata('id');
             $data = array(
                 'name' => $this->security->get_csrf_token_name(),
                 'hash' => $this->security->get_csrf_hash(),
                 'user' => $this->admin->getActiveUser(),
+                'sidebars' => $this->admin->getSidebar($id),
                 'check' => $this->admin->getSeo(),
                 'title' => 'Profile Pengguna'
             );
             $this->load->view('template/header', $data);
-            $this->load->view('template/sidebar');
+            $this->load->view('template/sidebar', $data);
             $this->load->view('template/navbar', $data);
             $this->load->view('admin/profile', $data);
             $this->load->view('template/footer');
@@ -163,17 +169,80 @@ class Admin extends CI_Controller
 
     public function gallery()
     {
+        if ($this->input->post('addAlbum')) {
+            $album = $this->input->post('album');
+
+            $lower = str_replace(" ", "-", strtolower($album));
+
+            $data = [
+                'album' => $album,
+                'slug' => $lower . ".html",
+                'update_at' => date('Y-m-d', time())
+            ];
+
+            $this->admin->insertAlbum($data);
+
+            $this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>Selamat! Album berhasil ditambahkan.</span></div>');
+            redirect('cp-admin/gallery');
+        } else if ($this->input->post('editAlbum')) {
+            $idAlbum = $this->input->post('id');
+            $album = $this->input->post('album');
+
+            $lower = str_replace(" ", "-", strtolower($album));
+
+            $data = [
+                'album' => $album,
+                'slug' => $lower . ".html",
+                'update_at' => date('Y-m-d', time())
+            ];
+
+            $this->admin->updateAlbum($idAlbum, $data);
+
+            $this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>Selamat! Album berhasil diedit.</span></div>');
+            redirect('cp-admin/gallery');
+        }
+
+        $id = $this->session->userdata('id');
         $data = array(
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash(),
             'user' => $this->admin->getActiveUser(),
+            'albums' => $this->admin->getAlbum(),
+            'sidebars' => $this->admin->getSidebar($id),
             'check' => $this->admin->getSeo(),
             'title' => 'Album Kegiatan'
         );
         $this->load->view('template/header', $data);
-        $this->load->view('template/sidebar');
+        $this->load->view('template/sidebar', $data);
         $this->load->view('template/navbar', $data);
         $this->load->view('admin/album', $data);
+        $this->load->view('template/footer');
+    }
+
+    public function delete_album($id)
+    {
+        $this->admin->deleteAlbum($id);
+        $this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>Selamat! Album berhasil dihapus.</span></div>');
+        redirect('cp-admin/gallery');
+    }
+
+    public function gallery_photo()
+    {
+        $idAlbum = $this->uri->segment(3);
+        $id = $this->session->userdata('id');
+        $data = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash(),
+            'user' => $this->admin->getActiveUser(),
+            'getOneAlbums' => $this->admin->getOneAlbum($idAlbum),
+            'sidebars' => $this->admin->getSidebar($id),
+            'check' => $this->admin->getSeo(),
+            'title' => 'Foto Album'
+        );
+        $this->load->view('template/header', $data);
+        $this->load->view('template/sidebar', $data);
+        $this->load->view('template/navbar', $data);
+        $this->load->view('admin/album_foto', $data);
         $this->load->view('template/footer');
     }
 
@@ -184,16 +253,18 @@ class Admin extends CI_Controller
         ));
 
         if ($this->form_validation->run() == FALSE) {
+            $id = $this->session->userdata('id');
             $data = array(
                 'name' => $this->security->get_csrf_token_name(),
                 'hash' => $this->security->get_csrf_hash(),
                 'user' => $this->admin->getActiveUser(),
                 'check' => $this->admin->getSeo(),
+                'sidebars' => $this->admin->getSidebar($id),
                 'roles' => $this->admin->getRoles(),
                 'title' => 'Role Management'
             );
             $this->load->view('template/header', $data);
-            $this->load->view('template/sidebar');
+            $this->load->view('template/sidebar', $data);
             $this->load->view('template/navbar', $data);
             $this->load->view('admin/role', $data);
             $this->load->view('template/footer');
@@ -300,6 +371,7 @@ class Admin extends CI_Controller
             redirect('cp-admin/menu-management/');
         }
 
+        $id = $this->session->userdata('id');
         $data = array(
             'name' => $this->security->get_csrf_token_name(),
             'hash' => $this->security->get_csrf_hash(),
@@ -307,11 +379,12 @@ class Admin extends CI_Controller
             'getSubMenus' => $this->admin->getSubMenu(),
             'user' => $this->admin->getActiveUser(),
             'check' => $this->admin->getSeo(),
+            'sidebars' => $this->admin->getSidebar($id),
             'roles' => $this->admin->getRoles(),
             'title' => 'Menu Manajemen'
         );
         $this->load->view('template/header', $data);
-        $this->load->view('template/sidebar');
+        $this->load->view('template/sidebar', $data);
         $this->load->view('template/navbar', $data);
         $this->load->view('admin/menu', $data);
         $this->load->view('template/footer');
@@ -348,6 +421,7 @@ class Admin extends CI_Controller
             redirect('cp-admin/menu-role/' . $currentRole);
         }
 
+        $idUser = $this->session->userdata('id');
         $id = $this->uri->segment(3);
         $this->session->set_userdata('currentId', $id);
         $data = array(
@@ -355,6 +429,7 @@ class Admin extends CI_Controller
             'hash' => $this->security->get_csrf_hash(),
             'getRoleMenus' => $this->admin->getRoleMenu($id),
             'getMenus' => $this->admin->getMenu(),
+            'sidebars' => $this->admin->getSidebar($idUser),
             'user' => $this->admin->getActiveUser(),
             'check' => $this->admin->getSeo(),
             'roles' => $this->admin->getRoles(),
@@ -362,7 +437,7 @@ class Admin extends CI_Controller
         );
 
         $this->load->view('template/header', $data);
-        $this->load->view('template/sidebar');
+        $this->load->view('template/sidebar', $data);
         $this->load->view('template/navbar', $data);
         $this->load->view('admin/role_menu', $data);
         $this->load->view('template/footer', $data);
