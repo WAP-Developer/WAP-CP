@@ -8,10 +8,8 @@
                 <a href="javascript:;" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
                 <span class="kt-subheader__breadcrumbs-separator"></span>
                 <a href="" class="kt-subheader__breadcrumbs-link">
-                    Gallery </a>
+                    Organisasi </a>
                 <span class="kt-subheader__breadcrumbs-separator"></span>
-                <a href="" class="kt-subheader__breadcrumbs-link">
-                    Gallery Photo </a>
             </div>
         </div>
         <div class="kt-subheader__toolbar">
@@ -58,17 +56,15 @@
                                 <i class="kt-font-brand flaticon2-photograph"></i>
                             </span>
                             <h3 class="kt-portlet__head-title">
-                                Foto Album
+                                Daftar Pengurus
                             </h3>
                         </div>
                         <div class="kt-portlet__head-toolbar">
                             <div class="kt-portlet__head-wrapper">
                                 <div class="kt-portlet__head-actions">
-                                    <a href="<?= base_url('cp-admin/gallery'); ?>" class="btn btn-warning btn-elevate btn-icon-sm"><i class="la la-angle-double-left"></i>
-                                        Kembali</a>
-                                    <a href="javascript:;" class="btn btn-brand btn-elevate btn-icon-sm" data-toggle="modal" data-target="#addFoto">
+                                    <a href="#" class="btn btn-brand btn-elevate btn-icon-sm" data-toggle="modal" data-target="#addOrg">
                                         <i class="la la-plus"></i>
-                                        Foto
+                                        Pengurus
                                     </a>
                                 </div>
                             </div>
@@ -81,23 +77,23 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Judul Foto</th>
+                                    <th>Nama Lengakp</th>
+                                    <th>Jabatan</th>
                                     <th>Foto</th>
-                                    <th>Preview</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php $no = 1;
-                                foreach ($getOneAlbums as $getOneAlbum) : ?>
+                                foreach ($getOrgs as $getOrg) : ?>
                                     <tr>
                                         <td align="center"><?= $no++; ?></td>
-                                        <td><?= $getOneAlbum['title_photo']; ?></td>
-                                        <td align="center"><img src="<?= base_url('assets/img/gallery/' . $getOneAlbum['photo']); ?>" alt="" width="60px"></td>
-                                        <td align="center"><a href="javascript:;" title="Preview" class="btn btn-sm btn-clean btn-icon btn-icon-md" data-toggle="modal" data-target="#preview<?= $getOneAlbum['id_photo'] ?>"> <i class="la la-file-image-o"></i> </a></td>
+                                        <td><?= $getOrg['front_name'] . ' ' . $getOrg['end_name'] ?></td>
+                                        <td align="center"><?= $getOrg['position'] ?></td>
+                                        <td align="center"><img src="<?= base_url('assets/img/organization/' . $getOrg['photo']); ?>" alt="" class="img-thumbnail" width="50px"></td>
                                         <td align="center">
-                                            <a href="javascript:;" title="Edit" class="btn btn-sm btn-clean btn-icon btn-icon-md" data-toggle="modal" data-target="#editFoto<?= $getOneAlbum['id_photo'] ?>"> <i class="la la-edit"></i> </a>
-                                            <a href="<?= base_url('cp-admin/delete-gallery-photo/' . $getOneAlbum['id_photo']); ?>" title="Edit" class="btn btn-sm btn-clean btn-icon btn-icon-md delete-button"> <i class="la la-trash"></i> </a>
+                                            <a href="javascript:;" title="Edit" class="btn btn-sm btn-clean btn-icon btn-icon-md" data-toggle="modal" data-target="#editOrg<?= $getOrg['id'] ?>"> <i class="la la-edit"></i> </a>
+                                            <a href="<?= base_url('cp-admin/delete-album/'); ?>" title="Edit" class="btn btn-sm btn-clean btn-icon btn-icon-md delete-button"> <i class="la la-trash"></i> </a>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
@@ -113,21 +109,29 @@
     <!-- end:: Content -->
 
     <!-- Modal Add -->
-    <div class="modal fade" id="addFoto" tabindex="-1" role="dialog" aria-labelledby="gallery" aria-hidden="true">
+    <div class="modal fade" id="addOrg" tabindex="-1" role="dialog" aria-labelledby="gallery" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                <form action="<?= base_url('cp-admin/gallery-photo/' . $idAlbum); ?>" method="post" enctype="multipart/form-data">
+                <form action="<?= base_url('cp-admin/organization'); ?>" method="post" enctype="multipart/form-data">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="gallery">Add Foto</h5>
+                        <h5 class="modal-title" id="gallery">Tambah Staff</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="judul">Judul Foto</label>
+                            <label for="front">Nama Depan</label>
                             <input type="hidden" name="<?= $name; ?>" value="<?= $hash; ?>" />
-                            <input type="text" class="form-control" id="judul" name="judul" placeholder="Masukan Nama Album">
+                            <input type="text" class="form-control" id="front" name="front" placeholder="Masukan Nama Epan">
+                        </div>
+                        <div class="form-group">
+                            <label for="end">Nama Belakang</label>
+                            <input type="text" class="form-control" id="end" name="end" placeholder="Masukan Nama Belakang">
+                        </div>
+                        <div class="form-group">
+                            <label for="position">Jabatan</label>
+                            <input type="text" class="form-control" id="position" name="position" placeholder="Masukan Jabatan">
                         </div>
                         <div class="form-group">
                             <label for="photo">Upload Foto (Max. 2MB)</label>
@@ -136,7 +140,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
-                        <input type="submit" name="addFoto" class="btn btn-success" value="Simpan">
+                        <input type="submit" name="addEmploye" class="btn btn-success" value="Simpan">
                     </div>
                 </form>
             </div>
@@ -144,47 +148,33 @@
     </div>
     <!-- Modal Add End -->
 
-    <!-- Modal Preview -->
-    <?php foreach ($getOneAlbums as $getOneAlbum) : ?>
-        <div class="modal fade" id="preview<?= $getOneAlbum['id_photo'] ?>" tabindex="-1" role="dialog" aria-labelledby="preview" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="preview">Preview</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <img src="<?= base_url('assets/img/gallery/' . $getOneAlbum['photo']); ?>" alt="" class="img-thumbnail" width="900px">
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    <?php endforeach; ?>
-
     <!-- Modal Edit -->
-    <?php foreach ($getOneAlbums as $getOneAlbum) : ?>
-        <div class="modal fade" id="editFoto<?= $getOneAlbum['id_photo'] ?>" tabindex="-1" role="dialog" aria-labelledby="gallery" aria-hidden="true">
+    <?php foreach ($getOrgs as $getOrg) : ?>
+        <div class="modal fade" id="editOrg<?= $getOrg['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="gallery" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
-                    <form action="<?= base_url('cp-admin/gallery-photo/' . $idAlbum); ?>" method="post" enctype="multipart/form-data">
+                    <form action="<?= base_url('cp-admin/organization'); ?>" method="post" enctype="multipart/form-data">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="gallery">Edit Foto</h5>
+                            <h5 class="modal-title" id="gallery">Edit Staff</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
                             <div class="form-group">
-                                <label for="judul">Judul Foto</label>
+                                <label for="front">Nama Depan</label>
                                 <input type="hidden" name="<?= $name; ?>" value="<?= $hash; ?>" />
-                                <input type="hidden" name="old_img" value="<?= $getOneAlbum['photo']; ?>">
-                                <input type="hidden" name="id" value="<?= $getOneAlbum['id_photo']; ?>">
-                                <input type="text" class="form-control" id="judul" name="judul" value="<?= $getOneAlbum['title_photo']; ?>">
+                                <input type="hidden" name="id" value="<?= $getOrg['id'] ?>">
+                                <input type="hidden" name="old_img" value="<?= $getOrg['photo'] ?>">
+                                <input type="text" class="form-control" id="front" name="front" value="<?= $getOrg['front_name'] ?>">
+                            </div>
+                            <div class="form-group">
+                                <label for="end">Nama Belakang</label>
+                                <input type="text" class="form-control" id="end" name="end" value="<?= $getOrg['end_name'] ?>">
+                            </div>
+                            <div class="form-group">
+                                <label for="position">Jabatan</label>
+                                <input type="text" class="form-control" id="position" name="position" value="<?= $getOrg['position'] ?>">
                             </div>
                             <div class="form-group">
                                 <label for="photo">Upload Foto (Max. 2MB)</label>
@@ -193,9 +183,8 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
-                            <input type="submit" name="editFoto" class="btn btn-success" value="Simpan">
+                            <input type="submit" name="editEmploye" class="btn btn-success" value="Simpan">
                         </div>
-                    </form>
                     </form>
                 </div>
             </div>

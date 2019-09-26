@@ -3,6 +3,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Landing extends CI_Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->model('user_m', 'user');
+    }
+
     public function index()
     {
         $data = array(
@@ -68,18 +74,22 @@ class Landing extends CI_Controller
     {
         $data = array(
             'title' => "Galeri",
+            'getAlbums' => $this->user->getAlbum(),
             'check' => $this->db->get('wb_seo')->row_array()
         );
+
         $this->load->view('home/header', $data);
         $this->load->view('home/navbar');
         $this->load->view('home/jumbotron');
-        $this->load->view('home/gallery');
+        $this->load->view('home/gallery', $data);
         $this->load->view('home/footer');
     }
 
-    public function gallery_detail($id)
+    public function gallery_detail()
     {
+        $idGallery = $this->uri->segment(3);
         $data = array(
+            'getDetailAlbums' => $this->user->getDetailAlbum($idGallery),
             'title' => "Detail Album",
             'check' => $this->db->get('wb_seo')->row_array()
         );

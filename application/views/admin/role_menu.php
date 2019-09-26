@@ -61,6 +61,8 @@
                         <div class="kt-portlet__head-toolbar">
                             <div class="kt-portlet__head-wrapper">
                                 <div class="kt-portlet__head-actions">
+                                    <a href="<?= base_url('cp-admin/role-management'); ?>" class="btn btn-warning btn-elevate btn-icon-sm"><i class="la la-angle-double-left"></i>
+                                        Kembali</a>
                                     <a href="javascript:;" class="btn btn-brand btn-elevate btn-icon-sm" data-toggle="modal" data-target="#addRoleMenu">
                                         <i class="la la-plus"></i>
                                         Role Menu

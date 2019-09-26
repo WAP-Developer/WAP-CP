@@ -221,7 +221,17 @@ class Admin extends CI_Controller
 
     public function delete_album($id)
     {
+        $queryChecks = $this->db->query("SELECT * FROM wb_album_foto WHERE album_id=$id")->result_array();
+
+        if ($queryChecks) {
+            foreach ($queryChecks as $queryCheck) {
+                unlink(FCPATH . 'assets/img/gallery/' . $queryCheck['photo']);
+            }
+        }
+
         $this->admin->deleteAlbum($id);
+        $this->admin->deleteAlbumPhoto($id);
+
         $this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>Selamat! Album berhasil dihapus.</span></div>');
         redirect('cp-admin/gallery');
     }
@@ -229,6 +239,7 @@ class Admin extends CI_Controller
     public function gallery_photo()
     {
         $idAlbum = $this->uri->segment(3);
+        $idPhoto = $this->input->post('id');
         if ($this->input->post('addFoto')) {
             $title = $this->input->post('judul');
 
@@ -240,14 +251,16 @@ class Admin extends CI_Controller
             $this->load->library('upload', $config);
 
             if (!$this->upload->do_upload('photo')) {
-                $this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>' . $this->upload->display_errors() . '</span></div>');
+                $this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>' . $this->upload->display_errors() . '</span></div>');
             } else {
                 $img = $this->upload->data('file_name');
                 $config['image_library'] = 'gd2';
                 $config['source_image'] = './assets/img/gallery/' . $img;
                 $config['create_thumb'] = FALSE;
                 $config['maintain_ratio'] = FALSE;
-                $config['quality'] = '60%';
+                $config['quality'] = '90%';
+                $config['width'] = 2100;
+                $config['height'] = 1400;
                 $config['new_image'] = './assets/img/gallery/' . $img;
                 $this->load->library('image_lib', $config);
                 $this->image_lib->resize();
@@ -263,6 +276,48 @@ class Admin extends CI_Controller
                 $this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>Selamat! Photo berhasil ditambahkan.</span></div>');
                 redirect('cp-admin/gallery-photo/' . $idAlbum);
             }
+        } else if ($this->input->post('editFoto')) {
+            $title = $this->input->post('judul');
+
+            if (empty($_FILES['photo']['name'])) {
+                $img = $this->input->post('old_img');
+            } else {
+                $config['upload_path'] = './assets/img/gallery';
+                $config['allowed_types'] = 'gif|jpg|png';
+                $config['max_size'] = '2048';
+                $config['file_name'] = 'foto' . time();
+
+                $this->load->library('upload', $config);
+
+                if (!$this->upload->do_upload('photo')) {
+                    $this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>' . $this->upload->display_errors() . '</span></div>');
+                } else {
+                    unlink(FCPATH . 'assets/img/gallery/' . $this->input->post('old_img'));
+
+                    $img = $this->upload->data('file_name');
+                    $config['image_library'] = 'gd2';
+                    $config['source_image'] = './assets/img/gallery/' . $img;
+                    $config['create_thumb'] = FALSE;
+                    $config['maintain_ratio'] = TRUE;
+                    $config['quality'] = '90%';
+                    $config['width'] = 2100;
+                    $config['height'] = 1400;
+                    $config['new_image'] = './assets/img/gallery/' . $img;
+                    $this->load->library('image_lib', $config);
+                    $this->image_lib->resize();
+                }
+            }
+
+            $data = [
+                'album_id' => $idAlbum,
+                'title_photo' => $title,
+                'photo' => $img,
+                'update_at' => date('Y-m-d', time())
+            ];
+
+            $this->admin->updatePhoto($idPhoto, $data);
+            $this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>Selamat! Photo berhasil diubah.</span></div>');
+            redirect('cp-admin/gallery-photo/' . $idAlbum);
         }
 
         $id = $this->session->userdata('id');
@@ -281,6 +336,14 @@ class Admin extends CI_Controller
         $this->load->view('template/navbar', $data);
         $this->load->view('admin/album_foto', $data);
         $this->load->view('template/footer');
+    }
+
+    public function delete_gallery_photo($id)
+    {
+        $idAlbum = $this->uri->segment(3);
+        $this->admin->deletePhoto($id);
+        $this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>Selamat! Foto berhasil dihapus.</span></div>');
+        redirect('cp-admin/gallery-photo/' . $idAlbum);
     }
 
     public function role()
@@ -488,11 +551,109 @@ class Admin extends CI_Controller
         redirect('cp-admin/menu-role/' . $currentRole);
     }
 
-    public function fetch_menu()
+    public function organization()
     {
-        $idMenu = $this->input->post('id');
-        if ($idMenu) {
-            echo $this->admin->fetchMenu($idMenu);
+        if ($this->input->post('addEmploye')) {
+            $front = $this->input->post('front');
+            $end = $this->input->post('end');
+            $position = $this->input->post('position');
+
+            $config['upload_path'] = './assets/img/organization';
+            $config['allowed_types'] = 'gif|jpg|png';
+            $config['max_size'] = '2048';
+            $config['file_name'] = 'employe' . time();
+
+            $this->load->library('upload', $config);
+
+            if (!$this->upload->do_upload('photo')) {
+                $this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>' . $this->upload->display_errors() . '</span></div>');
+            } else {
+                $img = $this->upload->data('file_name');
+                $config['image_library'] = 'gd2';
+                $config['source_image'] = './assets/img/organization/' . $img;
+                $config['create_thumb'] = FALSE;
+                $config['maintain_ratio'] = FALSE;
+                $config['quality'] = '80%';
+                $config['new_image'] = './assets/img/organization/' . $img;
+                $this->load->library('image_lib', $config);
+                $this->image_lib->resize();
+
+                $data = [
+                    'front_name' => $front,
+                    'end_name' => $end,
+                    'position' => $position,
+                    'photo' => $img,
+                    'update_at' => date('Y-m-d', time())
+                ];
+
+                $this->admin->insertEmploye($data);
+                $this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>Selamat! Staff berhasil ditambahkan.</span></div>');
+                redirect('cp-admin/organization');
+            }
+        } else if ($this->input->post('editEmploye')) {
+            $idEmploye = $this->input->post('id');
+            $front = $this->input->post('front');
+            $end = $this->input->post('end');
+            $position = $this->input->post('position');
+
+            if (empty($_FILES['photo']['name'])) {
+                $img = $this->input->post('old_img');
+            } else {
+                $config['upload_path'] = './assets/img/organization/';
+                $config['allowed_types'] = 'gif|jpg|png';
+                $config['max_size'] = '2048';
+                $config['file_name'] = 'employe' . time();
+
+                $this->load->library('upload', $config);
+
+                if (!$this->upload->do_upload('photo')) {
+                    $this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>' . $this->upload->display_errors() . '</span></div>');
+                } else {
+                    unlink(FCPATH . '/assets/img/organization/' . $this->input->post('old_img'));
+
+                    $img = $this->upload->data('file_name');
+                    $config['image_library'] = 'gd2';
+                    $config['source_image'] = './assets/img/organization/' . $img;
+                    $config['create_thumb'] = FALSE;
+                    $config['maintain_ratio'] = TRUE;
+                    $config['quality'] = '90%';
+                    $config['new_image'] = './assets/img/organization/' . $img;
+                    $this->load->library('image_lib', $config);
+                    $this->image_lib->resize();
+                }
+            }
+
+            $data = [
+                'front_name' => $front,
+                'end_name' => $end,
+                'position' => $position,
+                'photo' => $img,
+                'update_at' => date('Y-m-d', time())
+            ];
+
+            $this->admin->updateEmploye($idEmploye, $data);
+            $this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>Selamat! Staff berhasil diubah.</span></div>');
+            redirect('cp-admin/organization');
         }
+
+        $id = $this->session->userdata('id');
+        $data = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash(),
+            'getMenus' => $this->admin->getMenu(),
+            'getSubMenus' => $this->admin->getSubMenu(),
+            'user' => $this->admin->getActiveUser(),
+            'check' => $this->admin->getSeo(),
+            'getOrgs' => $this->admin->getOrganization(),
+            'sidebars' => $this->admin->getSidebar($id),
+            'roles' => $this->admin->getRoles(),
+            'title' => 'Organisasi'
+        );
+
+        $this->load->view('template/header', $data);
+        $this->load->view('template/sidebar', $data);
+        $this->load->view('template/navbar', $data);
+        $this->load->view('admin/organization', $data);
+        $this->load->view('template/footer');
     }
 }

@@ -59,18 +59,6 @@ class Admin_m extends CI_Model
         return $query;
     }
 
-    public function fetchMenu($menuId)
-    {
-        $data = $this->db->query("SELECT * FROM wb_sub_menu WHERE menu_id=$menuId")->result();
-        $output = '<option value="">---Pilih---</option>';
-
-        foreach ($data as $d) {
-            $output .= '<option value="' . $d->id . '">' . $d->sub_menu . '</option>';
-        }
-
-        return $output;
-    }
-
     public function getSidebar($id)
     {
         $query = $this->db->query("SELECT * FROM wb_menu a, wb_menu_akses c WHERE a.id=c.menu_id AND c.role_id=$id")->result_array();
@@ -85,14 +73,21 @@ class Admin_m extends CI_Model
 
     public function getAlbum()
     {
+        $this->db->order_by('id', 'DESC');
         $query = $this->db->get('wb_album')->result_array();
         return $query;
     }
 
     public function getOneAlbum($id)
     {
-        $user = $this->db->query("SELECT * FROM wb_album_foto a, wb_album b WHERE a.album_id=b.id AND a.album_id=$id")->result_array();
+        $user = $this->db->query("SELECT * FROM wb_album_foto a, wb_album b WHERE a.album_id=b.id AND a.album_id=$id ORDER BY a.id_photo DESC")->result_array();
         return $user;
+    }
+
+    public function getOrganization()
+    {
+        $org = $this->db->get('wb_employe')->result_array();
+        return $org;
     }
 
     // Insert Data
@@ -129,6 +124,11 @@ class Admin_m extends CI_Model
     public function insertGalleryPhoto($data)
     {
         $this->db->insert('wb_album_foto', $data);
+    }
+
+    public function insertEmploye($data)
+    {
+        $this->db->insert('wb_employe', $data);
     }
 
     // Update Data
@@ -168,6 +168,18 @@ class Admin_m extends CI_Model
         $this->db->update('wb_album', $data);
     }
 
+    public function updatePhoto($id, $data)
+    {
+        $this->db->where('id_photo', $id);
+        $this->db->update('wb_album_foto', $data);
+    }
+
+    public function updateEmploye($id, $data)
+    {
+        $this->db->where('id', $id);
+        $this->db->update('wb_employe', $data);
+    }
+
     // Delete Data
 
     public function deleteRole($id)
@@ -193,5 +205,15 @@ class Admin_m extends CI_Model
     public function deleteAlbum($id)
     {
         $this->db->delete('wb_album', array('id' => $id));
+    }
+
+    public function deletePhoto($id)
+    {
+        $this->db->delete('wb_album_foto', array('id_photo' => $id));
+    }
+
+    public function deleteAlbumPhoto($id)
+    {
+        $this->db->delete('wb_album_foto', array('album_id' => $id));
     }
 }

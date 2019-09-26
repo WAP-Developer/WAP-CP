@@ -85,12 +85,15 @@
 								</tr>
 							</thead>
 							<tbody>
-								<?php $no = 1;
+								<?php
+
+								$no = 1;
 								foreach ($albums as $album) : ?>
 									<tr>
 										<td align="center"><?= $no++; ?></td>
+										<?php $count = $this->db->get_where('wb_album_foto', array('album_id' => $album['id']))->num_rows(); ?>
 										<td><?= $album['album']; ?></td>
-										<td align="center">China</td>
+										<td align="center"><?= $count; ?></td>
 										<td align="center"><a href="<?= base_url('gallery/detail/' . $album['slug'])  ?>" class="btn btn-sm btn-clean btn-icon btn-icon-md" title="Lihat"><i class="la la-search"></i></a></i></td>
 										<td align="center"><a href="<?= base_url('cp-admin/gallery-photo/' . $album['id'])  ?>" class="btn btn-sm btn-clean btn-icon btn-icon-md" title="Lihat"><i class="la la-image"></i></a></i></td>
 										<td align="center">

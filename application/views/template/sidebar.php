@@ -26,7 +26,7 @@
 						<ul class="kt-menu__subnav">
 							<li class="kt-menu__item  kt-menu__item--parent" aria-haspopup="true"><span class="kt-menu__link"><span class="kt-menu__link-text">General</span></span></li>
 							<?php foreach ($subSide as $sub) { ?>
-								<li class="kt-menu__item " aria-haspopup="true"><a href="layout_general_minimized-aside.html" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text"><?= $sub['sub_menu']; ?></span></a></li>
+								<li class="kt-menu__item " aria-haspopup="true"><a href="<?= base_url($sub['sub_url']); ?>" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text"><?= $sub['sub_menu']; ?></span></a></li>
 							<?php } ?>
 						</ul>
 					</div>
