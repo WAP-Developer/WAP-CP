@@ -103,6 +103,7 @@ class Landing extends CI_Controller
     public function achievement()
     {
         $data = array(
+            'getAcvs' => $this->user->getAchievement(),
             'title' => "Piagam",
             'check' => $this->db->get('wb_seo')->row_array()
         );
@@ -116,6 +117,7 @@ class Landing extends CI_Controller
     public function organization()
     {
         $data = array(
+            'getOrgs' => $this->user->getOrgs(),
             'title' => "Organisasi",
             'check' => $this->db->get('wb_seo')->row_array()
         );

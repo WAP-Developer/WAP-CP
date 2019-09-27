@@ -48,12 +48,12 @@
     <!-- begin:: Content -->
     <div class="kt-content  kt-grid__item kt-grid__item--fluid" id="kt_content">
         <div class="row justify-content-center">
-            <div class="col-9">
+            <div class="col-md-9">
                 <div class="kt-portlet kt-portlet--mobile">
                     <div class="kt-portlet__head kt-portlet__head--lg">
                         <div class="kt-portlet__head-label">
                             <span class="kt-portlet__head-icon">
-                                <i class="kt-font-brand flaticon2-photograph"></i>
+                                <i class="kt-font-brand la la-users"></i>
                             </span>
                             <h3 class="kt-portlet__head-title">
                                 Daftar Pengurus
@@ -93,7 +93,7 @@
                                         <td align="center"><img src="<?= base_url('assets/img/organization/' . $getOrg['photo']); ?>" alt="" class="img-thumbnail" width="50px"></td>
                                         <td align="center">
                                             <a href="javascript:;" title="Edit" class="btn btn-sm btn-clean btn-icon btn-icon-md" data-toggle="modal" data-target="#editOrg<?= $getOrg['id'] ?>"> <i class="la la-edit"></i> </a>
-                                            <a href="<?= base_url('cp-admin/delete-album/'); ?>" title="Edit" class="btn btn-sm btn-clean btn-icon btn-icon-md delete-button"> <i class="la la-trash"></i> </a>
+                                            <a href="<?= base_url('cp-admin/delete-employe/' . $getOrg['id']); ?>" title="Edit" class="btn btn-sm btn-clean btn-icon btn-icon-md delete-button"> <i class="la la-trash"></i> </a>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>

@@ -47,7 +47,7 @@
 
     <div class="kt-content  kt-grid__item kt-grid__item--fluid" id="kt_content">
         <div class="row">
-            <div class="col-6">
+            <div class="col-md-6">
                 <div class="kt-portlet kt-portlet--mobile">
                     <div class="kt-portlet__head kt-portlet__head--lg">
                         <div class="kt-portlet__head-label">
@@ -71,7 +71,7 @@
                     </div>
                     <div class="kt-portlet__body">
                         <?= $this->session->flashdata('notificationa'); ?>
-                        <table class="table">
+                        <table class="table table-responsive">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
@@ -100,7 +100,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-md-6">
                 <div class="kt-portlet kt-portlet--mobile">
                     <div class="kt-portlet__head kt-portlet__head--lg">
                         <div class="kt-portlet__head-label">
@@ -124,7 +124,7 @@
                     </div>
                     <div class="kt-portlet__body">
                         <?= $this->session->flashdata('notificationb'); ?>
-                        <table class="table">
+                        <table class="table table-responsive">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>

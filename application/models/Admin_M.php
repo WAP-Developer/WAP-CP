@@ -90,6 +90,12 @@ class Admin_m extends CI_Model
         return $org;
     }
 
+    public function getAchievement()
+    {
+        $acv = $this->db->get('wb_achievement')->result_array();
+        return $acv;
+    }
+
     // Insert Data
     public function insertSeo($data)
     {
@@ -129,6 +135,11 @@ class Admin_m extends CI_Model
     public function insertEmploye($data)
     {
         $this->db->insert('wb_employe', $data);
+    }
+
+    public function insertAchievement($data)
+    {
+        $this->db->insert('wb_achievement', $data);
     }
 
     // Update Data
@@ -180,6 +191,12 @@ class Admin_m extends CI_Model
         $this->db->update('wb_employe', $data);
     }
 
+    public function updateAchievement($id, $data)
+    {
+        $this->db->where('id', $id);
+        $this->db->update('wb_achievement', $data);
+    }
+
     // Delete Data
 
     public function deleteRole($id)
@@ -215,5 +232,15 @@ class Admin_m extends CI_Model
     public function deleteAlbumPhoto($id)
     {
         $this->db->delete('wb_album_foto', array('album_id' => $id));
+    }
+
+    public function deleteEmploye($id)
+    {
+        $this->db->delete('wb_employe', array('id' => $id));
+    }
+
+    public function deleteAchievement($id)
+    {
+        $this->db->delete('wb_achievement', array('id' => $id));
     }
 }

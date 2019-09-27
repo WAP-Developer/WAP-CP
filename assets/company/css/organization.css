@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Lobster|Oswald&display=swap');
+
 #organization p {
 	line-height: 160%;
 }
@@ -76,59 +78,23 @@
 	text-transform: uppercase;
 }
 
-#organization h4 {
-	color: #6d6d6d;
-	margin-top: -25px;
-	font-size: 13px;
-	font-weight: 700;
-}
-
-#organization h4 span {
-	color: #6d6d6d;
-	display: block;
-	position: relative;
-	left: -20px;
-	top: 10px;
-	margin-bottom: 8px;
-	font-size: 11px;
-	background: none;
-	padding: 0;
-}
-
 #organization img {
 	width: 100%;
-	border-radius: 50%;
-	border: 11px solid #11BE85;
 	max-width: 240px;
 	box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.18);
 	transition: all 0.1s ease-in;
 }
 
 #organization img:hover {
-	border: 10px solid rgb(27, 173, 125);
 	position: relative;
 	z-index: 10;
 	transition: all 0.1s ease-in;
-}
-
-#organization span {
-	padding: 1px 10px;
-	position: relative;
-	top: -55px;
-	left: -15px;
-	display: inline-block;
-	background: #11BE85;
-	border-radius: 0 16px 16px 0;
-	border-bottom-left-radius: 100px;
-	font-size: 12px;
 }
 
 /* Member Image Hover Effect */
 #organization .hover_img {
 	display: none
 }
-
-
 
 #organization .member-profile:hover .unhover_img {
 	display: none;
@@ -154,31 +120,143 @@
 	color: rgba(0, 0, 0, 0.7);
 }
 
+#organization .img-cropper {
+	width: 70px;
+	height: 70px;
+	position: relative;
+	overflow: hidden;
+	border-radius: 50%;
+	border: 5px solid #11BE85;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+	-webkit-transition: 0.4s ease;
+	transition: 0.4s ease;
+}
+
+#organization .img-cropper:hover {
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+	-webkit-transform: scale(1.08);
+	transform: scale(1.08);
+}
+
+#organization .box-employe {
+	height: 150px;
+	width: 100%;
+	margin-top: -40px;
+	background-color: #ffffff;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+	border-radius: 10px;
+	padding-top: 40px;
+	padding-left: 30px;
+	padding-right: 30px;
+	padding-bottom: 30px;
+	overflow: hidden;
+}
+
+#organization .front-name {
+	color: #6B6B6B;
+	margin-top: 10px;
+	text-align: center;
+	font-size: 15px;
+	margin-left: 8px;
+	font-family: 'Oswald', sans-serif;
+}
+
+#organization .end-name {
+	width: 50%;
+	color: #6B6B6B;
+	text-align: center;
+	font-weight: bold;
+	font-size: 19px;
+	margin-top: -10px;
+	margin-left: 8px;
+	margin-right: 50px;
+	font-family: 'Oswald', sans-serif;
+}
+
+#organization .box-position {
+	margin-top: 10px;
+	width: 100%;
+	height: 30px;
+	background-color: #11BE85;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+	border-radius: 7px;
+	padding: 2px;
+}
+
+#organization .position-org {
+	font-family: 'Lobster',
+		cursive;
+	font-size: 14px;
+}
+
+
 /* Desktop Version */
 @media (min-width: 992px) {
-	#organization span {
-		padding: 8px 15px;
-		top: -64px;
-		left: -30px;
-		font-size: 16px;
+
+	#organization .img-cropper {
+		width: 150px;
+		height: 150px;
+		position: relative;
+		overflow: hidden;
+		border-radius: 50%;
+		border: 7px solid #11BE85;
+		box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+		-webkit-transition: 0.4s ease;
+		transition: 0.4s ease;
 	}
 
-	#organization img {
-		border: 15px solid #11BE85;
+	#organization .img-cropper:hover {
+		box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+		-webkit-transform: scale(1.08);
+		transform: scale(1.08);
 	}
 
-	#organization h4 {
-		margin-top: -30px;
-		font-size: 32px;
-		font-weight: 700;
+	#organization .box-employe {
+		height: 230px;
+		width: 100%;
+		margin-top: -80px;
+		background-color: #ffffff;
+		box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+		border-radius: 10px;
+		padding-top: 80px;
+		padding-left: 30px;
+		padding-right: 30px;
+		padding-bottom: 30px;
 	}
 
-	#organization h4 span {
-		left: -40px;
-		top: 10px;
+	#organization .front-name {
+		color: #6B6B6B;
+		margin-top: 10px;
+		text-align: left;
 		font-size: 20px;
-		margin-bottom: 0px;
-		padding: 0;
+		margin-left: 50px;
+		font-family: 'Oswald', sans-serif;
+	}
+
+	#organization .end-name {
+		color: #6B6B6B;
+		text-align: left;
+		font-weight: bold;
+		font-size: 30px;
+		margin-top: -10px;
+		margin-left: 50px;
+		font-family: 'Oswald', sans-serif;
+	}
+
+	#organization .box-position {
+		margin-top: 10px;
+		width: 100%;
+		height: 45px;
+		background-color: #11BE85;
+		box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+		border-radius: 7px;
+		padding: 7px;
+	}
+
+	#organization .position-org {
+		font-family: 'Lobster',
+			cursive;
+		font-size: 19px;
 	}
 
 	#organization .member-profile {

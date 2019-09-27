@@ -12,34 +12,60 @@
         <div class="container">
             <div class="row">
                 <!-- Mobile -->
-                <?php for ($i = 1; $i <= 8; $i++) { ?>
+                <?php foreach ($getOrgs as $getOrg) { ?>
                     <div class="col-6 mobile">
                         <div class="member-profile">
-                            <div class="unhover_img">
-                                <img src="<?= base_url('assets/img/speaker-3-hover.png'); ?>" alt="" />
+                            <div class="row justify-content-center">
+                                <div class="img-cropper">
+                                    <img src="<?= base_url('assets/img/organization/' . $getOrg['photo']); ?>" alt="" />
+                                </div>
                             </div>
-                            <div class="hover_img">
-                                <img src="<?= base_url('assets/img/speaker-3-hover.png'); ?>" alt="" />
+                            <div class="box-employe">
+                                <div class="row">
+                                    <h4 class="front-name"><?= $getOrg['front_name'] ?></h4>
+                                </div>
+                                <div class="row">
+                                    <h4 class="end-name"><?= $getOrg['end_name'] ?></h4>
+                                </div>
+                                <div class="row">
+                                    <div class="box-position">
+                                        <center>
+                                            <div class="position-org text-center">
+                                                <?= $getOrg['position'] ?>
+                                            </div>
+                                        </center>
+                                    </div>
+                                </div>
                             </div>
-                            <span>Web Designer</span>
-                            <h4><span>Teresa</span> Crawford</h4>
                         </div>
                     </div>
                 <?php } ?>
                 <!-- Mobile End -->
 
                 <!-- Desktop -->
-                <?php for ($i = 1; $i <= 8; $i++) { ?>
+                <?php foreach ($getOrgs as $getOrg) { ?>
                     <div class="col-3 desktop">
                         <div class="member-profile">
-                            <div class="unhover_img">
-                                <img src="<?= base_url('assets/img/speaker-3-hover.png'); ?>" alt="" />
+                            <div class="row justify-content-center">
+                                <div class="img-cropper">
+                                    <img src="<?= base_url('assets/img/organization/' . $getOrg['photo']); ?>" alt="" />
+                                </div>
                             </div>
-                            <div class="hover_img">
-                                <img src="<?= base_url('assets/img/speaker-3-hover.png'); ?>" alt="" />
+                            <div class="box-employe">
+                                <div class="row">
+                                    <h4 class="front-name"><?= $getOrg['front_name'] ?></h1>
+                                </div>
+                                <div class="row">
+                                    <h4 class="end-name"><?= $getOrg['end_name'] ?></h1>
+                                </div>
+                                <div class="row">
+                                    <div class="box-position">
+                                        <div class="position-org">
+                                            <?= $getOrg['position'] ?>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <span>Web Designer</span>
-                            <h4><span>Teresa</span> Crawford</h4>
                         </div>
                     </div>
                 <?php } ?>

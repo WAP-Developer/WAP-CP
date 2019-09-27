@@ -3,7 +3,8 @@
 	<div id="kt_aside_menu" class="kt-aside-menu " data-ktmenu-vertical="1" data-ktmenu-scroll="1" data-ktmenu-dropdown-timeout="500">
 		<ul class="kt-menu__nav ">
 			<li class="kt-menu__section ">
-				<h4 class="kt-menu__section-text">Administrator</h4>
+				<h4 class="kt-menu__section-text"><?php $query = $this->db->get_where('wb_role', array('id' => $this->session->userdata('id')))->row_array();
+													echo $query['role']; ?></h4>
 				<i class="kt-menu__section-icon flaticon-more-v2"></i>
 			</li>
 			<?php foreach ($sidebars as $sidebar) { ?>

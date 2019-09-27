@@ -47,7 +47,7 @@
 
     <div class="kt-content  kt-grid__item kt-grid__item--fluid" id="kt_content">
         <div class="row justify-content-center">
-            <div class="col-5">
+            <div class="col-md-5">
                 <div class="kt-portlet kt-portlet--mobile">
                     <div class="kt-portlet__head kt-portlet__head--lg">
                         <div class="kt-portlet__head-label">
@@ -61,9 +61,9 @@
                         <div class="kt-portlet__head-toolbar">
                             <div class="kt-portlet__head-wrapper">
                                 <div class="kt-portlet__head-actions">
-                                    <a href="<?= base_url('cp-admin/role-management'); ?>" class="btn btn-warning btn-elevate btn-icon-sm"><i class="la la-angle-double-left"></i>
+                                    <a href="<?= base_url('cp-admin/role-management'); ?>" class="btn btn-sm btn-warning btn-elevate btn-icon-sm"><i class="la la-angle-double-left"></i>
                                         Kembali</a>
-                                    <a href="javascript:;" class="btn btn-brand btn-elevate btn-icon-sm" data-toggle="modal" data-target="#addRoleMenu">
+                                    <a href="javascript:;" class="btn btn-sm btn-brand btn-elevate btn-icon-sm" data-toggle="modal" data-target="#addRoleMenu">
                                         <i class="la la-plus"></i>
                                         Role Menu
                                     </a>
