@@ -257,10 +257,8 @@ class Admin extends CI_Controller
                 $config['image_library'] = 'gd2';
                 $config['source_image'] = './assets/img/gallery/' . $img;
                 $config['create_thumb'] = FALSE;
-                $config['maintain_ratio'] = FALSE;
-                $config['quality'] = '90%';
-                $config['width'] = 2100;
-                $config['height'] = 1400;
+                $config['maintain_ratio'] = TRUE;
+                $config['quality'] = '80%';
                 $config['new_image'] = './assets/img/gallery/' . $img;
                 $this->load->library('image_lib', $config);
                 $this->image_lib->resize();
@@ -299,9 +297,7 @@ class Admin extends CI_Controller
                     $config['source_image'] = './assets/img/gallery/' . $img;
                     $config['create_thumb'] = FALSE;
                     $config['maintain_ratio'] = TRUE;
-                    $config['quality'] = '90%';
-                    $config['width'] = 2100;
-                    $config['height'] = 1400;
+                    $config['quality'] = '80%';
                     $config['new_image'] = './assets/img/gallery/' . $img;
                     $this->load->library('image_lib', $config);
                     $this->image_lib->resize();
@@ -687,10 +683,8 @@ class Admin extends CI_Controller
                 $config['image_library'] = 'gd2';
                 $config['source_image'] = './assets/img/achievement/' . $img;
                 $config['create_thumb'] = FALSE;
-                $config['maintain_ratio'] = FALSE;
-                $config['quality'] = '90%';
-                $config['width'] = 2100;
-                $config['height'] = 1400;
+                $config['maintain_ratio'] = TRUE;
+                $config['quality'] = '80%';
                 $config['new_image'] = './assets/img/achievement/' . $img;
                 $this->load->library('image_lib', $config);
                 $this->image_lib->resize();
@@ -729,10 +723,8 @@ class Admin extends CI_Controller
                     $config['image_library'] = 'gd2';
                     $config['source_image'] = './assets/img/achievement/' . $img;
                     $config['create_thumb'] = FALSE;
-                    $config['maintain_ratio'] = FALSE;
-                    $config['quality'] = '90%';
-                    $config['width'] = 2100;
-                    $config['height'] = 1400;
+                    $config['maintain_ratio'] = TRUE;
+                    $config['quality'] = '80%';
                     $config['new_image'] = './assets/img/achievement/' . $img;
                     $this->load->library('image_lib', $config);
                     $this->image_lib->resize();
@@ -797,6 +789,7 @@ class Admin extends CI_Controller
                 'getMenus' => $this->admin->getMenu(),
                 'getSubMenus' => $this->admin->getSubMenu(),
                 'user' => $this->admin->getActiveUser(),
+                'getMessages' => $this->admin->getMessage(),
                 'check' => $this->admin->getSeo(),
                 'sidebars' => $this->admin->getSidebar($this->session->userdata('id')),
                 'roles' => $this->admin->getRoles(),
@@ -811,6 +804,38 @@ class Admin extends CI_Controller
         } else {
             $message = $this->input->post('message');
             $name = $this->input->post('name');
+
+            $config['upload_path'] = './assets/img';
+            $config['allowed_types'] = 'gif|jpg|png';
+            $config['max_size'] = '2048';
+            $config['file_name'] = 'president' . time();
+
+            $this->load->library('upload', $config);
+
+            if (!$this->upload->do_upload('photo')) {
+                $this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>' . $this->upload->display_errors() . '</span></div>');
+            } else {
+                $img = $this->upload->data('file_name');
+                $config['image_library'] = 'gd2';
+                $config['source_image'] = './assets/img/' . $img;
+                $config['create_thumb'] = FALSE;
+                $config['maintain_ratio'] = TRUE;
+                $config['quality'] = '80%';
+                $config['new_image'] = './assets/img/' . $img;
+                $this->load->library('image_lib', $config);
+                $this->image_lib->resize();
+
+                $data = [
+                    'message' => $message,
+                    'president' => $name,
+                    'photo' => $img,
+                    'update_at' => date('Y-m-d', time())
+                ];
+
+                $this->admin->insertMessage($data);
+                $this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>Selamat! Pesan Presiden berhasil disimpan.</span></div>');
+                redirect('cp-admin/profile/message-president');
+            }
         }
     }
 }

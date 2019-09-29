@@ -96,6 +96,12 @@ class Admin_m extends CI_Model
         return $acv;
     }
 
+    public function getMessage()
+    {
+        $message = $this->db->get('wb_message')->row_array();
+        return $message;
+    }
+
     // Insert Data
     public function insertSeo($data)
     {
@@ -140,6 +146,11 @@ class Admin_m extends CI_Model
     public function insertAchievement($data)
     {
         $this->db->insert('wb_achievement', $data);
+    }
+
+    public function insertMessage($data)
+    {
+        $this->db->insert('wb_message', $data);
     }
 
     // Update Data

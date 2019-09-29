@@ -76,26 +76,46 @@
                     </div>
 
                     <!--begin::Form-->
-                    <form class="kt-form" action="<?= base_url('cp-admin/profile/message-president'); ?>" method="post">
+                    <form class="kt-form" action="<?= base_url('cp-admin/profile/message-president'); ?>" method="post" enctype="multipart/form-data">
                         <div class="kt-portlet__body">
                             <?= $this->session->flashdata('notification'); ?>
                             <div class="form-group">
                                 <label for="editor">Pesan Presiden</label>
                                 <input type="hidden" name="<?= $name; ?>" value="<?= $hash; ?>" />
-                                <textarea name="message" class="form-control" id="editor" data-provide="markdown" rows="10"></textarea>
+                                <textarea name="message" class="form-control" id="editor" data-provide="markdown" rows="10"><?php if ($getMessages['message']) {
+                                                                                                                                echo $getMessages['message'];
+                                                                                                                            } else {
+                                                                                                                                echo "";
+                                                                                                                            } ?></textarea>
                                 <?php echo form_error('message', '<small class="error" style="color:red; margin-left:5px; margin-bottom:-100px;">', '</small>'); ?>
                             </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="name">Pesan Presiden</label>
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="Masukan Nama Presiden">
-                                    <?php echo form_error('name', '<small class="error" style="color:red; margin-left:5px; margin-bottom:-100px;">', '</small>'); ?>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="name">Nama Presiden</label>
+                                        <input type="text" class="form-control" id="name" name="name" placeholder="Masukan Nama Presiden" value="<?php if($getMessages['president']){ echo $getMessages['president'];} else { echo "";} ?>">
+                                        <?php echo form_error('name', '<small class="error" style="color:red; margin-left:5px; margin-bottom:-100px;">', '</small>'); ?>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="name">Foto Presiden</label>
-                                    <input type="file" class="dropify" id="photo" name="photo" data-height="200" />
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="name">Foto Presiden</label>
+                                        <input type="file" class="dropify" id="photo" name="photo" data-height="200" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <label for="">Preview :</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <img src="<?= base_url('assets/img/' . $getMessages['photo']); ?>" alt="" class="img-thumbnail" width="200px">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

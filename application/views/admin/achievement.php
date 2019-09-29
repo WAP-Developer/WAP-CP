@@ -48,7 +48,7 @@
     <!-- begin:: Content -->
     <div class="kt-content  kt-grid__item kt-grid__item--fluid" id="kt_content">
         <div class="row justify-content-center">
-            <div class="col-md-7">
+            <div class="col-md-9">
                 <div class="kt-portlet kt-portlet--mobile">
                     <div class="kt-portlet__head kt-portlet__head--lg">
                         <div class="kt-portlet__head-label">
