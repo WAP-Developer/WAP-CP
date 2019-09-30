@@ -66,6 +66,7 @@ $route['cp-admin/profile/history'] = 'admin/history';
 $route['cp-admin/profile/vm'] = 'admin/vm';
 $route['cp-admin/profile/group'] = 'admin/group';
 $route['cp-admin/news/all-news'] = 'admin/all_news';
+$route['cp-admin/news/add-news'] = 'admin/add_news';
 $route['cp-admin/menu-role/(:num)'] = 'admin/menu_role/$1';
 $route['cp-admin/gallery-photo/(:num)'] = 'admin/gallery_photo/$1';
 $route['cp-admin/delete-role/(:num)'] = 'admin/delete_role/$1';

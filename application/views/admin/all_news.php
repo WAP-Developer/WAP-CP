@@ -53,7 +53,7 @@
                     <div class="kt-portlet__head kt-portlet__head--lg">
                         <div class="kt-portlet__head-label">
                             <span class="kt-portlet__head-icon">
-                                <i class="kt-font-brand flaticon2-photograph"></i>
+                                <i class="kt-font-brand flaticon-list"></i>
                             </span>
                             <h3 class="kt-portlet__head-title">
                                 Semua Berita
@@ -62,9 +62,9 @@
                         <div class="kt-portlet__head-toolbar">
                             <div class="kt-portlet__head-wrapper">
                                 <div class="kt-portlet__head-actions">
-                                    <a href="#" class="btn btn-brand btn-elevate btn-icon-sm" data-toggle="modal" data-target="#addAlbum">
+                                    <a href="#" class="btn btn-brand btn-elevate btn-icon-sm">
                                         <i class="la la-plus"></i>
-                                        Album
+                                        Berita
                                     </a>
                                 </div>
                             </div>

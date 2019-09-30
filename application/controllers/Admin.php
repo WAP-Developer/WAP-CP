@@ -1132,4 +1132,25 @@ class Admin extends CI_Controller
         $this->load->view('admin/all_news', $data);
         $this->load->view('template/footer');
     }
+
+    public function add_news()
+    {
+        $data = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash(),
+            'getMenus' => $this->admin->getMenu(),
+            'getSubMenus' => $this->admin->getSubMenu(),
+            'user' => $this->admin->getActiveUser(),
+            'check' => $this->admin->getSeo(),
+            'roles' => $this->admin->getRoles(),
+            'sidebars' => $this->admin->getSidebar($this->session->userdata('id')),
+            'title' => 'Tambah Berita'
+        );
+
+        $this->load->view('template/header', $data);
+        $this->load->view('template/sidebar', $data);
+        $this->load->view('template/navbar', $data);
+        $this->load->view('admin/add_news', $data);
+        $this->load->view('template/footer');
+    }
 }
