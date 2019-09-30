@@ -22,10 +22,10 @@
                                 Profil
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Sejarah</a>
-                                <a class="dropdown-item" href="#">Visi & Misi</a>
-                                <a class="dropdown-item" href="#">Produk</a>
-                                <a class="dropdown-item" href="#">Customer</a>
+                                <a class="dropdown-item" href="#history">Sejarah</a>
+                                <a class="dropdown-item" href="#vm">Visi & Misi</a>
+                                <a class="dropdown-item" href="#product">Produk</a>
+                                <a class="dropdown-item" href="#customer">Customer</a>
                                 <a class="dropdown-item" href="<?= base_url('organization'); ?>">Organisasi</a>
                                 <a class="dropdown-item" href="<?= base_url('achievement') ?>">Piagam</a>
                                 <a class="dropdown-item" href="<?= base_url('gallery'); ?>">Galeri</a>

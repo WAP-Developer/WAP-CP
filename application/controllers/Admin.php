@@ -804,6 +804,7 @@ class Admin extends CI_Controller
         } else {
             $message = $this->input->post('message');
             $name = $this->input->post('name');
+            $getMessage = $this->admin->getMessage();
 
             $config['upload_path'] = './assets/img';
             $config['allowed_types'] = 'gif|jpg|png';
@@ -812,18 +813,52 @@ class Admin extends CI_Controller
 
             $this->load->library('upload', $config);
 
-            if (!$this->upload->do_upload('photo')) {
-                $this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>' . $this->upload->display_errors() . '</span></div>');
+            if (!$getMessage) {
+                if (!$this->upload->do_upload('photo')) {
+                    $this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>' . $this->upload->display_errors() . '</span></div>');
+                } else {
+                    $img = $this->upload->data('file_name');
+                    $config['image_library'] = 'gd2';
+                    $config['source_image'] = './assets/img/' . $img;
+                    $config['create_thumb'] = FALSE;
+                    $config['maintain_ratio'] = TRUE;
+                    $config['quality'] = '80%';
+                    $config['new_image'] = './assets/img/' . $img;
+                    $this->load->library('image_lib', $config);
+                    $this->image_lib->resize();
+
+                    $data = [
+                        'message' => $message,
+                        'president' => $name,
+                        'photo' => $img,
+                        'update_at' => date('Y-m-d', time())
+                    ];
+
+                    $this->admin->insertMessage($data);
+                    $this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>Selamat! Pesan Presiden berhasil disimpan.</span></div>');
+                    redirect('cp-admin/profile/message-president');
+                }
             } else {
-                $img = $this->upload->data('file_name');
-                $config['image_library'] = 'gd2';
-                $config['source_image'] = './assets/img/' . $img;
-                $config['create_thumb'] = FALSE;
-                $config['maintain_ratio'] = TRUE;
-                $config['quality'] = '80%';
-                $config['new_image'] = './assets/img/' . $img;
-                $this->load->library('image_lib', $config);
-                $this->image_lib->resize();
+                if (empty($_FILES['photo']['name'])) {
+                    $img = $getMessage['photo'];
+                } else {
+                    if (!$this->upload->do_upload('photo')) {
+                        $this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>' . $this->upload->display_errors() . '</span></div>');
+                    } else {
+                        unlink(FCPATH . 'assets/img/' . $getMessage['photo']);
+                        $img = $this->upload->data('file_name');
+                        $config['image_library'] = 'gd2';
+                        $config['source_image'] = './assets/img/' . $img;
+                        $config['create_thumb'] = FALSE;
+                        $config['maintain_ratio'] = TRUE;
+                        $config['quality'] = '80%';
+                        $config['new_image'] = './assets/img/' . $img;
+                        $this->load->library('image_lib', $config);
+                        $this->image_lib->resize();
+                    }
+                }
+
+                $idMessage = $getMessage['id'];
 
                 $data = [
                     'message' => $message,
@@ -832,10 +867,269 @@ class Admin extends CI_Controller
                     'update_at' => date('Y-m-d', time())
                 ];
 
-                $this->admin->insertMessage($data);
+                $this->admin->updateMessage($idMessage, $data);
                 $this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>Selamat! Pesan Presiden berhasil disimpan.</span></div>');
                 redirect('cp-admin/profile/message-president');
             }
         }
+    }
+
+    public function history()
+    {
+        if ($this->input->post('addHistory')) {
+            $year = $this->input->post('year');
+            $about = $this->input->post('about');
+
+            $count = $this->db->get('wb_history')->num_rows();
+
+            if ($count % 2 == 0) {
+                $content = "timeline-content";
+            } else {
+                $content = "timeline-content right";
+            }
+
+            $data = [
+                'year' => $year,
+                'history' => $about,
+                'content' => $content,
+                'update_at' => date('Y-m-d')
+            ];
+
+            $this->admin->insertHistory($data);
+            $this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>Selamat! Sejarah berhasil disimpan.</span></div>');
+            redirect('cp-admin/profile/history');
+        } else if ($this->input->post('editHistory')) {
+            $idHistory = $this->input->post('id');
+            $year = $this->input->post('year');
+            $about = $this->input->post('about');
+            $content = $this->input->post('content');
+
+            $data = [
+                'year' => $year,
+                'history' => $about,
+                'content' => $content,
+                'update_at' => date('Y-m-d')
+            ];
+
+            $this->admin->updateHistory($idHistory, $data);
+            $this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>Selamat! Sejarah berhasil diubah.</span></div>');
+            redirect('cp-admin/profile/history');
+        }
+
+        $data = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash(),
+            'getMenus' => $this->admin->getMenu(),
+            'getSubMenus' => $this->admin->getSubMenu(),
+            'user' => $this->admin->getActiveUser(),
+            'check' => $this->admin->getSeo(),
+            'getHistories' => $this->admin->getHistory(),
+            'sidebars' => $this->admin->getSidebar($this->session->userdata('id')),
+            'roles' => $this->admin->getRoles(),
+            'title' => 'Sejarah'
+        );
+
+        $this->load->view('template/header', $data);
+        $this->load->view('template/sidebar', $data);
+        $this->load->view('template/navbar', $data);
+        $this->load->view('admin/history', $data);
+        $this->load->view('template/footer');
+    }
+
+    public function delete_history($id)
+    {
+        $this->admin->deleteHistory($id);
+        $this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>Selamat! History berhasil dihapus.</span></div>');
+        redirect('cp-admin/profile/history');
+    }
+
+    public function vm()
+    {
+        $vm = $this->db->get('wb_vm')->row_array();
+
+        if ($this->input->post('sendvisi')) {
+            $data = [
+                'visi' => $this->input->post('visi'),
+                'update_at' => date('Y-m-d')
+            ];
+
+            if ($vm) {
+                $this->admin->updateVm($vm['id'], $data);
+            } else {
+                $this->admin->insertVm($data);
+            }
+
+            $this->session->set_flashdata('notificationa', '<div class="kt-alert kt-alert--outline alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>Selamat! Visi berhasil disimpan.</span></div>');
+            redirect('cp-admin/profile/vm');
+        } else if ($this->input->post('sendmisi')) {
+            $data = [
+                'misi' => $this->input->post('misi'),
+                'update_at' => date('Y-m-d')
+            ];
+
+            if ($vm) {
+                $this->admin->updateVm($vm['id'], $data);
+            } else {
+                $this->admin->insertVm($data);
+            }
+
+            $this->session->set_flashdata('notificationb', '<div class="kt-alert kt-alert--outline alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>Selamat! misi berhasil disimpan.</span></div>');
+            redirect('cp-admin/profile/vm');
+        }
+
+        $data = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash(),
+            'getMenus' => $this->admin->getMenu(),
+            'getSubMenus' => $this->admin->getSubMenu(),
+            'user' => $this->admin->getActiveUser(),
+            'getVM' => $vm,
+            'check' => $this->admin->getSeo(),
+            'roles' => $this->admin->getRoles(),
+            'sidebars' => $this->admin->getSidebar($this->session->userdata('id')),
+            'title' => 'Visi & Misi'
+        );
+
+        $this->load->view('template/header', $data);
+        $this->load->view('template/sidebar', $data);
+        $this->load->view('template/navbar', $data);
+        $this->load->view('admin/vm', $data);
+        $this->load->view('template/footer');
+    }
+
+    public function group()
+    {
+        if ($this->input->post('addGroup')) {
+            $company = $this->input->post('company');
+            $link = $this->input->post('link');
+            $description = $this->input->post('description');
+
+            $config['upload_path'] = './assets/img/group';
+            $config['allowed_types'] = 'gif|jpg|png';
+            $config['max_size'] = '2048';
+            $config['file_name'] = 'group' . time();
+
+            $this->load->library('upload', $config);
+
+            if (!$this->upload->do_upload('photo')) {
+                $this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>' . $this->upload->display_errors() . '</span></div>');
+            } else {
+                $img = $this->upload->data('file_name');
+                $config['image_library'] = 'gd2';
+                $config['source_image'] = './assets/img/group/' . $img;
+                $config['create_thumb'] = FALSE;
+                $config['maintain_ratio'] = TRUE;
+                $config['quality'] = '80%';
+                $config['new_image'] = './assets/img/group' . $img;
+                $this->load->library('image_lib', $config);
+                $this->image_lib->resize();
+
+                $data = [
+                    'company' => $company,
+                    'link' => $link,
+                    'description' => $description,
+                    'photo' => $img,
+                    'update_at' => date('Y-m-d', time())
+                ];
+
+                $this->admin->insertGroup($data);
+                $this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>Selamat! Group berhasil ditambahkan.</span></div>');
+                redirect('cp-admin/profile/group');
+            }
+        } else if ($this->input->post('editGroup')) {
+
+            $idGroup = $this->input->post('id');
+            $company = $this->input->post('company');
+            $link = $this->input->post('link');
+            $description = $this->input->post('description');
+
+            $config['upload_path'] = './assets/img/group';
+            $config['allowed_types'] = 'gif|jpg|png';
+            $config['max_size'] = '2048';
+            $config['file_name'] = 'group' . time();
+
+            $this->load->library('upload', $config);
+
+            if (empty($_FILES['photo']['name'])) {
+                $img = $this->input->post('img_old');
+            } else {
+                if (!$this->upload->do_upload('photo')) {
+                    $this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>' . $this->upload->display_errors() . '</span></div>');
+                } else {
+                    unlink(FCPATH . '/assets/img/group/' . $this->input->post('img_old'));
+                    $img = $this->upload->data('file_name');
+                    $config['image_library'] = 'gd2';
+                    $config['source_image'] = './assets/img/group/' . $img;
+                    $config['create_thumb'] = FALSE;
+                    $config['maintain_ratio'] = TRUE;
+                    $config['quality'] = '80%';
+                    $config['new_image'] = './assets/img/group' . $img;
+                    $this->load->library('image_lib', $config);
+                    $this->image_lib->resize();
+                }
+            }
+            $data = [
+                'company' => $company,
+                'link' => $link,
+                'description' => $description,
+                'photo' => $img,
+                'update_at' => date('Y-m-d', time())
+            ];
+
+            $this->admin->updateGroup($idGroup, $data);
+            $this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>Selamat! Group berhasil diubah.</span></div>');
+            redirect('cp-admin/profile/group');
+        }
+
+        $data = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash(),
+            'getMenus' => $this->admin->getMenu(),
+            'getSubMenus' => $this->admin->getSubMenu(),
+            'getGroups' => $this->admin->getGroup(),
+            'user' => $this->admin->getActiveUser(),
+            'check' => $this->admin->getSeo(),
+            'roles' => $this->admin->getRoles(),
+            'sidebars' => $this->admin->getSidebar($this->session->userdata('id')),
+            'title' => 'Group'
+        );
+
+        $this->load->view('template/header', $data);
+        $this->load->view('template/sidebar', $data);
+        $this->load->view('template/navbar', $data);
+        $this->load->view('admin/group', $data);
+        $this->load->view('template/footer');
+    }
+
+    public function delete_group($id)
+    {
+        $getGroup = $this->db->get_where('wb_group', array('id' => $id))->row_array();
+        if ($getGroup) {
+            unlink(FCPATH . '/assets/img/group/' . $getGroup['photo']);
+        }
+        $this->admin->deleteGroup($id);
+        $this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>Selamat! Group berhasil dihapus.</span></div>');
+        redirect('cp-admin/profile/group');
+    }
+
+    public function all_news()
+    {
+        $data = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash(),
+            'getMenus' => $this->admin->getMenu(),
+            'getSubMenus' => $this->admin->getSubMenu(),
+            'user' => $this->admin->getActiveUser(),
+            'check' => $this->admin->getSeo(),
+            'roles' => $this->admin->getRoles(),
+            'sidebars' => $this->admin->getSidebar($this->session->userdata('id')),
+            'title' => 'Semua Berita'
+        );
+
+        $this->load->view('template/header', $data);
+        $this->load->view('template/sidebar', $data);
+        $this->load->view('template/navbar', $data);
+        $this->load->view('admin/all_news', $data);
+        $this->load->view('template/footer');
     }
 }

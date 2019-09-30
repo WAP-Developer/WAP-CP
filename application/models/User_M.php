@@ -27,4 +27,28 @@ class User_m extends CI_Model
         $achievement = $this->db->get('wb_achievement')->result_array();
         return $achievement;
     }
+
+    public function getMessage()
+    {
+        $message = $this->db->get('wb_message')->row_array();
+        return $message;
+    }
+
+    public function getHistory()
+    {
+        $query = $this->db->get('wb_history')->result_array();
+        return $query;
+    }
+
+    public function getVm()
+    {
+        $query = $this->db->get('wb_vm')->row_array();
+        return $query;
+    }
+
+    public function getGroup()
+    {
+        $query = $this->db->get('wb_group')->result_array();
+        return $query;
+    }
 }

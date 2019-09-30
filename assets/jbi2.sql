@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `wb_achievement` (
 
 -- Dumping data for table jbi.wb_achievement: ~1 rows (approximately)
 /*!40000 ALTER TABLE `wb_achievement` DISABLE KEYS */;
-REPLACE INTO `wb_achievement` (`id`, `achievement`, `description`, `photo`, `update_at`) VALUES
+INSERT INTO `wb_achievement` (`id`, `achievement`, `description`, `photo`, `update_at`) VALUES
 	(4, 'Website Awards', 'Diraih Tadi', 'achievement1569606323.png', '2019-09-27');
 /*!40000 ALTER TABLE `wb_achievement` ENABLE KEYS */;
 
@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `wb_admin` (
 
 -- Dumping data for table jbi.wb_admin: ~1 rows (approximately)
 /*!40000 ALTER TABLE `wb_admin` DISABLE KEYS */;
-REPLACE INTO `wb_admin` (`id`, `name`, `email`, `password`, `role_id`, `created_at`, `update_at`) VALUES
+INSERT INTO `wb_admin` (`id`, `name`, `email`, `password`, `role_id`, `created_at`, `update_at`) VALUES
 	(1, 'Administrator', 'aldiwap@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 1, '2019-09-10', '2019-09-10');
 /*!40000 ALTER TABLE `wb_admin` ENABLE KEYS */;
 
@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `wb_album` (
 
 -- Dumping data for table jbi.wb_album: ~1 rows (approximately)
 /*!40000 ALTER TABLE `wb_album` DISABLE KEYS */;
-REPLACE INTO `wb_album` (`id`, `album`, `slug`, `update_at`) VALUES
+INSERT INTO `wb_album` (`id`, `album`, `slug`, `update_at`) VALUES
 	(7, 'Jalan-Jalan', 'jalan-jalan.html', '2019-09-27');
 /*!40000 ALTER TABLE `wb_album` ENABLE KEYS */;
 
@@ -77,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `wb_album_foto` (
 
 -- Dumping data for table jbi.wb_album_foto: ~1 rows (approximately)
 /*!40000 ALTER TABLE `wb_album_foto` DISABLE KEYS */;
-REPLACE INTO `wb_album_foto` (`id_photo`, `album_id`, `title_photo`, `photo`, `update_at`) VALUES
+INSERT INTO `wb_album_foto` (`id_photo`, `album_id`, `title_photo`, `photo`, `update_at`) VALUES
 	(9, 7, 'Yani', 'foto1569607265.jpg', '2019-09-27');
 /*!40000 ALTER TABLE `wb_album_foto` ENABLE KEYS */;
 
@@ -94,7 +94,7 @@ CREATE TABLE IF NOT EXISTS `wb_employe` (
 
 -- Dumping data for table jbi.wb_employe: ~1 rows (approximately)
 /*!40000 ALTER TABLE `wb_employe` DISABLE KEYS */;
-REPLACE INTO `wb_employe` (`id`, `front_name`, `end_name`, `position`, `photo`, `update_at`) VALUES
+INSERT INTO `wb_employe` (`id`, `front_name`, `end_name`, `position`, `photo`, `update_at`) VALUES
 	(6, 'Aldi', 'Wiguna', 'UX Designer', 'employe1569606920.jpg', '2019-09-27');
 /*!40000 ALTER TABLE `wb_employe` ENABLE KEYS */;
 
@@ -111,7 +111,7 @@ CREATE TABLE IF NOT EXISTS `wb_group` (
 
 -- Dumping data for table jbi.wb_group: ~1 rows (approximately)
 /*!40000 ALTER TABLE `wb_group` DISABLE KEYS */;
-REPLACE INTO `wb_group` (`id`, `company`, `link`, `description`, `photo`, `update_at`) VALUES
+INSERT INTO `wb_group` (`id`, `company`, `link`, `description`, `photo`, `update_at`) VALUES
 	(1, 'Twitter, Inc.', 'http://twitter.com', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent et justo vitae enim laoreet vestibulum eget id felis. Proin pellentesque tellus at ornare faucibus. Proin ultricies velit sit amet ipsum efficitur consequat. Donec sem ante, venenatis vel sapien non, bibendum laoreet mi. Ut quis felis quam. Duis sit amet rhoncus mi. ', 'group1569827702.png', '2019-09-30');
 /*!40000 ALTER TABLE `wb_group` ENABLE KEYS */;
 
@@ -127,7 +127,7 @@ CREATE TABLE IF NOT EXISTS `wb_history` (
 
 -- Dumping data for table jbi.wb_history: ~1 rows (approximately)
 /*!40000 ALTER TABLE `wb_history` DISABLE KEYS */;
-REPLACE INTO `wb_history` (`id`, `year`, `history`, `content`, `update_at`) VALUES
+INSERT INTO `wb_history` (`id`, `year`, `history`, `content`, `update_at`) VALUES
 	(3, '1996', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque, facilis quo maiores magnam modi ab libero praesentium blanditiis. ', 'timeline-content', '2019-09-30');
 /*!40000 ALTER TABLE `wb_history` ENABLE KEYS */;
 
@@ -143,7 +143,7 @@ CREATE TABLE IF NOT EXISTS `wb_menu` (
 
 -- Dumping data for table jbi.wb_menu: ~8 rows (approximately)
 /*!40000 ALTER TABLE `wb_menu` DISABLE KEYS */;
-REPLACE INTO `wb_menu` (`id`, `menu`, `icon`, `url`, `update_at`) VALUES
+INSERT INTO `wb_menu` (`id`, `menu`, `icon`, `url`, `update_at`) VALUES
 	(12, 'Dashboard', '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">\r\n							<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">\r\n								<polygon id="Bound" points="0 0 24 0 24 24 0 24" />\r\n								<path d="M12.9336061,16.072447 L19.36,10.9564761 L19.5181585,10.8312381 C20.1676248,10.3169571 20.2772143,9.3735535 19.7629333,8.72408713 C19.6917232,8.63415859 19.6104327,8.55269514 19.5206557,8.48129411 L12.9336854,3.24257445 C12.3871201,2.80788259 11.6128799,2.80788259 11.0663146,3.24257445 L4.47482784,8.48488609 C3.82645598,9.00054628 3.71887192,9.94418071 4.23453211,10.5925526 C4.30500305,10.6811601 4.38527899,10.7615046 4.47382636,10.8320511 L4.63,10.9564761 L11.0659024,16.0730648 C11.6126744,16.5077525 12.3871218,16.5074963 12.9336061,16.072447 Z" id="Shape" fill="#000000" fill-rule="nonzero" />\r\n								<path d="M11.0563554,18.6706981 L5.33593024,14.122919 C4.94553994,13.8125559 4.37746707,13.8774308 4.06710397,14.2678211 C4.06471678,14.2708238 4.06234874,14.2738418 4.06,14.2768747 L4.06,14.2768747 C3.75257288,14.6738539 3.82516916,15.244888 4.22214834,15.5523151 C4.22358765,15.5534297 4.2250303,15.55454 4.22647627,15.555646 L11.0872776,20.8031356 C11.6250734,21.2144692 12.371757,21.2145375 12.909628,20.8033023 L19.7677785,15.559828 C20.1693192,15.2528257 20.2459576,14.6784381 19.9389553,14.2768974 C19.9376429,14.2751809 19.9363245,14.2734691 19.935,14.2717619 L19.935,14.2717619 C19.6266937,13.8743807 19.0546209,13.8021712 18.6572397,14.1104775 C18.654352,14.112718 18.6514778,14.1149757 18.6486172,14.1172508 L12.9235044,18.6705218 C12.377022,19.1051477 11.6029199,19.1052208 11.0563554,18.6706981 Z" id="Path" fill="#000000" opacity="0.3" />\r\n							</g>\r\n						</svg>', 'cp-admin/dashboard', '2019-09-27'),
 	(13, 'Berita', '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">\r\n    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">\r\n        <rect id="bound" x="0" y="0" width="24" height="24"/>\r\n        <path d="M13.6855025,18.7082217 C15.9113859,17.8189707 18.682885,17.2495635 22,17 C22,16.9325178 22,13.1012863 22,5.50630526 L21.9999762,5.50630526 C21.9999762,5.23017604 21.7761292,5.00632908 21.5,5.00632908 C21.4957817,5.00632908 21.4915635,5.00638247 21.4873465,5.00648922 C18.658231,5.07811173 15.8291155,5.74261533 13,7 C13,7.04449645 13,10.79246 13,18.2438906 L12.9999854,18.2438906 C12.9999854,18.520041 13.2238496,18.7439052 13.5,18.7439052 C13.5635398,18.7439052 13.6264972,18.7317946 13.6855025,18.7082217 Z" id="Combined-Shape" fill="#000000"/>\r\n        <path d="M10.3144829,18.7082217 C8.08859955,17.8189707 5.31710038,17.2495635 1.99998542,17 C1.99998542,16.9325178 1.99998542,13.1012863 1.99998542,5.50630526 L2.00000925,5.50630526 C2.00000925,5.23017604 2.22385621,5.00632908 2.49998542,5.00632908 C2.50420375,5.00632908 2.5084219,5.00638247 2.51263888,5.00648922 C5.34175439,5.07811173 8.17086991,5.74261533 10.9999854,7 C10.9999854,7.04449645 10.9999854,10.79246 10.9999854,18.2438906 L11,18.2438906 C11,18.520041 10.7761358,18.7439052 10.4999854,18.7439052 C10.4364457,18.7439052 10.3734882,18.7317946 10.3144829,18.7082217 Z" id="Path-41-Copy" fill="#000000" opacity="0.3"/>\r\n    </g>\r\n</svg>', '#', '2019-09-30'),
 	(14, 'Profile', '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">\r\n							<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">\r\n								<rect id="bound" x="0" y="0" width="24" height="24" />\r\n								<path d="M13.5,21 L13.5,18 C13.5,17.4477153 13.0522847,17 12.5,17 L11.5,17 C10.9477153,17 10.5,17.4477153 10.5,18 L10.5,21 L5,21 L5,4 C5,2.8954305 5.8954305,2 7,2 L17,2 C18.1045695,2 19,2.8954305 19,4 L19,21 L13.5,21 Z M9,4 C8.44771525,4 8,4.44771525 8,5 L8,6 C8,6.55228475 8.44771525,7 9,7 L10,7 C10.5522847,7 11,6.55228475 11,6 L11,5 C11,4.44771525 10.5522847,4 10,4 L9,4 Z M14,4 C13.4477153,4 13,4.44771525 13,5 L13,6 C13,6.55228475 13.4477153,7 14,7 L15,7 C15.5522847,7 16,6.55228475 16,6 L16,5 C16,4.44771525 15.5522847,4 15,4 L14,4 Z M9,8 C8.44771525,8 8,8.44771525 8,9 L8,10 C8,10.5522847 8.44771525,11 9,11 L10,11 C10.5522847,11 11,10.5522847 11,10 L11,9 C11,8.44771525 10.5522847,8 10,8 L9,8 Z M9,12 C8.44771525,12 8,12.4477153 8,13 L8,14 C8,14.5522847 8.44771525,15 9,15 L10,15 C10.5522847,15 11,14.5522847 11,14 L11,13 C11,12.4477153 10.5522847,12 10,12 L9,12 Z M14,12 C13.4477153,12 13,12.4477153 13,13 L13,14 C13,14.5522847 13.4477153,15 14,15 L15,15 C15.5522847,15 16,14.5522847 16,14 L16,13 C16,12.4477153 15.5522847,12 15,12 L14,12 Z" id="Combined-Shape" fill="#000000" />\r\n								<rect id="Rectangle-Copy-2" fill="#FFFFFF" x="13" y="8" width="3" height="3" rx="1" />\r\n								<path d="M4,21 L20,21 C20.5522847,21 21,21.4477153 21,22 L21,22.4 C21,22.7313708 20.7313708,23 20.4,23 L3.6,23 C3.26862915,23 3,22.7313708 3,22.4 L3,22 C3,21.4477153 3.44771525,21 4,21 Z" id="Rectangle-2" fill="#000000" opacity="0.3" />\r\n							</g>\r\n						</svg>', '#', '2019-09-27'),
@@ -164,7 +164,7 @@ CREATE TABLE IF NOT EXISTS `wb_menu_akses` (
 
 -- Dumping data for table jbi.wb_menu_akses: ~8 rows (approximately)
 /*!40000 ALTER TABLE `wb_menu_akses` DISABLE KEYS */;
-REPLACE INTO `wb_menu_akses` (`id_akses`, `menu_id`, `role_id`) VALUES
+INSERT INTO `wb_menu_akses` (`id_akses`, `menu_id`, `role_id`) VALUES
 	(22, 12, 1),
 	(23, 13, 1),
 	(24, 14, 1),
@@ -185,9 +185,9 @@ CREATE TABLE IF NOT EXISTS `wb_message` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table jbi.wb_message: ~0 rows (approximately)
+-- Dumping data for table jbi.wb_message: ~1 rows (approximately)
 /*!40000 ALTER TABLE `wb_message` DISABLE KEYS */;
-REPLACE INTO `wb_message` (`id`, `message`, `president`, `photo`, `update_at`) VALUES
+INSERT INTO `wb_message` (`id`, `message`, `president`, `photo`, `update_at`) VALUES
 	(1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam cursus eros vitae risus varius, vel luctus magna pulvinar. In ante nulla, tempor eu metus at, mattis commodo justo. Donec non facilisis mauris. Donec arcu mauris, suscipit ut elit id, mattis lacinia nisi. Cras ut maximus enim. Vivamus sagittis, diam et laoreet sodales, ligula purus porttitor eros, ut interdum nisi elit in risus. Phasellus laoreet id ligula at tincidunt. Nunc posuere interdum dictum. Integer massa urna, condimentum at maximus eu, luctus non mauris.\r\n', 'Naoki Sakashita', 'president1569806434.png', '2019-09-30');
 /*!40000 ALTER TABLE `wb_message` ENABLE KEYS */;
 
@@ -201,7 +201,7 @@ CREATE TABLE IF NOT EXISTS `wb_role` (
 
 -- Dumping data for table jbi.wb_role: ~2 rows (approximately)
 /*!40000 ALTER TABLE `wb_role` DISABLE KEYS */;
-REPLACE INTO `wb_role` (`id`, `role`, `create_at`) VALUES
+INSERT INTO `wb_role` (`id`, `role`, `create_at`) VALUES
 	(1, 'Administrator', '2019-09-30'),
 	(2, 'Personalia', '2019-09-10');
 /*!40000 ALTER TABLE `wb_role` ENABLE KEYS */;
@@ -222,7 +222,7 @@ CREATE TABLE IF NOT EXISTS `wb_seo` (
 
 -- Dumping data for table jbi.wb_seo: ~1 rows (approximately)
 /*!40000 ALTER TABLE `wb_seo` DISABLE KEYS */;
-REPLACE INTO `wb_seo` (`id`, `title`, `description`, `meta`, `crawl_landing`, `follow_landing`, `crawl_admin`, `follow_admin`, `update_at`) VALUES
+INSERT INTO `wb_seo` (`id`, `title`, `description`, `meta`, `crawl_landing`, `follow_landing`, `crawl_admin`, `follow_admin`, `update_at`) VALUES
 	(1, 'Official Website PT. Jidosha Buhin Indonesia', 'Jibuhin', '', 1, 1, 2, 2, '2019-09-20');
 /*!40000 ALTER TABLE `wb_seo` ENABLE KEYS */;
 
@@ -236,9 +236,9 @@ CREATE TABLE IF NOT EXISTS `wb_sub_menu` (
   PRIMARY KEY (`id_sub`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table jbi.wb_sub_menu: ~6 rows (approximately)
+-- Dumping data for table jbi.wb_sub_menu: ~8 rows (approximately)
 /*!40000 ALTER TABLE `wb_sub_menu` DISABLE KEYS */;
-REPLACE INTO `wb_sub_menu` (`id_sub`, `menu_id`, `sub_menu`, `sub_url`, `update_at`) VALUES
+INSERT INTO `wb_sub_menu` (`id_sub`, `menu_id`, `sub_menu`, `sub_url`, `update_at`) VALUES
 	(15, 14, 'Pesan Presiden', 'cp-admin/profile/message-president', '2019-09-27'),
 	(16, 14, 'Organisasi', 'cp-admin/profile/organization', '2019-09-27'),
 	(17, 14, 'Penghargaan', 'cp-admin/profile/achievement', '2019-09-27'),
@@ -260,7 +260,7 @@ CREATE TABLE IF NOT EXISTS `wb_vm` (
 
 -- Dumping data for table jbi.wb_vm: ~1 rows (approximately)
 /*!40000 ALTER TABLE `wb_vm` DISABLE KEYS */;
-REPLACE INTO `wb_vm` (`id`, `visi`, `misi`, `update_at`) VALUES
+INSERT INTO `wb_vm` (`id`, `visi`, `misi`, `update_at`) VALUES
 	(1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam cursus eros vitae risus varius, vel luctus magna pulvinar. In ante nulla, tempor eu metus at, mattis commodo justo. Donec non facilisis mauris. Donec arcu mauris, suscipit ut elit id, mattis lacinia nisi. Cras ut maximus enim. Vivamus sagittis, diam et laoreet sodales, ligula purus porttitor eros, ut interdum nisi elit in risus. Phasellus laoreet id ligula at tincidunt. Nunc posuere interdum dictum. Integer massa urna, condimentum at maximus eu, luctus non mauris. ', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam cursus eros vitae risus varius, vel luctus magna pulvinar. In ante nulla, tempor eu metus at, mattis commodo justo. Donec non facilisis mauris. Donec arcu mauris, suscipit ut elit id, mattis lacinia nisi. Cras ut maximus enim. Vivamus sagittis, diam et laoreet sodales, ligula purus porttitor eros, ut interdum nisi elit in risus. Phasellus laoreet id ligula at tincidunt. Nunc posuere interdum dictum. Integer massa urna, condimentum at maximus eu, luctus non mauris. ', '2019-09-30');
 /*!40000 ALTER TABLE `wb_vm` ENABLE KEYS */;
 

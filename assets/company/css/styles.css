@@ -205,8 +205,8 @@ body {
 .daihatsu,
 .suzuki,
 .hino {
-	width: 80px;
-	height: 50px;
+	width: 40px;
+	height: 30px;
 	margin-bottom: 10px;
 	filter: grayscale(100%);
 	-webkit-filter: grayscale(100%);
@@ -268,9 +268,11 @@ body {
 }
 
 .foto-presiden {
-	width: 80px;
-	margin-top: 15px;
-	margin-left: 11px;
+	padding: 0.25rem;
+	background-color: #fff;
+	border-radius: 0.25rem;
+	max-width: 100%;
+	height: auto;
 }
 
 .title-pesan,
@@ -340,15 +342,27 @@ body {
 	overflow: hidden;
 }
 
+.crop-p {
+	width: 100px;
+	height: 100px;
+	position: relative;
+	overflow: hidden;
+	border-radius: 50%;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+	-webkit-transition: 0.4s ease;
+	transition: 0.4s ease;
+}
+
+.partner {
+	width: 100%;
+	max-width: 240px;
+	box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.18);
+	transition: all 0.1s ease-in;
+}
+
 .crop {
 	width: 110px;
 	height: 110px;
-}
-
-.crop-partner {
-	width: 60px;
-	height: 60px;
-	border-radius: 50%;
 }
 
 .crop-job {
@@ -402,10 +416,6 @@ body {
 	padding-bottom: 30px;
 }
 
-.partner {
-	width: 60px;
-}
-
 .name-group {
 	font-size: 12px;
 	font-weight: bold;
@@ -413,6 +423,7 @@ body {
 }
 
 .group-deskripsi {
+	height: 130px;
 	font-size: 11px;
 	margin-top: 10px;
 	text-align: justify;
@@ -510,12 +521,6 @@ body {
 		margin-left: 100px;
 	}
 
-	.foto-presiden {
-		width: 176px;
-		margin-top: 31px;
-		margin-left: 11px;
-	}
-
 	.word-press {
 		margin-right: 40px;
 		font-size: 16px;
@@ -559,16 +564,11 @@ body {
 		padding-left: 20px;
 	}
 
-	.crop-partner {
+	.crop-p {
 		width: 120px;
 		height: 120px;
-		border-radius: 50%;
-		margin-top: 35px;
-		margin-left: 40px;
-	}
-
-	.partner {
-		width: 120px;
+		margin-left: 30px;
+		margin-top: 30px;
 	}
 
 	.name-group {
@@ -576,6 +576,7 @@ body {
 	}
 
 	.group-deskripsi {
+		height: 100px;
 		font-size: 16px;
 		margin-top: 10px;
 		text-align: justify;
@@ -722,6 +723,23 @@ body {
 	.hino {
 		margin-bottom: 10px;
 		margin-right: 15px;
+	}
+
+	.toyota,
+	.mitsubishi,
+	.isuzu,
+	.daihatsu,
+	.suzuki,
+	.hino {
+		width: 80px;
+		height: 50px;
+		margin-bottom: 10px;
+		filter: grayscale(100%);
+		-webkit-filter: grayscale(100%);
+		opacity: .6;
+		-webkit-transition: .6s;
+		-moz-transition: .6s;
+		transition: .6s;
 	}
 
 	.toyota,

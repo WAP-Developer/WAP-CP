@@ -102,6 +102,24 @@ class Admin_m extends CI_Model
         return $message;
     }
 
+    public function getHistory()
+    {
+        $query = $this->db->get('wb_history')->result_array();
+        return $query;
+    }
+
+    public function getVm()
+    {
+        $query = $this->db->get('wb_vm')->row_array();
+        return $query;
+    }
+
+    public function getGroup()
+    {
+        $query = $this->db->get('wb_group')->result_array();
+        return $query;
+    }
+
     // Insert Data
     public function insertSeo($data)
     {
@@ -151,6 +169,21 @@ class Admin_m extends CI_Model
     public function insertMessage($data)
     {
         $this->db->insert('wb_message', $data);
+    }
+
+    public function insertHistory($data)
+    {
+        $this->db->insert('wb_history', $data);
+    }
+
+    public function insertVm($data)
+    {
+        $this->db->insert('wb_vm', $data);
+    }
+
+    public function insertGroup($data)
+    {
+        $this->db->insert('wb_group', $data);
     }
 
     // Update Data
@@ -208,6 +241,30 @@ class Admin_m extends CI_Model
         $this->db->update('wb_achievement', $data);
     }
 
+    public function updateMessage($id, $data)
+    {
+        $this->db->where('id', $id);
+        $this->db->update('wb_message', $data);
+    }
+
+    public function updateHistory($id, $data)
+    {
+        $this->db->where('id', $id);
+        $this->db->update('wb_history', $data);
+    }
+
+    public function updateVm($id, $data)
+    {
+        $this->db->where('id', $id);
+        $this->db->update('wb_vm', $data);
+    }
+
+    public function updateGroup($id, $data)
+    {
+        $this->db->where('id', $id);
+        $this->db->update('wb_group', $data);
+    }
+
     // Delete Data
 
     public function deleteRole($id)
@@ -253,5 +310,15 @@ class Admin_m extends CI_Model
     public function deleteAchievement($id)
     {
         $this->db->delete('wb_achievement', array('id' => $id));
+    }
+
+    public function deleteHistory($id)
+    {
+        $this->db->delete('wb_history', array('id' => $id));
+    }
+
+    public function deleteGroup($id)
+    {
+        $this->db->delete('wb_group', array('id' => $id));
     }
 }

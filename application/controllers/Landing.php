@@ -13,12 +13,16 @@ class Landing extends CI_Controller
     {
         $data = array(
             'title' => "",
+            'getMessages' => $this->user->getMessage(),
+            'getHistories' => $this->user->getHistory(),
+            'getVM' => $this->user->getVm(),
             'check' => $this->db->get('wb_seo')->row_array()
         );
+
         $this->load->view('home/header', $data);
         $this->load->view('home/navbar');
         $this->load->view('home/jumbotron');
-        $this->load->view('home/index');
+        $this->load->view('home/index', $data);
         $this->load->view('home/footer');
     }
 
@@ -48,12 +52,13 @@ class Landing extends CI_Controller
     {
         $data = array(
             'title' => "JBI Group",
+            'getGroups' => $this->user->getGroup(),
             'check' => $this->db->get('wb_seo')->row_array()
         );
         $this->load->view('home/header', $data);
         $this->load->view('home/navbar');
         $this->load->view('home/jumbotron');
-        $this->load->view('home/group');
+        $this->load->view('home/group', $data);
         $this->load->view('home/footer');
     }
 
