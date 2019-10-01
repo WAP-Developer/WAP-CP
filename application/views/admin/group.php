@@ -131,7 +131,7 @@
                         </div>
                         <div class="form-group">
                             <label for="editor">Description</label>
-                            <textarea name="description" class="form-control" id="editor" data-provide="markdown" rows="10"></textarea>
+                            <textarea name="description" class="form-control" id="summernote" data-provide="markdown" rows="10"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="photo">Upload Foto (Max. 2MB)</label>
@@ -176,7 +176,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="editor">Description</label>
-                                <textarea name="description" class="form-control" id="editor" data-provide="markdown" rows="10"><?= $getGroup['description'] ?></textarea>
+                                <textarea name="description" class="form-control" id="summernote2" data-provide="markdown" rows="10"><?= $getGroup['description'] ?></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="photo">Upload Foto (Max. 2MB)</label>

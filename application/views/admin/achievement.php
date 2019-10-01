@@ -62,7 +62,7 @@
                         <div class="kt-portlet__head-toolbar">
                             <div class="kt-portlet__head-wrapper">
                                 <div class="kt-portlet__head-actions">
-                                    <a href="#" class="btn btn-brand btn-elevate btn-icon-sm" data-toggle="modal" data-target="#addAcv">
+                                    <a href="Javascript:;" class="btn btn-brand btn-elevate btn-icon-sm" data-toggle="modal" data-target="#addAcv">
                                         <i class="la la-plus"></i>
                                         Piagam
                                     </a>
@@ -127,7 +127,7 @@
                         </div>
                         <div class="form-group">
                             <label for="editor">Deskripsi Penghargaan</label>
-                            <textarea name="description" class="form-control" id="editor" data-provide="markdown" rows="10"></textarea>
+                            <textarea name="description" class="form-control" id="summernote" data-provide="markdown" rows="10"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="photo">Foto Penghargaan</label>
@@ -159,7 +159,7 @@
                     <form action="<?= base_url('cp-admin/achievement'); ?>" method="post" enctype="multipart/form-data">
                         <div class="modal-body">
                             <div class="form-group">
-                                <textarea class="form-control" id="editor" data-provide="markdown" rows="10" readonly><?= $acv['description']; ?></textarea>
+                                <textarea class="form-control" id="summernote" data-provide="markdown" rows="10" readonly><?= $acv['description']; ?></textarea>
                             </div>
                         </div>
                     </form>
@@ -191,7 +191,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="editor">Deskripsi Penghargaan</label>
-                                <textarea name="description" class="form-control" id="editor" data-provide="markdown" rows="10"><?= $acv['description']; ?></textarea>
+                                <textarea name="description" class="form-control" id="summernote2" data-provide="markdown" rows="10"><?= $acv['description']; ?></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="photo">Foto Penghargaan</label>

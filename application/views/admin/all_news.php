@@ -62,7 +62,7 @@
                         <div class="kt-portlet__head-toolbar">
                             <div class="kt-portlet__head-wrapper">
                                 <div class="kt-portlet__head-actions">
-                                    <a href="#" class="btn btn-brand btn-elevate btn-icon-sm">
+                                    <a href="<?= base_url('cp-admin/news/add-news'); ?>" class="btn btn-brand btn-elevate btn-icon-sm">
                                         <i class="la la-plus"></i>
                                         Berita
                                     </a>
@@ -85,17 +85,27 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td align="center"></td>
-                                    <td></td>
-                                    <td align="center"></td>
-                                    <td align="center"></td>
-                                    <td align="center"></td>
-                                    <td align="center">
-                                        <a href="javascript:;" title="Edit" class="btn btn-sm btn-clean btn-icon btn-icon-md" data-toggle="modal" data-target="#editAlbum"> <i class="la la-edit"></i> </a>
-                                        <a href="<?= base_url('cp-admin/delete-album/'); ?>" title="Edit" class="btn btn-sm btn-clean btn-icon btn-icon-md delete-button"> <i class="la la-trash"></i> </a>
-                                    </td>
-                                </tr>
+                                <?php
+                                if ($user['role_id'] == 1) {
+                                    $loop = $getAllNews;
+                                } else {
+                                    $loop = $getselectedNews;
+                                }
+                                $i = 1;
+                                foreach ($loop as $getNews) :
+                                    ?>
+                                    <tr>
+                                        <td align="center"><?= $i++; ?></td>
+                                        <td style="font-weight: bold;"><?= $getNews['title'] ?></td>
+                                        <td align="center"><?= $getNews['update_at'] ?></td>
+                                        <td align="center"><?= $getNews['name'] ?></td>
+                                        <td align="center"><a href="<?= base_url('cp-admin/delete-album/'); ?>" title="Preview" class="btn btn-sm btn-clean btn-icon btn-icon-md delete-button"> <i class="la la-search"></i> </a></td>
+                                        <td align="center">
+                                            <a href="<?= base_url('cp-admin/news/edit-news/' . $getNews['id']); ?>" title="Edit" class="btn btn-sm btn-clean btn-icon btn-icon-md"> <i class="la la-edit"></i> </a>
+                                            <a href="<?= base_url('cp-admin/delete-news/' . $getNews['id']); ?>" title="Delete" class="btn btn-sm btn-clean btn-icon btn-icon-md delete-button"> <i class="la la-trash"></i> </a>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
                             </tbody>
                         </table>
 

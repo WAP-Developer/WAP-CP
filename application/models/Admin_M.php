@@ -120,6 +120,24 @@ class Admin_m extends CI_Model
         return $query;
     }
 
+    public function getNews($id)
+    {
+        $query = $this->db->get_where('wb_news', array('id' => $id))->row_array();
+        return $query;
+    }
+
+    public function getAllNews()
+    {
+        $query = $this->db->query("SELECT a.id, b.name, a.title, a.update_at, a.slug FROM wb_news a, wb_admin b ORDER BY a.id DESC")->result_array();
+        return $query;
+    }
+
+    public function getSelectedNews($id)
+    {
+        $query = $this->db->query("SELECT a.id, b.name, a.title, a.update_at, a.slug FROM wb_news a, wb_admin b WHERE a.admin_id=$id ORDER BY a.id DESC")->result_array();
+        return $query;
+    }
+
     // Insert Data
     public function insertSeo($data)
     {
@@ -184,6 +202,11 @@ class Admin_m extends CI_Model
     public function insertGroup($data)
     {
         $this->db->insert('wb_group', $data);
+    }
+
+    public function insertNews($data)
+    {
+        $this->db->insert('wb_news', $data);
     }
 
     // Update Data
@@ -265,6 +288,12 @@ class Admin_m extends CI_Model
         $this->db->update('wb_group', $data);
     }
 
+    public function updateNews($id, $data)
+    {
+        $this->db->where('id', $id);
+        $this->db->update('wb_news', $data);
+    }
+
     // Delete Data
 
     public function deleteRole($id)
@@ -320,5 +349,10 @@ class Admin_m extends CI_Model
     public function deleteGroup($id)
     {
         $this->db->delete('wb_group', array('id' => $id));
+    }
+
+    public function deleteNews($id)
+    {
+        $this->db->delete('wb_news', array('id' => $id));
     }
 }
