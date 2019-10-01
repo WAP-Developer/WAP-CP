@@ -86,7 +86,7 @@
 <script src="<?= base_url('assets'); ?>/vendors/general/autosize/dist/autosize.js" type="text/javascript"></script>
 <script src="<?= base_url('assets'); ?>/vendors/general/clipboard/dist/clipboard.min.js" type="text/javascript"></script>
 <script src="<?= base_url('assets'); ?>/vendors/general/dropzone/dist/dropzone.js" type="text/javascript"></script>
-<script src="<?= base_url('assets'); ?>/vendors/general/summernote/dist/summernote.js" type="text/javascript"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
 <script src="<?= base_url('assets'); ?>/vendors/general/markdown/lib/markdown.js" type="text/javascript"></script>
 <script src="<?= base_url('assets'); ?>/vendors/general/bootstrap-markdown/js/bootstrap-markdown.js" type="text/javascript"></script>
 <script src="<?= base_url('assets'); ?>/vendors/custom/components/vendors/bootstrap-markdown/init.js" type="text/javascript"></script>
@@ -140,6 +140,18 @@
         }, 500);
     });
     $('.dropify').dropify();
+
+    $(document).ready(function() {
+        $('#summernote').summernote({
+            height: 300
+        });
+    });
+
+    $(document).ready(function() {
+        $('#summernote2').summernote({
+            height: 300
+        });
+    });
 </script>
 
 <!--end::Global App Bundle -->

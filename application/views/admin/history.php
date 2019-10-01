@@ -125,7 +125,7 @@
                         </div>
                         <div class="form-group">
                             <label for="about">Description</label>
-                            <textarea name="about" class="form-control" id="editor" data-provide="markdown" rows="10"></textarea>
+                            <textarea name="about" class="form-control" id="summernote" data-provide="markdown" rows="10"></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -151,7 +151,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <textarea class="form-control" id="editor" data-provide="markdown" rows="10" readonly><?= $getHistory['history'] ?></textarea>
+                            <textarea class="form-control" id="summernote" data-provide="markdown" rows="10" readonly><?= $getHistory['history'] ?></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -185,7 +185,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="about">Description</label>
-                                <textarea name="about" class="form-control" id="editor" data-provide="markdown" rows="10"><?= $getHistory['history'] ?></textarea>
+                                <textarea name="about" class="form-control" id="summernote2" data-provide="markdown" rows="10"><?= $getHistory['history'] ?></textarea>
                             </div>
                         </div>
                         <div class="modal-footer">

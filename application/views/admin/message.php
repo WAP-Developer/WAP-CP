@@ -82,18 +82,22 @@
                             <div class="form-group">
                                 <label for="editor">Pesan Presiden</label>
                                 <input type="hidden" name="<?= $name; ?>" value="<?= $hash; ?>" />
-                                <textarea name="message" class="form-control" id="editor" data-provide="markdown" rows="10"><?php if ($getMessages['message']) {
-                                                                                                                                echo $getMessages['message'];
-                                                                                                                            } else {
-                                                                                                                                echo "";
-                                                                                                                            } ?></textarea>
+                                <textarea name="message" class="form-control" id="summernote" data-provide="markdown" rows="10"><?php if ($getMessages['message']) {
+                                                                                                                                    echo $getMessages['message'];
+                                                                                                                                } else {
+                                                                                                                                    echo "";
+                                                                                                                                } ?></textarea>
                                 <?php echo form_error('message', '<small class="error" style="color:red; margin-left:5px; margin-bottom:-100px;">', '</small>'); ?>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="name">Nama Presiden</label>
-                                        <input type="text" class="form-control" id="name" name="name" placeholder="Masukan Nama Presiden" value="<?php if($getMessages['president']){ echo $getMessages['president'];} else { echo "";} ?>">
+                                        <input type="text" class="form-control" id="name" name="name" placeholder="Masukan Nama Presiden" value="<?php if ($getMessages['president']) {
+                                                                                                                                                        echo $getMessages['president'];
+                                                                                                                                                    } else {
+                                                                                                                                                        echo "";
+                                                                                                                                                    } ?>">
                                         <?php echo form_error('name', '<small class="error" style="color:red; margin-left:5px; margin-bottom:-100px;">', '</small>'); ?>
                                     </div>
                                 </div>

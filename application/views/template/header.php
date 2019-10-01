@@ -51,7 +51,7 @@
     <link href="<?= base_url('assets'); ?>/vendors/general/owl.carousel/dist/assets/owl.carousel.css" rel="stylesheet" type="text/css" />
     <link href="<?= base_url('assets'); ?>/vendors/general/owl.carousel/dist/assets/owl.theme.default.css" rel="stylesheet" type="text/css" />
     <link href="<?= base_url('assets'); ?>/vendors/general/dropzone/dist/dropzone.css" rel="stylesheet" type="text/css" />
-    <link href="<?= base_url('assets'); ?>/vendors/general/summernote/dist/summernote.css" rel="stylesheet" type="text/css" />
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">
     <link href="<?= base_url('assets'); ?>/vendors/general/bootstrap-markdown/css/bootstrap-markdown.min.css" rel="stylesheet" type="text/css" />
     <link href="<?= base_url('assets'); ?>/vendors/general/animate.css/animate.css" rel="stylesheet" type="text/css" />
     <link href="<?= base_url('assets'); ?>/vendors/general/toastr/build/toastr.css" rel="stylesheet" type="text/css" />

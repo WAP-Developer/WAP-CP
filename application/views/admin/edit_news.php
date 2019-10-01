@@ -8,7 +8,7 @@
                 <a href="javascript:;" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
                 <span class="kt-subheader__breadcrumbs-separator"></span>
                 <a href="" class="kt-subheader__breadcrumbs-link">
-                    Visi & Misi </a>
+                    Berita </a>
                 <span class="kt-subheader__breadcrumbs-separator"></span>
 
                 <!-- <span class="kt-subheader__breadcrumbs-link kt-subheader__breadcrumbs-link--active">Active link</span> -->
@@ -59,74 +59,98 @@
         <!--Begin::Dashboard 1-->
 
         <!--Begin::Section-->
-        <div class="row justify-content-center">
-            <div class="col-md-6">
+        <div class="row">
+            <div class="col-md-8">
                 <!--begin::Portlet-->
                 <div class="kt-portlet">
                     <div class="kt-portlet__head">
                         <div class="kt-portlet__head-label">
                             <span class="kt-portlet__head-icon">
-                                <i class="kt-font-brand flaticon-statistics "></i>
+                                <i class="kt-font-brand flaticon-chat-1"></i>
                             </span>
                             <h3 class="kt-portlet__head-title">
-                                Visi
+                                Edit Berita
                             </h3>
                         </div>
                     </div>
 
                     <!--begin::Form-->
-                    <form class="kt-form" action="<?= base_url('cp-admin/profile/vm'); ?>" method="post" enctype="multipart/form-data">
+                    <form class="kt-form" action="<?= base_url('cp-admin/news/edit-news/' . $getNews['id']); ?>" method="post" enctype="multipart/form-data">
                         <div class="kt-portlet__body">
-                            <?= $this->session->flashdata('notificationa'); ?>
+                            <?= $this->session->flashdata('notification'); ?>
                             <div class="form-group">
-                                <label>Visi</label>
+                                <label for="title">Judul Berita</label>
+                                <input type="text" class="form-control" id="title" name="title" value="<?= $getNews['title']; ?>">
+                                <?php echo form_error('title', '<small class="error" style="color:red; margin-left:5px; margin-bottom:-100px;">', '</small>'); ?>
+                            </div>
+                            <div class="form-group">
+                                <label for="editor">Detail Berita</label>
                                 <input type="hidden" name="<?= $name; ?>" value="<?= $hash; ?>" />
-                                <textarea name="visi" class="form-control" id="summernote" data-provide="markdown" rows="10" required><?= $getVM['visi'] ?></textarea>
+                                <input type="hidden" name="id" value="<?= $getNews['id']; ?>" />
+                                <input type="hidden" name="img_old" value="<?= $getNews['photo']; ?>" />
+                                <input type="hidden" name="admin_id" value="<?= $getNews['admin_id']; ?>" />
+                                <textarea name="news" class="form-control" id="summernote" data-provide="markdown" rows="10"><?= $getNews['news']; ?></textarea>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="photo">Thumbnail</label>
+                                        <input type="file" class="dropify" id="photo" name="photo" data-height="200" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <label for="">Preview :</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <img src="<?php if (!$getNews) {
+                                                            echo base_url('assets/img/news/no-photo.png');
+                                                        } else {
+                                                            echo base_url('assets/img/news/' . $getNews['photo']);
+                                                        } ?>" alt="" class="img-thumbnail" width="200px">
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="kt-portlet__foot">
-                            <div class="kt-form__actions text-right">
-                                <input type="submit" class="btn btn-primary" name="sendvisi" value="Submit">
-                            </div>
-                        </div>
-                    </form>
-                    <!--end::Form-->
+                        <!--end::Form-->
                 </div>
                 <!--end::Portlet-->
             </div>
-            <div class="col-md-6">
-                <!--begin::Portlet-->
+            <div class="col-md-4">
                 <div class="kt-portlet">
                     <div class="kt-portlet__head">
                         <div class="kt-portlet__head-label">
                             <span class="kt-portlet__head-icon">
-                                <i class="kt-font-brand flaticon-diagram"></i>
+                                <i class="kt-font-brand flaticon-chat-1"></i>
                             </span>
                             <h3 class="kt-portlet__head-title">
-                                Misi
+                                Publish Berita
                             </h3>
                         </div>
                     </div>
 
-                    <!--begin::Form-->
-                    <form class="kt-form" action="<?= base_url('cp-admin/profile/vm'); ?>" method="post" enctype="multipart/form-data">
-                        <div class="kt-portlet__body">
-                            <?= $this->session->flashdata('notificationb'); ?>
-                            <div class="form-group">
-                                <label>Misi</label>
-                                <input type="hidden" name="<?= $name; ?>" value="<?= $hash; ?>" />
-                                <textarea name="misi" class="form-control" id="summernote2" data-provide="markdown" rows="10" required><?= $getVM['misi'] ?></textarea>
-                            </div>
+                    <div class="kt-portlet__body">
+                        <div class="form-group">
+                            <label for="name">Update at</label>
+                            <input class="form-control" type="date" name="update" value="<?= $getNews['update_at'] ?>" id="example-date-input" readonly>
                         </div>
-                        <div class="kt-portlet__foot">
-                            <div class="kt-form__actions text-right">
-                                <input type="submit" class="btn btn-primary" name="sendmisi" value="Submit">
-                            </div>
+                        <div class="form-group">
+                            <label for="editor">Penerbit</label>
+                            <input class="form-control" type="text" value="<?= $user['name'] ?>" disabled>
                         </div>
+                    </div>
+                    <div class="kt-portlet__foot">
+                        <div class="kt-form__actions text-right">
+                            <button type="submit" class="btn btn-primary">Update</button>
+                        </div>
+                    </div>
                     </form>
                     <!--end::Form-->
                 </div>
-                <!--end::Portlet-->
             </div>
         </div>
         <!--End::Dashboard 1-->

@@ -1121,6 +1121,8 @@ class Admin extends CI_Controller
             'getSubMenus' => $this->admin->getSubMenu(),
             'user' => $this->admin->getActiveUser(),
             'check' => $this->admin->getSeo(),
+            'getAllNews' => $this->admin->getAllNews(),
+            'getSelected' => $this->admin->getSelectedNews($this->session->userdata('id')),
             'roles' => $this->admin->getRoles(),
             'sidebars' => $this->admin->getSidebar($this->session->userdata('id')),
             'title' => 'Semua Berita'
@@ -1135,22 +1137,161 @@ class Admin extends CI_Controller
 
     public function add_news()
     {
-        $data = array(
-            'name' => $this->security->get_csrf_token_name(),
-            'hash' => $this->security->get_csrf_hash(),
-            'getMenus' => $this->admin->getMenu(),
-            'getSubMenus' => $this->admin->getSubMenu(),
-            'user' => $this->admin->getActiveUser(),
-            'check' => $this->admin->getSeo(),
-            'roles' => $this->admin->getRoles(),
-            'sidebars' => $this->admin->getSidebar($this->session->userdata('id')),
-            'title' => 'Tambah Berita'
-        );
+        $this->form_validation->set_rules('title', 'Judul', 'required|max_length[60]', array(
+            'required' => '%s Harus diisi.',
+            'max_length' => 'Panjang karakter harus kurang dari 60 karakter.'
+        ));
 
-        $this->load->view('template/header', $data);
-        $this->load->view('template/sidebar', $data);
-        $this->load->view('template/navbar', $data);
-        $this->load->view('admin/add_news', $data);
-        $this->load->view('template/footer');
+        if ($this->form_validation->run() == FALSE) {
+            $data = array(
+                'name' => $this->security->get_csrf_token_name(),
+                'hash' => $this->security->get_csrf_hash(),
+                'getMenus' => $this->admin->getMenu(),
+                'getSubMenus' => $this->admin->getSubMenu(),
+                'user' => $this->admin->getActiveUser(),
+                'check' => $this->admin->getSeo(),
+                'roles' => $this->admin->getRoles(),
+                'sidebars' => $this->admin->getSidebar($this->session->userdata('id')),
+                'title' => 'Tambah Berita'
+            );
+
+            $this->load->view('template/header', $data);
+            $this->load->view('template/sidebar', $data);
+            $this->load->view('template/navbar', $data);
+            $this->load->view('admin/add_news', $data);
+            $this->load->view('template/footer');
+        } else {
+            $title = $this->input->post('title');
+            $news = $this->input->post('news');
+            $update_at = $this->input->post('update');
+
+            $slug = strtolower(urlencode(str_replace(" ", "-", $title)));
+
+            $config['upload_path'] = './assets/img/news';
+            $config['allowed_types'] = 'gif|jpg|png';
+            $config['max_size'] = '2048';
+            $config['file_name'] = 'news' . time();
+
+            $this->load->library('upload', $config);
+
+            if (empty($_FILES['photo']['name'])) {
+                $img = "no-photo.png";
+            } else {
+                if (!$this->upload->do_upload('photo')) {
+                    $this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>' . $this->upload->display_errors() . '</span></div>');
+                } else {
+                    $img = $this->upload->data('file_name');
+                    $config['image_library'] = 'gd2';
+                    $config['source_image'] = './assets/img/news/' . $img;
+                    $config['create_thumb'] = FALSE;
+                    $config['maintain_ratio'] = TRUE;
+                    $config['quality'] = '80%';
+                    $config['new_image'] = './assets/img/news/' . $img;
+                    $this->load->library('image_lib', $config);
+                    $this->image_lib->resize();
+                }
+            }
+
+            $data = [
+                'admin_id' => $this->session->userdata('id'),
+                'title' => $title,
+                'news' => $news,
+                'slug' => $slug . '.html',
+                'photo' => $img,
+                'update_at' => $update_at
+            ];
+
+            $this->admin->insertNews($data);
+            $this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>Selamat! Berita berhasil ditambah.</span></div>');
+            redirect('cp-admin/news/all-news');
+        }
+    }
+
+    public function edit_news($id)
+    {
+        $this->form_validation->set_rules('title', 'Judul', 'required|max_length[60]', array(
+            'required' => '%s Harus diisi.',
+            'max_length' => 'Panjang karakter harus kurang dari 60 karakter.'
+        ));
+
+        if ($this->form_validation->run() == FALSE) {
+            $data = array(
+                'name' => $this->security->get_csrf_token_name(),
+                'hash' => $this->security->get_csrf_hash(),
+                'getMenus' => $this->admin->getMenu(),
+                'getSubMenus' => $this->admin->getSubMenu(),
+                'user' => $this->admin->getActiveUser(),
+                'getNews' => $this->admin->getNews($id),
+                'check' => $this->admin->getSeo(),
+                'roles' => $this->admin->getRoles(),
+                'sidebars' => $this->admin->getSidebar($this->session->userdata('id')),
+                'title' => 'Edit Berita'
+            );
+
+            $this->load->view('template/header', $data);
+            $this->load->view('template/sidebar', $data);
+            $this->load->view('template/navbar', $data);
+            $this->load->view('admin/edit_news', $data);
+            $this->load->view('template/footer');
+        } else {
+            $idNews = $this->input->post('id');
+            $title = $this->input->post('title');
+            $news = $this->input->post('news');
+            $update_at = $this->input->post('update');
+
+            $slug = strtolower(urlencode(str_replace(" ", "-", $title)));
+
+            $config['upload_path'] = './assets/img/news';
+            $config['allowed_types'] = 'gif|jpg|png';
+            $config['max_size'] = '2048';
+            $config['file_name'] = 'news' . time();
+
+            $this->load->library('upload', $config);
+
+            if (empty($_FILES['photo']['name'])) {
+                $img = $this->input->post('img_old');
+            } else {
+                if (!$this->upload->do_upload('photo')) {
+                    $this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>' . $this->upload->display_errors() . '</span></div>');
+                } else {
+                    if ($this->input->post('img_old') != "no-photo.png") {
+                        unlink(FCPATH . '/assets/img/news/' . $this->input->post('img_old'));
+                    }
+                    $img = $this->upload->data('file_name');
+                    $config['image_library'] = 'gd2';
+                    $config['source_image'] = './assets/img/news/' . $img;
+                    $config['create_thumb'] = FALSE;
+                    $config['maintain_ratio'] = TRUE;
+                    $config['quality'] = '80%';
+                    $config['new_image'] = './assets/img/news/' . $img;
+                    $this->load->library('image_lib', $config);
+                    $this->image_lib->resize();
+                }
+            }
+
+            $data = [
+                'admin_id' => $this->input->post('admin_id'),
+                'title' => $title,
+                'news' => $news,
+                'slug' => $slug . '.html',
+                'photo' => $img,
+                'update_at' => $update_at
+            ];
+
+            $this->admin->updateNews($idNews, $data);
+            $this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>Selamat! Berita berhasil diubah.</span></div>');
+            redirect('cp-admin/news/edit-news/' . $id);
+        }
+    }
+
+    public function delete_news($id)
+    {
+        $getNews = $this->db->get_where('wb_news', array('id' => $id))->row_array();
+        if ($getNews) {
+            unlink(FCPATH . '/assets/img/news/' . $getNews['photo']);
+        }
+        $this->admin->deleteNews($id);
+        $this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>Selamat! Berita berhasil dihapus.</span></div>');
+        redirect('cp-admin/news/all-news');
     }
 }

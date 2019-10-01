@@ -68,6 +68,7 @@ $route['cp-admin/profile/group'] = 'admin/group';
 $route['cp-admin/news/all-news'] = 'admin/all_news';
 $route['cp-admin/news/add-news'] = 'admin/add_news';
 $route['cp-admin/menu-role/(:num)'] = 'admin/menu_role/$1';
+$route['cp-admin/news/edit-news/(:num)'] = 'admin/edit_news/$1';
 $route['cp-admin/gallery-photo/(:num)'] = 'admin/gallery_photo/$1';
 $route['cp-admin/delete-role/(:num)'] = 'admin/delete_role/$1';
 $route['cp-admin/delete-menu/(:num)'] = 'admin/delete_menu/$1';
@@ -79,6 +80,7 @@ $route['cp-admin/delete-achievement/(:num)'] = 'admin/delete_achievement/$1';
 $route['cp-admin/delete-gallery-photo/(:num)'] = 'admin/delete_gallery_photo/$1';
 $route['cp-admin/delete-history/(:num)'] = 'admin/delete_history/$1';
 $route['cp-admin/delete-group/(:num)'] = 'admin/delete_group/$1';
+$route['cp-admin/delete-news/(:num)'] = 'admin/delete_news/$1';
 $route['news'] = 'landing/news';
 $route['news/page/2'] = 'landing/news_page/(:any)';
 $route['group'] = 'landing/group';
@@ -87,6 +89,7 @@ $route['achievement'] = 'landing/achievement';
 $route['gallery'] = 'landing/gallery';
 $route['organization'] = 'landing/organization';
 $route['gallery/detail/(:any)'] = 'landing/gallery_detail/(:any)';
+$route['news/detail/(:any)'] = 'landing/detail_news/(:any)';
 
 
 $route['default_controller'] = 'landing';

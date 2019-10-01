@@ -1,6 +1,7 @@
 <!-- Content -->
 <div class="container">
     <!-- Pesan Presiden  -->
+    <?php $news = substr($getOneNews['news'], 0, 250); ?>
     <div class="col-12">
         <div class="row justify-content-center">
             <h3 class="title-berita pb-2 animated fadeIn">Berita & Kegiatan</h3>
@@ -9,14 +10,14 @@
 
     <div class="row mt-3">
         <!-- Mobile -->
-        <?php for ($i = 1; $i <= 5; $i++) { ?>
+        <?php foreach ($getAllNews as $getAll) { ?>
             <div class="col-12 mobile mb-4">
                 <div class="row justify-content-center">
                     <div class="card" style="width: 18rem; border-radius: 15px;">
-                        <img src="<?= base_url('assets/img/bisnis.jpg'); ?>" class="card-img-top" alt="...">
+                        <img src="<?= base_url('assets/img/news/' . $getAll['photo']); ?>" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <a href="" class="card-title" style="color:black; text-decoration: none;">Card title</a>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="" class="card-title" style="color:black; text-decoration: none;"><?= $getAll['title'] ?></a>
+                            <p class="card-text"><?= substr($getAll['news'], 0, 160) ?>...</p>
                         </div>
                     </div>
                 </div>
@@ -27,33 +28,34 @@
         <!-- Desktop -->
         <div class="col-6 mt-4 desktop" data-aos="fade-up">
             <div class="card box-news" style="width: 18rem;">
-                <img src="<?= base_url('assets/img/mmmm.jpg'); ?>" alt="..." class="card-img-top" height="150px">
+                <img src="<?= base_url('assets/img/news/' . $getOneNews['photo']); ?>" alt="..." class="card-img-top" height="auto">
                 <div class="card-body">
-                    <h5 class="card-title">Lorem ipsum dolor sit amet, elit aaa.</h5>
+                    <h5 class="card-title"><?= $getOneNews['title']; ?></h5>
                     <div class="tanggal-berita-big">
-                        <i class="fas fa-calendar-alt"></i> 12 September 2019
+                        <i class="fas fa-calendar-alt"></i> <?= date('d F Y', strtotime($getOneNews['update_at'])) ?>
                     </div>
-                    <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                    <a href="#" class="btn btn-success btn-lengkap">Selengkapnya >></a>
+                    <span style="text-align: justify; font-size: 14px;"><?= $news ?>...</span>
+                    <a href="<?= base_url('news/detail/' . $getOneNews['slug']) ?>" class="btn btn-success btn-lengkap">Selengkapnya >></a>
                 </div>
             </div>
         </div>
-        <div class="vertical-line desktop"></div>
+        <?php if ($getFourNews) { ?>
+            <div class="vertical-line desktop"></div><?php } ?>
         <div class="col-6 desktop">
-            <?php for ($i = 1; $i <= 4; $i++) { ?>
+            <?php foreach ($getFourNews as $getFour) { ?>
                 <div class="box-vertical-news" data-aos="fade-left">
                     <div class="row">
                         <div class="col-4">
                             <div class="crop">
-                                <img src="<?= base_url('assets/img/bisnis.jpg'); ?>" alt="" height="110px">
+                                <img src="<?= base_url('assets/img/news/' . $getFour['photo']); ?>" alt="" height="110px">
                             </div>
                         </div>
                         <div class="col-8 pt-3 pb-3">
-                            <a href="#" class="title-litle-news">
-                                Orci varius natoque penatibus et magnis dis parturient montes.
+                            <a href="<?= base_url('news/detail/' . $getFour['slug']) ?>" class="title-litle-news" style="height: 100px;">
+                                <?= $getFour['title'] ?>
                             </a>
                             <div class="tanggal-berita">
-                                <i class="fas fa-calendar-alt"></i> 12 September 2019
+                                <i class="fas fa-calendar-alt"></i> <?= date('d F Y', strtotime($getFour['update_at'])); ?>
                             </div>
                         </div>
                     </div>
@@ -63,33 +65,34 @@
         <!-- Desktop End -->
     </div>
 
-    <hr class="desktop">
-    <hr class="hr-short desktop">
+    <?php if ($getTwoNews) { ?>
+        <hr class="desktop">
+        <hr class="hr-short desktop"><?php } ?>
 
-    <?php for ($i = 1; $i <= 2; $i++) { ?>
+    <?php foreach ($getTwoNews as $getTwo) { ?>
         <div class="desktop">
             <div class="row mt-5" data-aos="fade-up">
                 <div class="col-6 desktop">
                     <div class="row justify-content-end mr-4">
                         <div class="big-news-cover">
-                            <img src="<?= base_url('assets/img/bisnis.jpg'); ?>" alt="" class="big-news">
+                            <img src="<?= base_url('assets/img/news/' . $getFour['photo']); ?>" alt="" class="big-news">
                         </div>
                     </div>
                 </div>
                 <div class="col-5 desktop">
                     <div class="row">
-                        <a href="#" class="big-title-news mt-3">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        <a href="<?= base_url('news/detail/' . $getTwo['slug']) ?>" class="big-title-news mt-3">
+                            <?= $getTwo['title'] ?>
                         </a>
                     </div>
                     <div class="row">
                         <div class="tanggal-berita">
-                            <i class="fas fa-calendar-alt"></i> 12 September 2019
+                            <i class="fas fa-calendar-alt"></i> <?= date('d F Y', strtotime($getFour['update_at'])) ?>
                         </div>
                     </div>
                     <div class="row">
                         <div class="big-news-des">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras lorem ante, pulvinar sed tincidunt eu, tristique vitae dolor. In hac habitasse platea dictumst. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                            <?= substr($getTwo['news'], 0, 250); ?>...
                         </div>
                     </div>
                 </div>
@@ -98,41 +101,22 @@
     <?php } ?>
 
     <div class="row justify-content-center pt-4 pb-3">
-        <!-- Mobile -->
-        <nav aria-label="..." class="mobile">
-            <ul class="pagination pagination-sm">
-                <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Sebelumnya</a>
-                </li>
-                <li class="page-item active"><a class="page-link" href="<?= base_url('news'); ?>">1</a></li>
-                <li class="page-item" aria-current="page">
-                    <a class="page-link" href="<?= base_url('news/page/2'); ?>">2</a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#">Selanjutnya</a>
-                </li>
-            </ul>
-        </nav>
-        <!-- Mobile End -->
-
-        <!-- Desktop -->
-        <nav aria-label="..." class="desktop">
-            <ul class="pagination">
-                <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Sebelumnya</a>
-                </li>
-                <li class="page-item active"><a class="page-link" href="<?= base_url('news'); ?>">1</a></li>
-                <li class="page-item" aria-current="page">
-                    <a class="page-link" href="<?= base_url('news/page/2'); ?>">2</a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#">Selanjutnya</a>
-                </li>
-            </ul>
-        </nav>
-        <!-- Desktop End -->
-
+        <?php if ($getTwoCount > 7) { ?>
+            <nav aria-label="...">
+                <ul class="pagination pagination-sm">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Sebelumnya</a>
+                    </li>
+                    <li class="page-item active"><a class="page-link" href="<?= base_url('news'); ?>">1</a></li>
+                    <li class="page-item" aria-current="page">
+                        <a class="page-link" href="<?= base_url('news/page/2'); ?>">2</a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">Selanjutnya</a>
+                    </li>
+                </ul>
+            </nav>
+        <?php } ?>
     </div>
 </div>

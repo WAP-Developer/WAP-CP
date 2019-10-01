@@ -51,4 +51,39 @@ class User_m extends CI_Model
         $query = $this->db->get('wb_group')->result_array();
         return $query;
     }
+
+    public function getAllNews()
+    {
+        $this->db->order_by('id', 'DESC');
+        return $this->db->get('wb_news')->result_array();
+    }
+
+    public function getOneNews()
+    {
+        $this->db->order_by('id', 'DESC');
+        return $this->db->get('wb_news', 1, 0)->row_array();
+    }
+
+    public function getFourNews()
+    {
+        $this->db->order_by('id', 'DESC');
+        return $this->db->get('wb_news', 4, 1)->result_array();
+    }
+
+    public function getTwoNews()
+    {
+        $this->db->order_by('id', 'DESC');
+        return $this->db->get('wb_news', 2, 5)->result_array();
+    }
+
+    public function getTwoCount()
+    {
+        $this->db->order_by('id', 'DESC');
+        return $this->db->get('wb_news')->num_rows();
+    }
+
+    public function getDetailNews($slug)
+    {
+        return $this->db->query("SELECT a.id, b.name, a.title, a.news, a.update_at, a.photo FROM wb_news a, wb_admin b WHERE a.admin_id=b.id AND a.slug='$slug'")->row_array();
+    }
 }

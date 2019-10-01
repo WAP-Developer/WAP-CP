@@ -30,12 +30,18 @@ class Landing extends CI_Controller
     {
         $data = array(
             'title' => "Berita",
+            'getAllNews' => $this->user->getAllNews(),
+            'getFourNews' => $this->user->getFourNews(),
+            'getOneNews' => $this->user->getOneNews(),
+            'getTwoNews' => $this->user->getTwoNews(),
+            'getTwoCount' => $this->user->getTwoCount(),
             'check' => $this->db->get('wb_seo')->row_array()
         );
+
         $this->load->view('home/header', $data);
         $this->load->view('home/navbar');
         $this->load->view('home/jumbotron');
-        $this->load->view('home/news');
+        $this->load->view('home/news', $data);
         $this->load->view('home/footer');
     }
 
@@ -129,7 +135,23 @@ class Landing extends CI_Controller
         $this->load->view('home/header', $data);
         $this->load->view('home/navbar');
         $this->load->view('home/jumbotron');
-        $this->load->view('home/organization');
+        $this->load->view('home/organization', $data);
+        $this->load->view('home/footer');
+    }
+
+    public function detail_news()
+    {
+        $slugNews = $this->uri->segment(3);
+        $Title = $this->user->getDetailNews($slugNews);
+        $data = array(
+            'title' => $Title['title'],
+            'getDetailNews' => $this->user->getDetailNews($slugNews),
+            'check' => $this->db->get('wb_seo')->row_array()
+        );
+        $this->load->view('home/header', $data);
+        $this->load->view('home/navbar');
+        $this->load->view('home/jumbotron');
+        $this->load->view('home/detail_news', $data);
         $this->load->view('home/footer');
     }
 }

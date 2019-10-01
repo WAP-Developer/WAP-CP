@@ -69,34 +69,33 @@
                                 <i class="kt-font-brand flaticon-chat-1"></i>
                             </span>
                             <h3 class="kt-portlet__head-title">
-                                Seluruh Berita
+                                Tambah Berita
                             </h3>
                         </div>
                     </div>
 
                     <!--begin::Form-->
-                    <form class="kt-form" action="<?= base_url('cp-admin/profile/message-president'); ?>" method="post" enctype="multipart/form-data">
+                    <form class="kt-form" action="<?= base_url('cp-admin/news/add-news'); ?>" method="post" enctype="multipart/form-data">
                         <div class="kt-portlet__body">
                             <?= $this->session->flashdata('notification'); ?>
                             <div class="form-group">
-                                <label for="name">Judul Berita</label>
-                                <input type="text" class="form-control" id="name" name="name" placeholder="Masukan Judul Berita">
-                                <?php echo form_error('name', '<small class="error" style="color:red; margin-left:5px; margin-bottom:-100px;">', '</small>'); ?>
+                                <label for="title">Judul Berita</label>
+                                <input type="text" class="form-control" id="title" name="title" placeholder="Masukan Judul Berita">
+                                <?php echo form_error('title', '<small class="error" style="color:red; margin-left:5px; margin-bottom:-100px;">', '</small>'); ?>
                             </div>
                             <div class="form-group">
                                 <label for="editor">Detail Berita</label>
                                 <input type="hidden" name="<?= $name; ?>" value="<?= $hash; ?>" />
-                                <textarea name="message" class="form-control" id="editor" data-provide="markdown" rows="10"></textarea>
-                                <?php echo form_error('message', '<small class="error" style="color:red; margin-left:5px; margin-bottom:-100px;">', '</small>'); ?>
+                                <textarea name="news" class="form-control" id="summernote" data-provide="markdown" rows="10"></textarea>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="name">Thumbnail</label>
+                                        <label for="photo">Thumbnail</label>
                                         <input type="file" class="dropify" id="photo" name="photo" data-height="200" />
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <!-- <div class="col-md-6">
                                     <div class="row">
                                         <div class="col-md-12">
                                             <label for="">Preview :</label>
@@ -104,14 +103,17 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <img src="<?= base_url('assets/img/'); ?>" alt="" class="img-thumbnail" width="200px">
+                                            <img src="<?php if (!$getNews) {
+                                                            echo base_url('assets/img/news/no-photo.png');
+                                                        } else {
+                                                            echo base_url('assets/img/news/' . $getNews['photo']);
+                                                        } ?>" alt="" class="img-thumbnail" width="200px">
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
-                    </form>
-                    <!--end::Form-->
+                        <!--end::Form-->
                 </div>
                 <!--end::Portlet-->
             </div>
@@ -131,8 +133,7 @@
                     <div class="kt-portlet__body">
                         <div class="form-group">
                             <label for="name">Update at</label>
-                            <input type="hidden" name="<?= $name; ?>" value="<?= $hash; ?>" />
-                            <input class="form-control" type="date" value="<?= date('Y-m-d') ?>" id="example-date-input" readonly>
+                            <input class="form-control" type="date" name="update" value="<?= date('Y-m-d') ?>" id="example-date-input" readonly>
                         </div>
                         <div class="form-group">
                             <label for="editor">Penerbit</label>
@@ -141,9 +142,10 @@
                     </div>
                     <div class="kt-portlet__foot">
                         <div class="kt-form__actions text-right">
-                            <button type="submit" class="btn btn-primary">Publish</button>
+                            <button type="submit" class="btn btn-primary">Terbitkan</button>
                         </div>
                     </div>
+                    </form>
                     <!--end::Form-->
                 </div>
             </div>
