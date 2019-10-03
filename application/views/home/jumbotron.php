@@ -5,7 +5,7 @@
             <br>Bersama Kami</h1>
         <center>
             <a href="" class="btn btn-success btn-get animated fadeInDown">Mulai Sekarang</a>
-            <a href="#history" class="btn btn-services ml-4 animated fadeInDown">Sejarah</a>
+            <a href="<?= base_url('#history') ?>" class="btn btn-services ml-4 animated fadeInDown">Sejarah</a>
         </center>
     </div>
 </div>

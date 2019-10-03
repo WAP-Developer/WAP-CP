@@ -124,6 +124,7 @@
 
 <!--begin::Page Scripts(used by this page) -->
 <script src="<?= base_url('assets'); ?>/app/custom/general/crud/datatables/basic/scrollable.js" type="text/javascript"></script>
+<script src="<?= base_url('assets'); ?>/app/custom/general/crud/datatables/extensions/buttons.js" type="text/javascript"></script>
 
 <!--end::Page Scripts -->
 

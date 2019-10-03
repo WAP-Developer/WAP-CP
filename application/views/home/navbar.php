@@ -22,10 +22,10 @@
                                 Profil
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#history">Sejarah</a>
-                                <a class="dropdown-item" href="#vm">Visi & Misi</a>
-                                <a class="dropdown-item" href="#product">Produk</a>
-                                <a class="dropdown-item" href="#customer">Customer</a>
+                                <a class="dropdown-item" href="<?= base_url('#history') ?>">Sejarah</a>
+                                <a class="dropdown-item" href="<?= base_url('#vm') ?>">Visi & Misi</a>
+                                <a class="dropdown-item" href="<?= base_url('#product') ?>">Produk</a>
+                                <a class="dropdown-item" href="<?= base_url('#customer') ?>">Customer</a>
                                 <a class="dropdown-item" href="<?= base_url('organization'); ?>">Organisasi</a>
                                 <a class="dropdown-item" href="<?= base_url('achievement') ?>">Piagam</a>
                                 <a class="dropdown-item" href="<?= base_url('gallery'); ?>">Galeri</a>
@@ -40,14 +40,14 @@
                         <li class="nav-item">
                             <a class="nav-link" href="<?= base_url('group'); ?>">JBI Group</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="javascript:;" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <li class="nav-item">
+                            <a class="nav-link" href="javascript:;" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <img src="<?= base_url('assets/img/indo.png'); ?>" alt="" class="language">
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="#"><img src="<?= base_url('assets/img/indo.png'); ?>" alt="" class="language" style="margin-right:10px;">Indonesia</a>
                                 <a class="dropdown-item" href="#"><img src="<?= base_url('assets/img/english.png'); ?>" alt="" class="language" style="margin-right:10px;">English</a>
-                            </div>
+                            </div> -->
                         </li>
                     </ul>
                 </div>

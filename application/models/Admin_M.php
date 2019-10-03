@@ -138,6 +138,21 @@ class Admin_m extends CI_Model
         return $query;
     }
 
+    public function getDepartement()
+    {
+        return $this->db->get('wb_departement')->result_array();
+    }
+
+    public function getSelectedJob($id)
+    {
+        return $this->db->query("SELECT a.*, b.departement FROM wb_job a, wb_departement b WHERE a.departement_id=b.id AND a.id=$id")->row_array();
+    }
+
+    public function getJob()
+    {
+        return $this->db->query("SELECT a.*, b.departement FROM wb_job a, wb_departement b WHERE a.departement_id=b.id ORDER BY a.id DESC")->result_array();
+    }
+
     // Insert Data
     public function insertSeo($data)
     {
@@ -207,6 +222,16 @@ class Admin_m extends CI_Model
     public function insertNews($data)
     {
         $this->db->insert('wb_news', $data);
+    }
+
+    public function insertDep($data)
+    {
+        $this->db->insert('wb_departement', $data);
+    }
+
+    public function insertJob($data)
+    {
+        $this->db->insert('wb_job', $data);
     }
 
     // Update Data
@@ -294,6 +319,18 @@ class Admin_m extends CI_Model
         $this->db->update('wb_news', $data);
     }
 
+    public function updateDep($id, $data)
+    {
+        $this->db->where('id', $id);
+        $this->db->update('wb_departement', $data);
+    }
+
+    public function updateJob($id, $data)
+    {
+        $this->db->where('id', $id);
+        $this->db->update('wb_job', $data);
+    }
+
     // Delete Data
 
     public function deleteRole($id)
@@ -354,5 +391,15 @@ class Admin_m extends CI_Model
     public function deleteNews($id)
     {
         $this->db->delete('wb_news', array('id' => $id));
+    }
+
+    public function deleteDep($id)
+    {
+        $this->db->delete('wb_departement', array('id' => $id));
+    }
+
+    public function deleteJob($id)
+    {
+        $this->db->delete('wb_job', array('id' => $id));
     }
 }

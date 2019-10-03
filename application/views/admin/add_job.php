@@ -8,7 +8,7 @@
                 <a href="javascript:;" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
                 <span class="kt-subheader__breadcrumbs-separator"></span>
                 <a href="" class="kt-subheader__breadcrumbs-link">
-                    Berita </a>
+                    Lowongan pekerjaan </a>
                 <span class="kt-subheader__breadcrumbs-separator"></span>
 
                 <!-- <span class="kt-subheader__breadcrumbs-link kt-subheader__breadcrumbs-link--active">Active link</span> -->
@@ -69,30 +69,48 @@
                                 <i class="kt-font-brand flaticon-chat-1"></i>
                             </span>
                             <h3 class="kt-portlet__head-title">
-                                Tambah Berita
+                                Tambah Loker
                             </h3>
                         </div>
                     </div>
 
                     <!--begin::Form-->
-                    <form class="kt-form" action="<?= base_url('cp-admin/news/add-news'); ?>" method="post" enctype="multipart/form-data">
+                    <form class="kt-form" action="<?= base_url('cp-admin/job/add-job'); ?>" method="post" enctype="multipart/form-data">
                         <div class="kt-portlet__body">
                             <?= $this->session->flashdata('notification'); ?>
                             <div class="form-group">
-                                <label for="title">Judul Berita</label>
+                                <label for="title">Lowongan Pekerjaan</label>
                                 <input type="text" class="form-control" id="title" name="title" placeholder="Masukan Judul Berita">
                                 <?php echo form_error('title', '<small class="error" style="color:red; margin-left:5px; margin-bottom:-100px;">', '</small>'); ?>
                             </div>
                             <div class="form-group">
-                                <label for="editor">Detail Berita</label>
+                                <label for="editor">Detail Lowongan Pekerjaan</label>
                                 <input type="hidden" name="<?= $name; ?>" value="<?= $hash; ?>" />
-                                <textarea name="news" class="form-control" id="summernote" data-provide="markdown" rows="10"></textarea>
+                                <textarea name="description" class="form-control" id="summernote" data-provide="markdown" rows="10"></textarea>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="photo">Thumbnail</label>
-                                        <input type="file" class="dropify" id="photo" name="photo" data-height="200" />
+                                        <label for="departement">Departemen</label>
+                                        <select class="form-control" name="departement" id="departement">
+                                            <option>---Pilih---</option>
+                                            <?php foreach ($getDepartement as $getDep) : ?>
+                                                <option value="<?= $getDep['id'] ?>"><?= $getDep['departement'] ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="edication">Pendidikan</label>
+                                        <select class="form-control" name="education" id="education">
+                                            <option>---Pilih---</option>
+                                            <option value="SMP">SMP</option>
+                                            <option value="SMA">SMA</option>
+                                            <option value="D3">D3</option>
+                                            <option value="S1">S1</option>
+                                            <option value="S2">S2</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -109,19 +127,31 @@
                                 <i class="kt-font-brand flaticon-chat-1"></i>
                             </span>
                             <h3 class="kt-portlet__head-title">
-                                Publish Berita
+                                Publish Loker
                             </h3>
+                        </div>
+                        <div class="kt-portlet__head-toolbar">
+                            <div class="kt-portlet__head-wrapper mt-1">
+                                <div class="kt-portlet__head-actions">
+                                    <span class="kt-switch kt-switch--sm">
+                                        <label>
+                                            <input type="checkbox" name="recruit" />
+                                            <span></span>
+                                        </label>
+                                    </span>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                     <div class="kt-portlet__body">
                         <div class="form-group">
-                            <label for="name">Update at</label>
-                            <input class="form-control" type="date" name="update" value="<?= date('Y-m-d') ?>" id="example-date-input" readonly>
+                            <label for="name">Tanggal Tebit</label>
+                            <input class="form-control" type="date" name="publish" value="<?= date('Y-m-d') ?>" id="example-date-input" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="editor">Penerbit</label>
-                            <input class="form-control" type="text" value="<?= $user['name'] ?>" disabled>
+                            <label for="name">Tanggal Ditutup</label>
+                            <input class="form-control" type="date" name="expired" value="<?= date('Y-m-d') ?>" id="example-date-input">
                         </div>
                     </div>
                     <div class="kt-portlet__foot">

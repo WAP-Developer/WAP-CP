@@ -1294,4 +1294,197 @@ class Admin extends CI_Controller
         $this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>Selamat! Berita berhasil dihapus.</span></div>');
         redirect('cp-admin/news/all-news');
     }
+
+    public function departement()
+    {
+        if ($this->input->post('add')) {
+            $data = [
+                'departement' => $this->input->post('dep'),
+                'update_at' => date('Y-m-d')
+            ];
+
+            $this->admin->insertDep($data);
+            $this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>Selamat! Departement berhasil ditambah.</span></div>');
+            redirect('cp-admin/job/departement');
+        } else if ($this->input->post('edit')) {
+            $idDep = $this->input->post('id');
+            $data = [
+                'departement' => $this->input->post('dep'),
+                'update_at' => date('Y-m-d')
+            ];
+
+            $this->admin->updateDep($idDep, $data);
+            $this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>Selamat! Departement berhasil diubah.</span></div>');
+            redirect('cp-admin/job/departement');
+        }
+        $data = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash(),
+            'getMenus' => $this->admin->getMenu(),
+            'getSubMenus' => $this->admin->getSubMenu(),
+            'getDepartement' => $this->admin->getDepartement(),
+            'user' => $this->admin->getActiveUser(),
+            'check' => $this->admin->getSeo(),
+            'roles' => $this->admin->getRoles(),
+            'sidebars' => $this->admin->getSidebar($this->session->userdata('id')),
+            'title' => 'Departement'
+        );
+
+        $this->load->view('template/header', $data);
+        $this->load->view('template/sidebar', $data);
+        $this->load->view('template/navbar', $data);
+        $this->load->view('admin/departement', $data);
+        $this->load->view('template/footer');
+    }
+
+    public function deleteDepartement($id)
+    {
+        $this->admin->deleteDep($id);
+        $this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>Selamat! Album berhasil dihapus.</span></div>');
+        redirect('cp-admin/job/departement');
+    }
+
+    public function all_job()
+    {
+        $data = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash(),
+            'getMenus' => $this->admin->getMenu(),
+            'getSubMenus' => $this->admin->getSubMenu(),
+            'getJob' => $this->admin->getJob(),
+            'user' => $this->admin->getActiveUser(),
+            'check' => $this->admin->getSeo(),
+            'roles' => $this->admin->getRoles(),
+            'sidebars' => $this->admin->getSidebar($this->session->userdata('id')),
+            'title' => 'Seluruh Loker'
+        );
+
+        $this->load->view('template/header', $data);
+        $this->load->view('template/sidebar', $data);
+        $this->load->view('template/navbar', $data);
+        $this->load->view('admin/all_job', $data);
+        $this->load->view('template/footer');
+    }
+
+    public function add_job()
+    {
+        $this->form_validation->set_rules('title', 'Lowongan Pekerjan', 'required|max_length[60]', array(
+            'required' => '%s Harus diisi.',
+            'max_length' => '%s Lebih dari 60 Karakter'
+        ));
+
+        if ($this->form_validation->run() == FALSE) {
+            $data = array(
+                'name' => $this->security->get_csrf_token_name(),
+                'hash' => $this->security->get_csrf_hash(),
+                'getMenus' => $this->admin->getMenu(),
+                'getSubMenus' => $this->admin->getSubMenu(),
+                'getDepartement' => $this->admin->getDepartement(),
+                'user' => $this->admin->getActiveUser(),
+                'check' => $this->admin->getSeo(),
+                'roles' => $this->admin->getRoles(),
+                'sidebars' => $this->admin->getSidebar($this->session->userdata('id')),
+                'title' => 'Tambah Loker'
+            );
+
+            $this->load->view('template/header', $data);
+            $this->load->view('template/sidebar', $data);
+            $this->load->view('template/navbar', $data);
+            $this->load->view('admin/add_job', $data);
+            $this->load->view('template/footer');
+        } else {
+            $recruit = $this->input->post('recruit');
+            if ($recruit == NULL) {
+                $ejob = "0";
+            } else {
+                $ejob = "1";
+            }
+            $title = $this->input->post('title');
+            $description = $this->input->post('description');
+            $departement = $this->input->post('departement');
+            $education = $this->input->post('education');
+            $publish = $this->input->post('publish');
+            $expired = $this->input->post('expired');
+
+            $data = [
+                'departement_id' => $departement,
+                'job' => $title,
+                'description' => $description,
+                'education' => $education,
+                'publish_date' => $publish,
+                'expired_date' => $expired,
+                'logo' => 'logo.png',
+                'status' => $ejob
+            ];
+
+            $this->admin->insertJob($data);
+            $this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>Selamat! Loker berhasil diterbitkan.</span></div>');
+            redirect('cp-admin/job/all-job');
+        }
+    }
+
+    public function update_job($id)
+    {
+        $this->form_validation->set_rules('title', 'Lowongan Pekerjan', 'required|max_length[60]', array(
+            'required' => '%s Harus diisi.',
+            'max_length' => '%s Lebih dari 60 Karakter'
+        ));
+
+        if ($this->form_validation->run() == FALSE) {
+            $data = array(
+                'name' => $this->security->get_csrf_token_name(),
+                'hash' => $this->security->get_csrf_hash(),
+                'getMenus' => $this->admin->getMenu(),
+                'getSubMenus' => $this->admin->getSubMenu(),
+                'getDepartement' => $this->admin->getDepartement(),
+                'getSelectedJob' => $this->admin->getSelectedJob($id),
+                'user' => $this->admin->getActiveUser(),
+                'check' => $this->admin->getSeo(),
+                'roles' => $this->admin->getRoles(),
+                'sidebars' => $this->admin->getSidebar($this->session->userdata('id')),
+                'title' => 'Edit Loker'
+            );
+
+            $this->load->view('template/header', $data);
+            $this->load->view('template/sidebar', $data);
+            $this->load->view('template/navbar', $data);
+            $this->load->view('admin/edit_job', $data);
+            $this->load->view('template/footer');
+        } else {
+            $idJob = $this->input->post('id');
+            $recruit = $this->input->post('recruit');
+            if ($recruit == NULL) {
+                $ejob = "0";
+            } else {
+                $ejob = "1";
+            }
+            $title = $this->input->post('title');
+            $description = $this->input->post('description');
+            $departement = $this->input->post('departement');
+            $education = $this->input->post('education');
+            $publish = $this->input->post('publish');
+            $expired = $this->input->post('expired');
+
+            $data = [
+                'departement_id' => $departement,
+                'job' => $title,
+                'description' => $description,
+                'education' => $education,
+                'publish_date' => $publish,
+                'expired_date' => $expired,
+                'status' => $ejob
+            ];
+
+            $this->admin->updateJob($idJob, $data);
+            $this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>Selamat! Loker berhasil diubah.</span></div>');
+            redirect('cp-admin/job/all-job');
+        }
+    }
+
+    public function deleteJob($id)
+    {
+        $this->admin->deleteJob($id);
+        $this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>Selamat! Loker berhasil dihapus.</span></div>');
+        redirect('cp-admin/job/all-job');
+    }
 }
