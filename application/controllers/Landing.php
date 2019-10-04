@@ -211,15 +211,77 @@ class Landing extends CI_Controller
         $this->load->view('home/footer');
     }
 
-    public function applied_job($id)
+    public function applied_job()
     {
-        $data = array(
-            'title' => "Pengajuan Lamaran",
-            'check' => $this->db->get('wb_seo')->row_array()
-        );
-        $this->load->view('home/header', $data);
-        $this->load->view('home/navbar');
-        $this->load->view('home/job_applied', $data);
-        $this->load->view('home/footer');
+        $this->form_validation->set_rules('title', 'Title', 'required', array(
+            'required' => '%s Harus diisi.'
+        ));
+        $this->form_validation->set_rules('front', 'Nama Depan', 'required', array(
+            'required' => '%s Harus diisi.'
+        ));
+        $this->form_validation->set_rules('end', 'Nama Belakang', 'required', array(
+            'required' => '%s Harus diisi.'
+        ));
+        $this->form_validation->set_rules('country', 'Negara', 'required', array(
+            'required' => '%s Harus diisi.'
+        ));
+        $this->form_validation->set_rules('education', 'Pendidikan', 'required', array(
+            'required' => '%s Harus diisi.'
+        ));
+        $this->form_validation->set_rules('email', 'Email', 'required', array(
+            'required' => '%s Harus diisi.'
+        ));
+        $this->form_validation->set_rules('hp', 'Kontak', 'required', array(
+            'required' => '%s Harus diisi.'
+        ));
+
+        if ($this->form_validation->run() == FALSE) {
+            $data = array(
+                'name' => $this->security->get_csrf_token_name(),
+                'hash' => $this->security->get_csrf_hash(),
+                'title' => "Pengajuan Lamaran",
+                'check' => $this->db->get('wb_seo')->row_array()
+            );
+            $data['idApplied'] = $this->uri->segment(3);
+            $data['nameApplied'] = urldecode($this->uri->segment(4));
+            $this->load->view('home/header', $data);
+            $this->load->view('home/navbar');
+            $this->load->view('home/job_applied', $data);
+            $this->load->view('home/footer');
+        } else {
+            $config['upload_path']          = './assets/img/cv';
+            $config['allowed_types']        = 'pdf|doc|docx';
+            $config['max_size']             = '2048';
+            $config['file_name']            = 'CV' . time();
+
+            $this->load->library('upload', $config);
+
+            if (!$this->upload->do_upload('photo')) {
+                $this->session->set_flashdata('notification', '<div class="alert alert-success" role="alert">
+            ' . $this->upload->display_errors() . '</div>');
+                redirect('job/applied/' . $this->uri->segment(3) . "/" . $this->uri->segment(4));
+            } else {
+                $img = $this->upload->data('file_name');
+                $data = [
+                    'job_id' => $this->uri->segment(3),
+                    'frontname' => $this->input->post('front'),
+                    'backname' => $this->input->post('end'),
+                    'country' => $this->input->post('country'),
+                    'education' => $this->input->post('education'),
+                    'profile' => $this->input->post('profile'),
+                    'email' => $this->input->post('email'),
+                    'no_hp' => $this->input->post('hp'),
+                    'comment' => $this->input->post('comment'),
+                    'status' => '1',
+                    'photo' => $img,
+                    'create_at' => date('Y-m-d')
+                ];
+
+                $this->user->insertApplied($data);
+                $this->session->set_flashdata('notification', '<div class="alert alert-success" role="alert">
+                Selamat! Lamaran anda berhasil dikirim. Informasi selanjutnya akan dikirimkan via e-mail.</div>');
+                redirect('job/applied/' . $this->uri->segment(3) . "/" . $this->uri->segment(4));
+            }
+        }
     }
 }

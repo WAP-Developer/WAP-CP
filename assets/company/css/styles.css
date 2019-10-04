@@ -542,6 +542,24 @@ body {
 	font-size: 14px;
 }
 
+.recruitment {
+	padding-top: 40px;
+	padding-bottom: 40px;
+	background: url(/assets/img/row.png) repeat;
+	width: 101%;
+}
+
+.title-applied {
+	color: #11BE85;
+	font-weight: bold;
+	font-size: 50px;
+}
+
+.title-applied-des {
+	font-size: 25px;
+	color: #AFAFAF;
+}
+
 /* Desktop Version */
 
 @media (min-width: 992px) {

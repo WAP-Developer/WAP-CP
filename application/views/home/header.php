@@ -30,10 +30,10 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="stylesheet" href="<?= base_url('assets/company/'); ?>css/owl.carousel.css">
     <link rel="stylesheet" href="<?= base_url('assets/company/'); ?>css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="<?= base_url('assets/company/'); ?>css/component-chosen.min.css">
     <link rel="stylesheet" href="<?= base_url('assets/company/'); ?>/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="<?= base_url('assets/timeline') ?>/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
-    <link rel="stylesheet" href="<?= base_url('assets/company/'); ?>css/choosen.css">
 
     <link rel="shortcut icon" href="<?= base_url('assets'); ?>/img/logo.ico" />
 </head>

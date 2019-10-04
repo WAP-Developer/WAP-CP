@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Oct 03, 2019 at 09:42 AM
+-- Generation Time: Oct 04, 2019 at 09:37 AM
 -- Server version: 10.2.3-MariaDB-log
 -- PHP Version: 7.2.19
 
@@ -106,6 +106,35 @@ CREATE TABLE `wb_album_foto` (
 
 INSERT INTO `wb_album_foto` (`id_photo`, `album_id`, `title_photo`, `photo`, `update_at`) VALUES
 (9, 7, 'Yani', 'foto1569607265.jpg', '2019-09-27');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `wb_applied`
+--
+
+CREATE TABLE `wb_applied` (
+  `id` int(11) NOT NULL,
+  `job_id` int(11) NOT NULL,
+  `frontname` varchar(50) NOT NULL,
+  `backname` varchar(50) NOT NULL,
+  `country` varchar(50) NOT NULL,
+  `education` enum('SD','SMP','SMA','D3','S1','S2') NOT NULL,
+  `profile` varchar(128) DEFAULT NULL,
+  `email` varchar(128) NOT NULL,
+  `no_hp` varchar(15) NOT NULL,
+  `comment` text DEFAULT NULL,
+  `photo` varchar(128) NOT NULL,
+  `status` int(2) NOT NULL,
+  `create_at` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `wb_applied`
+--
+
+INSERT INTO `wb_applied` (`id`, `job_id`, `frontname`, `backname`, `country`, `education`, `profile`, `email`, `no_hp`, `comment`, `photo`, `status`, `create_at`) VALUES
+(1, 28, 'Aldi', 'Wiguna', 'Indonesia', 'D3', '', 'aldiwap@gmail.com', '085817525654', 'Coba Saja', 'CV1570176554.pdf', 1, '2019-10-04');
 
 -- --------------------------------------------------------
 
@@ -471,6 +500,12 @@ ALTER TABLE `wb_album_foto`
   ADD PRIMARY KEY (`id_photo`) USING BTREE;
 
 --
+-- Indexes for table `wb_applied`
+--
+ALTER TABLE `wb_applied`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `wb_departement`
 --
 ALTER TABLE `wb_departement`
@@ -575,6 +610,12 @@ ALTER TABLE `wb_album`
 --
 ALTER TABLE `wb_album_foto`
   MODIFY `id_photo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `wb_applied`
+--
+ALTER TABLE `wb_applied`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `wb_departement`

@@ -15,7 +15,7 @@
             <form method="get">
                 <div class="row justify-content-center">
                     <div class="col-7 mobile">
-                        <select data-placeholder="Pilih Departemen" class="chosen-select" name="dep" tabindex="2">
+                        <select data-placeholder="Pilih Departemen" class="form-control-choosen" name="dep" tabindex="2">
                             <option></option>
                             <?php foreach ($getDepartement as $departement) : ?>
                                 <option value="<?= $departement['id'] ?>"><?= $departement['departement'] ?></option>
@@ -302,7 +302,7 @@
                             <?php if (date('Y-m-d') > date('Y-m-d', strtotime($job['expired_date']))) { ?>
                                 <span class="btn btn-danger">Expired</span>
                             <?php } else { ?>
-                                <a href="<?= base_url('job/applied/' . $job['id']) ?>" class="btn btn-success">Ajukan Lamaran</a>
+                                <a href="<?= base_url('job/applied/' . $job['id'] . "/" . urlencode($job['job'])) ?>" class="btn btn-success">Ajukan Lamaran</a>
                             <?php } ?></td>
                         <?php } ?>
                     </div>

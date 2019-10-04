@@ -2143,9 +2143,9 @@ pre code {
 .form-control:focus {
 	color: #495057;
 	background-color: #fff;
-	border-color: #80bdff;
+	border-color: #38D39F;
 	outline: 0;
-	box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+	box-shadow: 0 0 0 0.2rem rgba(56, 211, 159, 0.459);
 }
 
 .form-control::-webkit-input-placeholder {
@@ -4223,8 +4223,8 @@ input[type="button"].btn-block {
 }
 
 .custom-file-input:focus~.custom-file-label {
-	border-color: #80bdff;
-	box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+	border-color: #38D39F;
+	box-shadow: 0 0 0 0.2rem rgba(56, 211, 159, 0.459);
 }
 
 .custom-file-input:disabled~.custom-file-label {

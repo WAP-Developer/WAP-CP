@@ -107,4 +107,10 @@ class User_m extends CI_Model
     {
         return $this->db->query("SELECT a.*, b.departement FROM wb_job a, wb_departement b WHERE a.departement_id=b.id and a.departement_id=$dep ORDER BY a.id DESC LIMIT $start, $offset")->result_array();
     }
+
+    // Insert
+    public function insertApplied($data)
+    {
+        $this->db->insert('wb_applied', $data);
+    }
 }
