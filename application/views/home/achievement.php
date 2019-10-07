@@ -42,21 +42,7 @@
     </div>
 
     <div class="row justify-content-center mt-5">
-        <nav aria-label="...">
-            <ul class="pagination pagination-sm">
-                <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Sebelumnya</a>
-                </li>
-                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                <li class="page-item" aria-current="page">
-                    <a class="page-link" href="#">2</a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#">Selanjutnya</a>
-                </li>
-            </ul>
-        </nav>
+        <?= $this->pagination->create_links(); ?>
     </div>
 
     <?php foreach ($getAcvs as $getAcv) : ?>

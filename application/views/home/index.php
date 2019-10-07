@@ -3,7 +3,7 @@
     <!-- Pesan Presiden  -->
     <div class="col-12">
         <div class="row justify-content-center">
-            <h3 class="title-pesan pb-2 animated fadeIn">Pesan Presiden</h3>
+            <h3 class="title-pesan pb-2">Pesan Presiden</h3>
         </div>
     </div>
 
@@ -11,20 +11,20 @@
         <!-- Mobile -->
         <div class="col-4 mobile">
             <div class="box-presiden">
-                <img src="<?= base_url('assets/img/' . $getMessages['photo']); ?>" alt="" class="foto-presiden">
+                <img src="<?= base_url('assets/img/' . $getMessages['photo']); ?>" alt="" class="foto-presiden" data-aos="fade-up">
             </div>
         </div>
         <div class="col-8 mobile">
             <div class="row">
                 <div class="col-sm-12">
-                    <div class="word-press">
+                    <div class="word-press" data-aos="fade-up">
                         <?= $getMessages['message'] ?>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-12">
-                    <div class="presiden">-<?= $getMessages['president'] ?></div>
+                    <div class="presiden" data-aos="fade-up">-<?= $getMessages['president'] ?></div>
                 </div>
             </div>
         </div>
@@ -33,20 +33,20 @@
         <!-- Desktop -->
         <div class="col-4 desktop">
             <div class="box-presiden">
-                <img src="<?= base_url('assets/img/' . $getMessages['photo']); ?>" alt="" class="foto-presiden">
+                <img src="<?= base_url('assets/img/' . $getMessages['photo']); ?>" alt="" class="foto-presiden" data-aos="fade-up">
             </div>
         </div>
         <div class="col-8 desktop">
             <div class="row">
                 <div class="col-12">
-                    <div class="word-press">
+                    <div class="word-press" data-aos="fade-up">
                         <?= $getMessages['message'] ?>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-12">
-                    <div class="presiden">-<?= $getMessages['president'] ?></div>
+                    <div class="presiden" data-aos="fade-up">-<?= $getMessages['president'] ?></div>
                 </div>
             </div>
         </div>
@@ -64,7 +64,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="row justify-content-center">
-                    <h3 class="title-sejarah pb-2 animated fadeIn">Sejarah JBI</h3>
+                    <h3 class="title-sejarah pb-2">Sejarah JBI</h3>
                 </div>
             </div>
         </div>

@@ -22,9 +22,9 @@ class User_m extends CI_Model
         return $employes;
     }
 
-    public function getAchievement()
+    public function getAchievement($limit, $from)
     {
-        $achievement = $this->db->get('wb_achievement')->result_array();
+        $achievement = $this->db->get('wb_achievement', $limit, $from)->result_array();
         return $achievement;
     }
 

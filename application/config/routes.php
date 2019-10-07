@@ -97,6 +97,7 @@ $route['job'] = 'landing/job';
 $route['job/applied/(:num)/(:any)'] = 'landing/applied_job';
 $route['job/(:num)'] = 'landing/job/$1';
 $route['achievement'] = 'landing/achievement';
+$route['achievement/(:num)'] = 'landing/achievement/$1';
 $route['gallery'] = 'landing/gallery';
 $route['organization'] = 'landing/organization';
 $route['gallery/detail/(:any)'] = 'landing/gallery_detail/(:any)';

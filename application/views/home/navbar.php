@@ -6,7 +6,7 @@
     </div>
     <!-- navbar -->
     <header id="header">
-        <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg fixed-top navbar-light">
             <div class="container">
                 <img src="<?= base_url(); ?>assets/img/logo.png" class="navbar-logo" alt="">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -15,10 +15,10 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="<?= base_url(); ?>">Beranda <span class="sr-only">(current)</span></a>
+                            <a class="nav-link nav-link-white" href="<?= base_url(); ?>">Beranda <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="javascript:;" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link nav-link-white dropdown-toggle" href="javascript:;" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Profil
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -32,16 +32,16 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?= base_url('news'); ?>">Berita</a>
+                            <a class="nav-link nav-link-white" href="<?= base_url('news'); ?>">Berita</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?= base_url('job'); ?>">Karir</a>
+                            <a class="nav-link nav-link-white" href="<?= base_url('job'); ?>">Karir</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?= base_url('group'); ?>">JBI Group</a>
+                            <a class="nav-link nav-link-white" href="<?= base_url('group'); ?>">JBI Group</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="javascript:;" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link nav-link-white" href="javascript:;" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <img src="<?= base_url('assets/img/indo.png'); ?>" alt="" class="language">
                             </a>
                             <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdown">

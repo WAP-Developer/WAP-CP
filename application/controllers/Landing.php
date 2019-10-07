@@ -185,8 +185,17 @@ class Landing extends CI_Controller
 
     public function achievement()
     {
+        $this->load->library('pagination');
+
+        $config['base_url'] = base_url('news/');
+        $config['total_rows'] = $this->db->get('wb_achievement')->num_rows();
+        $config['per_page'] = 12;
+        $from = $this->uri->segment(2);
+
+        $this->pagination->initialize($config);
+
         $data = array(
-            'getAcvs' => $this->user->getAchievement(),
+            'getAcvs' => $this->user->getAchievement($config['per_page'], $from),
             'title' => "Piagam",
             'check' => $this->db->get('wb_seo')->row_array()
         );
