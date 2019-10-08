@@ -132,6 +132,16 @@
 <script src="<?= base_url('assets'); ?>/app/bundle/app.bundle.js" type="text/javascript"></script>
 
 <script src="<?= base_url('assets/dropify'); ?>/js/dropify.js" type="text/javascript"></script>
+<script src="http://harvesthq.github.io/chosen/chosen.jquery.js"></script>
+<script>
+    $(function() {
+        $('.chosen-select').chosen();
+        $('.chosen-select-deselect').chosen({
+            allow_single_deselect: true
+        });
+    });
+    $('.form-control-chosen').chosen();
+</script>
 
 
 <script>
@@ -152,6 +162,25 @@
         $('#summernote2').summernote({
             height: 300
         });
+    });
+
+    $('#job').change(function() {
+        var id = $('#job').val();
+        var csrf = $("[name=jibuhin_csrf]").val()
+
+        if (id != '') {
+            $.ajax({
+                url: "<?= base_url('admin/fetchUser') ?>",
+                method: "POST",
+                data: {
+                    id: id,
+                    jibuhin_csrf: csrf
+                },
+                success: function(data) {
+                    $('#list').html(data);
+                }
+            })
+        }
     });
 </script>
 

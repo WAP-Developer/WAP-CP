@@ -282,7 +282,7 @@ class Landing extends CI_Controller
                     'no_hp' => $this->input->post('hp'),
                     'comment' => $this->input->post('comment'),
                     'status' => '1',
-                    'photo' => $img,
+                    'cv' => $img,
                     'create_at' => date('Y-m-d')
                 ];
 

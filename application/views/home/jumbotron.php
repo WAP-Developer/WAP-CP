@@ -15,11 +15,11 @@
     <div class="container">
         <div class="isi-banner">
             <div class="justify-content-end">
-                <center><img src="<?= base_url('assets/img/no-photo.png'); ?>" alt="" class="image-1 animated fadeInUp"></center>
-                <center><img src="<?= base_url('assets/img/no-photo.png'); ?>" alt="" class="image-2 animated fadeInUp"></center>
-                <img align="right" src=" <?= base_url('assets/img/no-photo.png'); ?>" alt="" class="image-3 animated fadeInUp">
-                <img align="right" src="<?= base_url('assets/img/no-photo.png'); ?>" alt="" class="image-4 animated fadeInUp">
-                <img align="right" src="<?= base_url('assets/img/no-photo.png'); ?>" alt="" class="image-big animated fadeInUp">
+                <center><img src="<?= base_url('assets/img/image2.jpg'); ?>" alt="" class="image-1 animated fadeInUp"></center>
+                <center><img src="<?= base_url('assets/img/image5.jpg'); ?>" alt="" class="image-2 animated fadeInUp"></center>
+                <img align="right" src=" <?= base_url('assets/img/image4.jpg'); ?>" alt="" class="image-3 animated fadeInUp">
+                <img align="right" src="<?= base_url('assets/img/image3.jpg'); ?>" alt="" class="image-4 animated fadeInUp">
+                <img align="right" src="<?= base_url('assets/img/image1.jpg'); ?>" alt="" class="image-big animated fadeInUp">
                 <div class="text-banner animated fadeInLeft">
                     <b>Buat Pengalaman</b> Baru<br>
                     Bersama Kami

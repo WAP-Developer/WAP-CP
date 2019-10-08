@@ -1487,4 +1487,123 @@ class Admin extends CI_Controller
         $this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>Selamat! Loker berhasil dihapus.</span></div>');
         redirect('cp-admin/job/all-job');
     }
+
+    public function all_recruitment()
+    {
+        $data = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash(),
+            'getMenus' => $this->admin->getMenu(),
+            'getSubMenus' => $this->admin->getSubMenu(),
+            'user' => $this->admin->getActiveUser(),
+            'getApplied' => $this->admin->getUserApplied(),
+            'getJob' => $this->admin->getEJob(),
+            'check' => $this->admin->getSeo(),
+            'roles' => $this->admin->getRoles(),
+            'sidebars' => $this->admin->getSidebar($this->session->userdata('id')),
+            'title' => 'Semua Pelamar'
+        );
+
+        $this->load->view('template/header', $data);
+        $this->load->view('template/sidebar', $data);
+        $this->load->view('template/navbar', $data);
+        $this->load->view('admin/allrec', $data);
+        $this->load->view('template/footer');
+    }
+
+    public function acc()
+    {
+        $idUser = $this->uri->segment(4);
+        $data = [
+            'status' => 2
+        ];
+        $this->admin->updateStatus($idUser, $data);
+        $this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>Peserta telah ditolak.</span></div>');
+        redirect('cp-admin/job/all-recruitment');
+    }
+
+    public function no_acc()
+    {
+        $idUser = $this->uri->segment(4);
+        $getEmail = $this->db->get('wb_applied', array('id' => $idUser))->row_array();
+        $data = [
+            'status' => 0
+        ];
+
+        $message = '';
+
+        $this->admin->updateStatus($idUser, $data);
+        $this->__SendEmail($getEmail['email'], 0, $message);
+    }
+
+    public function sendAcc()
+    {
+        $date = $this->input->post('date');
+        $email = $this->input->post('email');
+
+        $status = '1';
+        $this->__SendEmail($email, $status, $date);
+    }
+
+    private function __SendEmail($email, $status, $message)
+    {
+
+        $config = [
+            'protocol' => 'smtp',
+            'smtp_host' => 'ssl://mail.jibuhin.co.id',
+            'smtp_user' => 'hrd@jibuhin.co.id',
+            'smtp_pass' => 'karbvba5lw87',
+            'smtp_port' => 465,
+            'mailtype' => 'html',
+            'charset' => 'utf-8',
+            'newline' => "\r\n"
+        ];
+
+        $this->email->initialize($config);
+
+        $this->email->from('hrd@jibuhin.co.id', 'PT. Jidosha Buhin Indonesia');
+
+        if ($status == 0) {
+            $data = [
+                'status' => 'Ditolak'
+            ];
+            $message = $this->load->view('email/noAcc', $data, true);
+            $this->email->to($email);
+            $this->email->subject('Maaf, Pengajuan Lamaran di Tolak');
+            $this->email->message($message);
+
+            if ($this->email->send()) {
+                $this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>Peserta telah ditolak.</span></div>');
+                redirect('cp-admin/job/all-recruitment');
+            } else {
+                echo $this->email->print_debugger();
+                die;
+            }
+        } else if ($status == 1) {
+            $data = [
+                'status' => 'Diterima',
+                'date' => $message
+            ];
+            $message = $this->load->view('email/Acc', $data, true);
+            $this->email->to($email);
+            $this->email->subject('Selamat! Pengajuan Lamaran di Terima');
+            $this->email->message($message);
+
+            if ($this->email->send()) {
+                $this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>Email Telah Terkirim.</span></div>');
+                redirect('cp-admin/job/all-recruitment');
+            } else {
+                echo $this->email->print_debugger();
+                die;
+            }
+        }
+    }
+
+    public function fetchUser()
+    {
+        $job_id = $this->input->post('id');
+        if ($job_id) {
+            echo $this->admin->fetchUser($job_id);
+        }
+    }
 }

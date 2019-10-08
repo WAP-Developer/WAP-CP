@@ -21,45 +21,21 @@ var KTDatatablesExtensionButtons = function () {
 	};
 
 	var initTable2 = function () {
-
 		// begin first table
-		var table = $('#kt_table_2').DataTable({
+		var table = $('#no-search').DataTable({
 			responsive: true,
+			// Pagination settings
+			dom: `<'row'<'col-sm-6 text-left'f><'col-sm-6 text-right'B>>
+					<'row'<'col-sm-12'tr>>
+					<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7 dataTables_pager'lp>>`,
+			"searching": false,
 
 			buttons: [
 				'print',
-				'copyHtml5',
 				'excelHtml5',
-				'csvHtml5',
 				'pdfHtml5',
-			],
+			]
 		});
-
-		$('#export_print').on('click', function (e) {
-			e.preventDefault();
-			table.button(0).trigger();
-		});
-
-		$('#export_copy').on('click', function (e) {
-			e.preventDefault();
-			table.button(1).trigger();
-		});
-
-		$('#export_excel').on('click', function (e) {
-			e.preventDefault();
-			table.button(2).trigger();
-		});
-
-		$('#export_csv').on('click', function (e) {
-			e.preventDefault();
-			table.button(3).trigger();
-		});
-
-		$('#export_pdf').on('click', function (e) {
-			e.preventDefault();
-			table.button(4).trigger();
-		});
-
 	};
 
 	return {

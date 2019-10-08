@@ -153,6 +153,29 @@ class Admin_m extends CI_Model
         return $this->db->query("SELECT a.*, b.departement FROM wb_job a, wb_departement b WHERE a.departement_id=b.id ORDER BY a.id DESC")->result_array();
     }
 
+    public function getEJob()
+    {
+        return $this->db->query("SELECT a.*, b.departement FROM wb_job a, wb_departement b WHERE a.departement_id=b.id AND a.status=1 ORDER BY a.id DESC")->result_array();
+    }
+
+    public function getUserApplied()
+    {
+        return $this->db->query("SELECT a.*, b.job FROM wb_applied a, wb_job b WHERE a.job_id = b.id")->result_array();
+    }
+
+    public function fetchUser($id)
+    {
+        $data = $this->db->query("SELECT a.*, b.job FROM wb_applied a, wb_job b WHERE a.job_id = b.id AND a.job_id=$id AND a.status=2")->result();
+
+        $output = '';
+
+        foreach ($data as $d) {
+            $output .= $d->email . ', ';
+        }
+
+        return $output;
+    }
+
     // Insert Data
     public function insertSeo($data)
     {
@@ -329,6 +352,12 @@ class Admin_m extends CI_Model
     {
         $this->db->where('id', $id);
         $this->db->update('wb_job', $data);
+    }
+
+    public function updateStatus($id, $data)
+    {
+        $this->db->where('id', $id);
+        $this->db->update('wb_applied', $data);
     }
 
     // Delete Data
