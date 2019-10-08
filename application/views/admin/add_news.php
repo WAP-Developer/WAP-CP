@@ -95,22 +95,6 @@
                                         <input type="file" class="dropify" id="photo" name="photo" data-height="200" />
                                     </div>
                                 </div>
-                                <!-- <div class="col-md-6">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <label for="">Preview :</label>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <img src="<?php if (!$getNews) {
-                                                            echo base_url('assets/img/news/no-photo.png');
-                                                        } else {
-                                                            echo base_url('assets/img/news/' . $getNews['photo']);
-                                                        } ?>" alt="" class="img-thumbnail" width="200px">
-                                        </div>
-                                    </div>
-                                </div> -->
                             </div>
                         </div>
                         <!--end::Form-->

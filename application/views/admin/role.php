@@ -115,7 +115,7 @@
 						<div class="form-group">
 							<label for="role">Role</label>
 							<input type="hidden" name="<?= $name; ?>" value="<?= $hash; ?>" />
-							<input type="text" class="form-control" id="role" name="role" placeholder="Masukan Role">
+							<input type="text" class="form-control" id="role" name="role" placeholder="Masukan Role" required>
 						</div>
 					</div>
 					<div class="modal-footer">

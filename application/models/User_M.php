@@ -22,9 +22,9 @@ class User_m extends CI_Model
         return $employes;
     }
 
-    public function getAchievement()
+    public function getAchievement($limit, $from)
     {
-        $achievement = $this->db->get('wb_achievement')->result_array();
+        $achievement = $this->db->get('wb_achievement', $limit, $from)->result_array();
         return $achievement;
     }
 
@@ -52,10 +52,16 @@ class User_m extends CI_Model
         return $query;
     }
 
-    public function getAllNews()
+    public function getAllNews($limit, $index)
     {
         $this->db->order_by('id', 'DESC');
-        return $this->db->get('wb_news')->result_array();
+        return $this->db->get('wb_news', $limit, $index)->result_array();
+    }
+
+    public function getSevenNews()
+    {
+        $this->db->order_by('id', 'DESC');
+        return $this->db->get('wb_news', 7, 0)->result_array();
     }
 
     public function getOneNews()
@@ -76,14 +82,35 @@ class User_m extends CI_Model
         return $this->db->get('wb_news', 2, 5)->result_array();
     }
 
-    public function getTwoCount()
+    public function getRecentNews()
     {
         $this->db->order_by('id', 'DESC');
-        return $this->db->get('wb_news')->num_rows();
+        return $this->db->get('wb_news', 5, 0)->result_array();
     }
 
     public function getDetailNews($slug)
     {
         return $this->db->query("SELECT a.id, b.name, a.title, a.news, a.update_at, a.photo FROM wb_news a, wb_admin b WHERE a.admin_id=b.id AND a.slug='$slug'")->row_array();
+    }
+
+    public function getDepartement()
+    {
+        return $this->db->get('wb_departement')->result_array();
+    }
+
+    public function getJob($offset, $start)
+    {
+        return $this->db->query("SELECT a.*, b.departement FROM wb_job a, wb_departement b WHERE a.departement_id=b.id ORDER BY a.id DESC LIMIT $start, $offset")->result_array();
+    }
+
+    public function getJobDep($offset, $start, $dep)
+    {
+        return $this->db->query("SELECT a.*, b.departement FROM wb_job a, wb_departement b WHERE a.departement_id=b.id and a.departement_id=$dep ORDER BY a.id DESC LIMIT $start, $offset")->result_array();
+    }
+
+    // Insert
+    public function insertApplied($data)
+    {
+        $this->db->insert('wb_applied', $data);
     }
 }

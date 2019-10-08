@@ -87,6 +87,7 @@
             allow_single_deselect: true
         });
     });
+    $('.form-control-chosen').chosen();
 </script>
 <script>
     AOS.init({
@@ -103,6 +104,11 @@
         setTimeout(function() {
             $('.preloader').fadeOut('slow', function() {});
         }, 500);
+    });
+
+    $('#file').change(function() {
+        var filename = this.files[0].name;
+        $('#file-label').html(filename);
     });
 </script>
 </body>

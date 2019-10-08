@@ -69,86 +69,24 @@
                     Berita Terbaru
                 </div>
             </div>
-            <div class="box-recent">
-                <div class="row">
-                    <div class="col-4">
-                        <div class="crop-recent">
-                            <img src="<?= base_url('assets/img/mmmm.jpg'); ?>" alt="" height="110px">
+            <?php foreach ($getRecentNews as $getRecent) : ?>
+                <div class="box-recent">
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="crop-recent">
+                                <img src="<?= base_url('assets/img/news/' . $getRecent['photo']); ?>" alt="" height="110px" class="img-recent">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-8">
-                        <div class="row mt-3 ml-2 mb-3">
-                            <a href="<?= base_url('news/detail/') ?>" class="title-litle-news">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="box-recent">
-                <div class="row">
-                    <div class="col-4">
-                        <div class="crop-recent">
-                            <img src="<?= base_url('assets/img/mmmm.jpg'); ?>" alt="" height="110px">
-                        </div>
-                    </div>
-                    <div class="col-8">
-                        <div class="row mt-3 ml-2 mb-3">
-                            <a href="<?= base_url('news/detail/') ?>" class="title-litle-news">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            </a>
+                        <div class="col-8">
+                            <div class="row mt-3 ml-2 mb-3">
+                                <a href="<?= base_url('news/detail/' . $getRecent['slug']) ?>" class="title-litle-news">
+                                    <?= $getRecent['title'] ?>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="box-recent">
-                <div class="row">
-                    <div class="col-4">
-                        <div class="crop-recent">
-                            <img src="<?= base_url('assets/img/mmmm.jpg'); ?>" alt="" height="110px">
-                        </div>
-                    </div>
-                    <div class="col-8">
-                        <div class="row mt-3 ml-2 mb-3">
-                            <a href="<?= base_url('news/detail/') ?>" class="title-litle-news">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="box-recent">
-                <div class="row">
-                    <div class="col-4">
-                        <div class="crop-recent">
-                            <img src="<?= base_url('assets/img/mmmm.jpg'); ?>" alt="" height="110px">
-                        </div>
-                    </div>
-                    <div class="col-8">
-                        <div class="row mt-3 ml-2 mb-3">
-                            <a href="<?= base_url('news/detail/') ?>" class="title-litle-news">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="box-recent">
-                <div class="row">
-                    <div class="col-4">
-                        <div class="crop-recent">
-                            <img src="<?= base_url('assets/img/mmmm.jpg'); ?>" alt="" height="110px">
-                        </div>
-                    </div>
-                    <div class="col-8">
-                        <div class="row mt-3 ml-2 mb-3">
-                            <a href="<?= base_url('news/detail/') ?>" class="title-litle-news">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <?php endforeach; ?>
         </div>
 
         <!-- Mobile -->
@@ -161,7 +99,7 @@
                 </div>
                 <hr>
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-6">
                         <table>
                             <tr>
                                 <td>
@@ -176,7 +114,7 @@
                             </tr>
                         </table>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-6">
                         <div class="row justify-content-end mr-1">
                             <table>
                                 <tr>
@@ -199,7 +137,7 @@
                     <img src="<?= base_url('assets/img/news/' . $getDetailNews['photo']); ?>" alt="" class="img-thumbnail" width="80%">
                 </div>
                 <div class="row mt-4">
-                    <div style="text-align: justify;">
+                    <div style="text-align: justify; font-size: 13px;">
                         <?= $getDetailNews['news'] ?>
                     </div>
                 </div>
@@ -211,86 +149,24 @@
                     Berita Terbaru
                 </div>
             </div>
-            <div class="box-recent">
-                <div class="row">
-                    <div class="col-4">
-                        <div class="crop-recent">
-                            <img src="<?= base_url('assets/img/mmmm.jpg'); ?>" alt="" height="110px">
+            <?php foreach ($getRecentNews as $getRecent) : ?>
+                <div class="box-recent">
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="crop-recent">
+                                <img src="<?= base_url('assets/img/news/' . $getRecent['photo']); ?>" alt="" class="img-recent">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-8">
-                        <div class="row mt-3 ml-2 mb-3">
-                            <a href="<?= base_url('news/detail/') ?>" class="title-litle-news">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="box-recent">
-                <div class="row">
-                    <div class="col-4">
-                        <div class="crop-recent">
-                            <img src="<?= base_url('assets/img/mmmm.jpg'); ?>" alt="" height="110px">
-                        </div>
-                    </div>
-                    <div class="col-8">
-                        <div class="row mt-3 ml-2 mb-3">
-                            <a href="<?= base_url('news/detail/') ?>" class="title-litle-news">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            </a>
+                        <div class="col-9">
+                            <div class="row mt-3 ml-2 mb-3">
+                                <a href="<?= base_url('news/detail/' . $getRecent['slug']) ?>" class="title-litle-news">
+                                    <?= $getRecent['title']; ?>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="box-recent">
-                <div class="row">
-                    <div class="col-4">
-                        <div class="crop-recent">
-                            <img src="<?= base_url('assets/img/mmmm.jpg'); ?>" alt="" height="110px">
-                        </div>
-                    </div>
-                    <div class="col-8">
-                        <div class="row mt-3 ml-2 mb-3">
-                            <a href="<?= base_url('news/detail/') ?>" class="title-litle-news">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="box-recent">
-                <div class="row">
-                    <div class="col-4">
-                        <div class="crop-recent">
-                            <img src="<?= base_url('assets/img/mmmm.jpg'); ?>" alt="" height="110px">
-                        </div>
-                    </div>
-                    <div class="col-8">
-                        <div class="row mt-3 ml-2 mb-3">
-                            <a href="<?= base_url('news/detail/') ?>" class="title-litle-news">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="box-recent">
-                <div class="row">
-                    <div class="col-4">
-                        <div class="crop-recent">
-                            <img src="<?= base_url('assets/img/mmmm.jpg'); ?>" alt="" height="110px">
-                        </div>
-                    </div>
-                    <div class="col-8">
-                        <div class="row mt-3 ml-2 mb-3">
-                            <a href="<?= base_url('news/detail/') ?>" class="title-litle-news">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <?php endforeach; ?>
         </div>
     </div>
 </div>

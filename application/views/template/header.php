@@ -62,6 +62,7 @@
     <link href="<?= base_url('assets'); ?>/vendors/custom/vendors/flaticon/flaticon.css" rel="stylesheet" type="text/css" />
     <link href="<?= base_url('assets'); ?>/vendors/custom/vendors/flaticon2/flaticon.css" rel="stylesheet" type="text/css" />
     <link href="<?= base_url('assets'); ?>/vendors/custom/vendors/fontawesome5/css/all.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="<?= base_url('assets'); ?>/company/css/component-chosen.min.css">
 
     <!--end:: Global Optional Vendors -->
 

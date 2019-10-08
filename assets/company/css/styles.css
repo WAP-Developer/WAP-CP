@@ -14,6 +14,76 @@ body {
 
 /* mobile version */
 
+.home-banner {
+	height: 100%;
+	width: 100%;
+	background-size: 100%;
+	background-image: url(/assets/img/jumbotron.png);
+	background-repeat: no-repeat;
+}
+
+.isi-banner {
+	height: 700px;
+}
+
+.image-1 {
+	width: 170px;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+	border-radius: 15px;
+	margin-top: 100px;
+	margin-left: 110px;
+}
+
+.image-2 {
+	width: 140px;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+	border-radius: 15px;
+	margin-left: 460px;
+	margin-top: -120px;
+}
+
+.image-3 {
+	width: 120px;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+	border-radius: 15px;
+	margin-right: 110px;
+	margin-top: -70px;
+}
+
+.image-4 {
+	width: 140px;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+	border-radius: 15px;
+	margin-top: 50px;
+	margin-right: -200px;
+}
+
+.image-big {
+	width: 330px;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+	border-radius: 15px;
+	margin-top: -5px;
+	margin-right: 30px;
+}
+
+.nav-link-white {
+	color: white !important;
+}
+
+.btn-history {
+	color: #fff;
+	border-radius: 60px;
+	font-weight: bold;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+	margin-top: 20px;
+}
+
+.text-banner {
+	font-size: 33px;
+	font-family: Tahoma;
+	color: #707070;
+}
+
 .img-contact {
 	width: 19px;
 }
@@ -176,8 +246,8 @@ body {
 }
 
 .box-job {
-	height: 130px;
-	width: 330px;
+	height: 100px;
+	width: 370px;
 	margin-top: 20px;
 	padding: 10px;
 }
@@ -367,7 +437,7 @@ body {
 .crop-partner,
 .crop-job {
 	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-	border: 1px solid #dee2e6;
+	border: 2px solid #FFF;
 	overflow: hidden;
 }
 
@@ -389,9 +459,25 @@ body {
 	overflow: hidden;
 	border-top-left-radius: 10px;
 	border-bottom-left-radius: 10px;
-	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
-	-webkit-transition: 0.4s ease;
-	transition: 0.4s ease;
+}
+
+.crop-four {
+	width: 150px;
+	height: 110px;
+	position: relative;
+	overflow: hidden;
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+}
+
+.crop-four img {
+	max-height: 100%;
+}
+
+.img-recent {
+	max-width: 100%;
+	height: 100%;
+	position: static;
 }
 
 .partner {
@@ -407,7 +493,7 @@ body {
 }
 
 .crop-job {
-	margin-top: 20px;
+	margin-top: 10px;
 	width: 60px;
 	height: 60px;
 }
@@ -490,7 +576,7 @@ body {
 }
 
 .btn-detail {
-	margin-top: 30px;
+	margin-top: 20px;
 }
 
 .big-news {
@@ -526,13 +612,30 @@ body {
 	font-size: 14px;
 }
 
+.recruitment {
+	padding-top: 40px;
+	padding-bottom: 40px;
+	background: url(/assets/img/row.png) repeat;
+	width: 101%;
+}
+
+.title-applied {
+	color: #11BE85;
+	font-weight: bold;
+	font-size: 50px;
+}
+
+.title-applied-des {
+	font-size: 25px;
+	color: #AFAFAF;
+}
+
 /* Desktop Version */
 
 @media (min-width: 992px) {
 	.navbar {
 		height: 70px;
 		border-top: 1px solid #AFAFAF;
-		box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
 	}
 
 	.title-pesan,
@@ -588,7 +691,7 @@ body {
 
 	.img-job {
 		width: 90px;
-		margin-top: 25px;
+		margin-top: 30px;
 	}
 
 	.img-contact {
@@ -660,7 +763,15 @@ body {
 	}
 
 	.navbar-nav .nav-item .active {
-		border-bottom: 3px solid #38D39F;
+		border-bottom: 3px solid #fff;
+	}
+
+	.navbar-nav .nav-item .active-1 {
+		border-bottom: 3px solid #707070;
+	}
+
+	.bg-light {
+		box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
 	}
 
 	.nav-item .active {
@@ -847,5 +958,7 @@ body {
 		color: #ffffff;
 		text-decoration: none;
 	}
+
+
 
 }
