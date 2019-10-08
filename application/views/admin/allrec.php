@@ -72,28 +72,18 @@
                     </div>
                     <div class="kt-portlet__body">
                         <?= $this->session->flashdata('notification'); ?>
-                        <form action="" method="get">
-                            <label for="">Filter</label>
-                            <div class="row" height="50px">
-                                <div class="col-sm-2">
-                                    <div class="form-group">
-                                        <select id="multiple" class="form-control form-control-chosen" data-placeholder="Pilih Pekerjaan" name="education" multiple>
-                                            <option value="SD">SD</option>
-                                            <option value="SMP">SMP</option>
-                                            <option value="SMA">SMA</option>
-                                            <option value="D3">D3</option>
-                                            <option value="S1">S1</option>
-                                            <option value="S2">S2</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-sm-2">
-                                    <button type="submit" class="btn btn-sm btn-primary mb-2">Cari</button>
-                                </div>
+                        <form class="form-inline" method="get">
+                            <div class="form-group mx-sm-3">
+                                <select class="form-control form-control-chosen" data-placeholder="Pilih Pekerjaan" name="j">
+                                    <?php foreach ($getFullJob as $getJob) { ?>
+                                        <option value="<?= $getJob['id'] ?>"><?= $getJob['job'] ?></option>
+                                    <?php } ?>
+                                </select>
                             </div>
+                            <button type="submit" class="btn btn-sm btn-primary">Filter</button>
                         </form>
                         <!--begin: Datatable -->
-                        <table class="table table-striped- table-bordered table-hover table-checkable" id="wap_table">
+                        <table class="table table-striped- table-bordered table-hover table-checkable" id="no-search">
                             <thead>
                                 <tr>
                                     <th>#</th>

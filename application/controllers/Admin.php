@@ -1496,13 +1496,20 @@ class Admin extends CI_Controller
             'getMenus' => $this->admin->getMenu(),
             'getSubMenus' => $this->admin->getSubMenu(),
             'user' => $this->admin->getActiveUser(),
-            'getApplied' => $this->admin->getUserApplied(),
             'getJob' => $this->admin->getEJob(),
+            'getFullJob' => $this->admin->getFullJob(),
             'check' => $this->admin->getSeo(),
             'roles' => $this->admin->getRoles(),
             'sidebars' => $this->admin->getSidebar($this->session->userdata('id')),
             'title' => 'Semua Pelamar'
         );
+
+        if($this->input->get('j')){
+            $data['getApplied'] = $this->admin->getUserApplied($this->input->get('j'));
+        } else {
+            $data['getApplied'] = $this->admin->getUserApplied(0);
+
+        }
 
         $this->load->view('template/header', $data);
         $this->load->view('template/sidebar', $data);

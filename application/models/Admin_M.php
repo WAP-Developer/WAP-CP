@@ -153,14 +153,19 @@ class Admin_m extends CI_Model
         return $this->db->query("SELECT a.*, b.departement FROM wb_job a, wb_departement b WHERE a.departement_id=b.id ORDER BY a.id DESC")->result_array();
     }
 
+    public function getFullJob()
+    {
+        return $this->db->query("SELECT * FROM wb_job WHERE status=1 ORDER BY job ASC")->result_array();
+    }
+
     public function getEJob()
     {
         return $this->db->query("SELECT a.*, b.departement FROM wb_job a, wb_departement b WHERE a.departement_id=b.id AND a.status=1 ORDER BY a.id DESC")->result_array();
     }
 
-    public function getUserApplied()
+    public function getUserApplied($id)
     {
-        return $this->db->query("SELECT a.*, b.job FROM wb_applied a, wb_job b WHERE a.job_id = b.id")->result_array();
+        return $this->db->query("SELECT a.*, b.job FROM wb_applied a, wb_job b WHERE a.job_id = b.id AND a.job_id=$id")->result_array();
     }
 
     public function fetchUser($id)
