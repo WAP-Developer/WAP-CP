@@ -92,8 +92,8 @@
                                         <td align="center"><img src="<?= base_url('assets/img/achievement/' . $acv['photo']); ?>" alt="" class="img-thumbnail" width="50px"></td>
                                         <td align="center"><a href="javascript:;" title="Edit" class="btn btn-sm btn-clean btn-icon btn-icon-md" data-toggle="modal" data-target="#description<?= $acv['id'] ?>"> <i class="la la-book"></i> </a></td>
                                         <td align="center">
-                                            <a href="javascript:;" title="Edit" class="btn btn-sm btn-clean btn-icon btn-icon-md" data-toggle="modal" data-target="#editAcv<?= $acv['id'] ?>"> <i class="la la-edit"></i> </a>
-                                            <a href="<?= base_url('cp-admin/delete-achievement/' . $acv['id']); ?>" title="Edit" class="btn btn-sm btn-clean btn-icon btn-icon-md delete-button"> <i class="la la-trash"></i> </a>
+                                            <a href="<?= base_url('cp-admin/profile/edit-achievement/' . $acv['id']); ?>" title="Edit" class="btn btn-sm btn-clean btn-icon btn-icon-md"> <i class="la la-edit"></i> </a>
+                                            <a href="<?= base_url('cp-admin/delete-achievement/' . $acv['id']); ?>" title="Delete" class="btn btn-sm btn-clean btn-icon btn-icon-md delete-button"> <i class="la la-trash"></i> </a>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
@@ -130,7 +130,7 @@
                             <textarea name="description" class="form-control" id="summernote" data-provide="markdown" rows="10"></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="photo">Foto Penghargaan</label>
+                            <label for="photo">Foto Penghargaan (Max. 2MB)</label>
                             <div class="col-5">
                                 <input type="file" class="dropify" id="photo" name="photo" data-height="200" />
                             </div>
@@ -156,58 +156,14 @@
                             <span aria-hidden="true" class="la la-remove"></span>
                         </button>
                     </div>
-                    <form action="<?= base_url('cp-admin/achievement'); ?>" method="post" enctype="multipart/form-data">
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <textarea class="form-control" id="summernote" data-provide="markdown" rows="10" readonly><?= $acv['description']; ?></textarea>
-                            </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <?= $acv['description']; ?>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
     <?php endforeach; ?>
     <!-- Modal Description End -->
-
-    <!-- Modal Edit -->
-    <?php foreach ($getAcv as $acv) : ?>
-        <div class="modal fade" id="editAcv<?= $acv['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Edit Penghargaan</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true" class="la la-remove"></span>
-                        </button>
-                    </div>
-                    <form action="<?= base_url('cp-admin/profile/achievement'); ?>" method="post" enctype="multipart/form-data">
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label for="acv">Penghargaan</label>
-                                <input type="hidden" name="<?= $name; ?>" value="<?= $hash; ?>" />
-                                <input type="hidden" name="id" value="<?= $acv['id'] ?>" required>
-                                <input type="hidden" name="old_img" value="<?= $acv['photo'] ?>" required>
-                                <input type="text" class="form-control" id="acv" name="acv" value="<?= $acv['achievement'] ?>" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="editor">Deskripsi Penghargaan</label>
-                                <textarea name="description" class="form-control" id="summernote2" data-provide="markdown" rows="10"><?= $acv['description']; ?></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="photo">Foto Penghargaan</label>
-                                <div class="col-5">
-                                    <input type="file" class="dropify" id="photo" name="photo" data-height="200" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
-                            <input type="submit" name="editAcv" class="btn btn-success" value="Simpan">
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    <?php endforeach; ?>
-    <!-- Modal Edit End -->
 </div>

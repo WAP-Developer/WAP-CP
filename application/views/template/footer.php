@@ -132,7 +132,8 @@
 <script src="<?= base_url('assets'); ?>/app/bundle/app.bundle.js" type="text/javascript"></script>
 
 <script src="<?= base_url('assets/dropify'); ?>/js/dropify.js" type="text/javascript"></script>
-<script src="http://harvesthq.github.io/chosen/chosen.jquery.js"></script>
+<script src="<?= base_url('assets/company/'); ?>js/chosen.jquery.js"></script>
+<script src="https://cdn.ckeditor.com/4.12.1/standard/ckeditor.js"></script>
 <script>
     $(function() {
         $('.chosen-select').chosen();
@@ -142,7 +143,6 @@
     });
     $('.form-control-chosen').chosen();
 </script>
-
 
 <script>
     $(document).ready(function() {

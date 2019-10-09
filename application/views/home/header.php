@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="<?= base_url('assets/company/'); ?>css/preloader.css">
     <link rel="stylesheet" href="<?= base_url('assets/company/'); ?>css/organization.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="<?= base_url('assets/company/css') ?>/aos.css" />
     <link rel="stylesheet" href="<?= base_url('assets/company/'); ?>css/owl.carousel.css">
     <link rel="stylesheet" href="<?= base_url('assets/company/'); ?>css/owl.theme.default.min.css">
     <link rel="stylesheet" href="<?= base_url('assets/company/'); ?>css/component-chosen.min.css">

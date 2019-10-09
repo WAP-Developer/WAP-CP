@@ -97,7 +97,7 @@
                                         <td align="center"><a href="javascript:;" title="Preview" class="btn btn-sm btn-clean btn-icon btn-icon-md" data-toggle="modal" data-target="#preview<?= $getOneAlbum['id_photo'] ?>"> <i class="la la-file-image-o"></i> </a></td>
                                         <td align="center">
                                             <a href="javascript:;" title="Edit" class="btn btn-sm btn-clean btn-icon btn-icon-md" data-toggle="modal" data-target="#editFoto<?= $getOneAlbum['id_photo'] ?>"> <i class="la la-edit"></i> </a>
-                                            <a href="<?= base_url('cp-admin/delete-gallery-photo/' . $getOneAlbum['id_photo']); ?>" title="Edit" class="btn btn-sm btn-clean btn-icon btn-icon-md delete-button"> <i class="la la-trash"></i> </a>
+                                            <a href="<?= base_url('cp-admin/delete-gallery-photo/' . $getOneAlbum['id_photo']); ?>" title="Delete" class="btn btn-sm btn-clean btn-icon btn-icon-md delete-button"> <i class="la la-trash"></i> </a>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
@@ -127,10 +127,10 @@
                         <div class="form-group">
                             <label for="judul">Judul Foto</label>
                             <input type="hidden" name="<?= $name; ?>" value="<?= $hash; ?>" />
-                            <input type="text" class="form-control" id="judul" name="judul" placeholder="Masukan Nama Album">
+                            <input type="text" class="form-control" id="judul" name="judul" placeholder="Masukan Nama Album" required>
                         </div>
                         <div class="form-group">
-                            <label for="photo">Upload Foto (Max. 2MB)</label>
+                            <label for="photo">Upload Foto</label>
                             <input type="file" class="dropify" id="photo" name="photo" data-height="200" />
                         </div>
                     </div>
@@ -184,10 +184,10 @@
                                 <input type="hidden" name="<?= $name; ?>" value="<?= $hash; ?>" />
                                 <input type="hidden" name="old_img" value="<?= $getOneAlbum['photo']; ?>">
                                 <input type="hidden" name="id" value="<?= $getOneAlbum['id_photo']; ?>">
-                                <input type="text" class="form-control" id="judul" name="judul" value="<?= $getOneAlbum['title_photo']; ?>">
+                                <input type="text" class="form-control" id="judul" name="judul" value="<?= $getOneAlbum['title_photo']; ?>" required>
                             </div>
                             <div class="form-group">
-                                <label for="photo">Upload Foto (Max. 2MB)</label>
+                                <label for="photo">Upload Foto</label>
                                 <input type="file" class="dropify" id="photo" name="photo" data-height="200" />
                             </div>
                         </div>

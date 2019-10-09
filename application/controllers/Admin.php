@@ -239,13 +239,13 @@ class Admin extends CI_Controller
     public function gallery_photo()
     {
         $idAlbum = $this->uri->segment(3);
+        $this->session->set_userdata('idGallery', $idAlbum);
         $idPhoto = $this->input->post('id');
         if ($this->input->post('addFoto')) {
             $title = $this->input->post('judul');
 
             $config['upload_path'] = './assets/img/gallery';
             $config['allowed_types'] = 'gif|jpg|png';
-            $config['max_size'] = '2048';
             $config['file_name'] = 'foto' . time();
 
             $this->load->library('upload', $config);
@@ -258,7 +258,7 @@ class Admin extends CI_Controller
                 $config['source_image'] = './assets/img/gallery/' . $img;
                 $config['create_thumb'] = FALSE;
                 $config['maintain_ratio'] = TRUE;
-                $config['quality'] = '80%';
+                $config['quality'] = '90%';
                 $config['new_image'] = './assets/img/gallery/' . $img;
                 $this->load->library('image_lib', $config);
                 $this->image_lib->resize();
@@ -282,7 +282,6 @@ class Admin extends CI_Controller
             } else {
                 $config['upload_path'] = './assets/img/gallery';
                 $config['allowed_types'] = 'gif|jpg|png';
-                $config['max_size'] = '2048';
                 $config['file_name'] = 'foto' . time();
 
                 $this->load->library('upload', $config);
@@ -297,7 +296,8 @@ class Admin extends CI_Controller
                     $config['source_image'] = './assets/img/gallery/' . $img;
                     $config['create_thumb'] = FALSE;
                     $config['maintain_ratio'] = TRUE;
-                    $config['quality'] = '80%';
+                    $config['quality'] = '90%';
+                    $config['width']  = 1600;
                     $config['new_image'] = './assets/img/gallery/' . $img;
                     $this->load->library('image_lib', $config);
                     $this->image_lib->resize();
@@ -336,7 +336,15 @@ class Admin extends CI_Controller
 
     public function delete_gallery_photo($id)
     {
-        $idAlbum = $this->uri->segment(3);
+        $idAlbum = $this->session->userdata('idGallery');
+
+
+        $queryChecks = $this->db->query("SELECT * FROM wb_album_foto WHERE id_photo=$id")->row_array();
+
+        if ($queryChecks) {
+            unlink(FCPATH . 'assets/img/gallery/' .  $queryChecks['photo']);
+        }
+
         $this->admin->deletePhoto($id);
         $this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>Selamat! Foto berhasil dihapus.</span></div>');
         redirect('cp-admin/gallery-photo/' . $idAlbum);
@@ -680,14 +688,6 @@ class Admin extends CI_Controller
                 $this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>' . $this->upload->display_errors() . '</span></div>');
             } else {
                 $img = $this->upload->data('file_name');
-                $config['image_library'] = 'gd2';
-                $config['source_image'] = './assets/img/achievement/' . $img;
-                $config['create_thumb'] = FALSE;
-                $config['maintain_ratio'] = TRUE;
-                $config['quality'] = '80%';
-                $config['new_image'] = './assets/img/achievement/' . $img;
-                $this->load->library('image_lib', $config);
-                $this->image_lib->resize();
 
                 $data = [
                     'achievement' => $acv,
@@ -720,14 +720,6 @@ class Admin extends CI_Controller
                 } else {
                     unlink(FCPATH . '/assets/img/achievement/' . $this->input->post('old_img'));
                     $img = $this->upload->data('file_name');
-                    $config['image_library'] = 'gd2';
-                    $config['source_image'] = './assets/img/achievement/' . $img;
-                    $config['create_thumb'] = FALSE;
-                    $config['maintain_ratio'] = TRUE;
-                    $config['quality'] = '80%';
-                    $config['new_image'] = './assets/img/achievement/' . $img;
-                    $this->load->library('image_lib', $config);
-                    $this->image_lib->resize();
                 }
             }
             $data = [
@@ -818,14 +810,6 @@ class Admin extends CI_Controller
                     $this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>' . $this->upload->display_errors() . '</span></div>');
                 } else {
                     $img = $this->upload->data('file_name');
-                    $config['image_library'] = 'gd2';
-                    $config['source_image'] = './assets/img/' . $img;
-                    $config['create_thumb'] = FALSE;
-                    $config['maintain_ratio'] = TRUE;
-                    $config['quality'] = '80%';
-                    $config['new_image'] = './assets/img/' . $img;
-                    $this->load->library('image_lib', $config);
-                    $this->image_lib->resize();
 
                     $data = [
                         'message' => $message,
@@ -1015,14 +999,6 @@ class Admin extends CI_Controller
                 $this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>' . $this->upload->display_errors() . '</span></div>');
             } else {
                 $img = $this->upload->data('file_name');
-                $config['image_library'] = 'gd2';
-                $config['source_image'] = './assets/img/group/' . $img;
-                $config['create_thumb'] = FALSE;
-                $config['maintain_ratio'] = TRUE;
-                $config['quality'] = '80%';
-                $config['new_image'] = './assets/img/group' . $img;
-                $this->load->library('image_lib', $config);
-                $this->image_lib->resize();
 
                 $data = [
                     'company' => $company,
@@ -1058,14 +1034,6 @@ class Admin extends CI_Controller
                 } else {
                     unlink(FCPATH . '/assets/img/group/' . $this->input->post('img_old'));
                     $img = $this->upload->data('file_name');
-                    $config['image_library'] = 'gd2';
-                    $config['source_image'] = './assets/img/group/' . $img;
-                    $config['create_thumb'] = FALSE;
-                    $config['maintain_ratio'] = TRUE;
-                    $config['quality'] = '80%';
-                    $config['new_image'] = './assets/img/group' . $img;
-                    $this->load->library('image_lib', $config);
-                    $this->image_lib->resize();
                 }
             }
             $data = [
@@ -1181,14 +1149,6 @@ class Admin extends CI_Controller
                     $this->session->set_flashdata('notification', '<div class="kt-alert kt-alert--outline alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><span>' . $this->upload->display_errors() . '</span></div>');
                 } else {
                     $img = $this->upload->data('file_name');
-                    $config['image_library'] = 'gd2';
-                    $config['source_image'] = './assets/img/news/' . $img;
-                    $config['create_thumb'] = FALSE;
-                    $config['maintain_ratio'] = TRUE;
-                    $config['quality'] = '80%';
-                    $config['new_image'] = './assets/img/news/' . $img;
-                    $this->load->library('image_lib', $config);
-                    $this->image_lib->resize();
                 }
             }
 
@@ -1258,14 +1218,6 @@ class Admin extends CI_Controller
                         unlink(FCPATH . '/assets/img/news/' . $this->input->post('img_old'));
                     }
                     $img = $this->upload->data('file_name');
-                    $config['image_library'] = 'gd2';
-                    $config['source_image'] = './assets/img/news/' . $img;
-                    $config['create_thumb'] = FALSE;
-                    $config['maintain_ratio'] = TRUE;
-                    $config['quality'] = '80%';
-                    $config['new_image'] = './assets/img/news/' . $img;
-                    $this->load->library('image_lib', $config);
-                    $this->image_lib->resize();
                 }
             }
 
@@ -1504,11 +1456,10 @@ class Admin extends CI_Controller
             'title' => 'Semua Pelamar'
         );
 
-        if($this->input->get('j')){
+        if ($this->input->get('j')) {
             $data['getApplied'] = $this->admin->getUserApplied($this->input->get('j'));
         } else {
             $data['getApplied'] = $this->admin->getUserApplied(0);
-
         }
 
         $this->load->view('template/header', $data);
@@ -1612,5 +1563,74 @@ class Admin extends CI_Controller
         if ($job_id) {
             echo $this->admin->fetchUser($job_id);
         }
+    }
+
+    public function edit_history()
+    {
+        $idHistory = $this->uri->segment(4);
+        $data = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash(),
+            'getMenus' => $this->admin->getMenu(),
+            'getSubMenus' => $this->admin->getSubMenu(),
+            'user' => $this->admin->getActiveUser(),
+            'getSelectHistory' => $this->admin->getSelectHistory($idHistory),
+            'check' => $this->admin->getSeo(),
+            'roles' => $this->admin->getRoles(),
+            'sidebars' => $this->admin->getSidebar($this->session->userdata('id')),
+            'title' => 'Edit History'
+        );
+
+        $this->load->view('template/header', $data);
+        $this->load->view('template/sidebar', $data);
+        $this->load->view('template/navbar', $data);
+        $this->load->view('admin/edit_history', $data);
+        $this->load->view('template/footer');
+    }
+
+    public function edit_achievement()
+    {
+        $idAcv = $this->uri->segment(4);
+        $data = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash(),
+            'getMenus' => $this->admin->getMenu(),
+            'getSubMenus' => $this->admin->getSubMenu(),
+            'user' => $this->admin->getActiveUser(),
+            'getSelectAchievement' => $this->admin->getSelectachievement($idAcv),
+            'check' => $this->admin->getSeo(),
+            'roles' => $this->admin->getRoles(),
+            'sidebars' => $this->admin->getSidebar($this->session->userdata('id')),
+            'title' => 'Edit Penghargaan'
+        );
+
+        $this->load->view('template/header', $data);
+        $this->load->view('template/sidebar', $data);
+        $this->load->view('template/navbar', $data);
+        $this->load->view('admin/edit_achievement', $data);
+        $this->load->view('template/footer');
+    }
+
+    public function edit_group()
+    {
+        $idGroup = $this->uri->segment(4);
+        $data = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash(),
+            'getMenus' => $this->admin->getMenu(),
+            'getSubMenus' => $this->admin->getSubMenu(),
+            'user' => $this->admin->getActiveUser(),
+            'getGroup' => $this->admin->getSelectGroup($idGroup),
+            'check' => $this->admin->getSeo(),
+            'roles' => $this->admin->getRoles(),
+            'sidebars' => $this->admin->getSidebar($this->session->userdata('id')),
+            'title' => 'Edit Group'
+        );
+
+        $this->load->view('template/header', $data);
+        $this->load->view('template/sidebar', $data);
+        $this->load->view('template/navbar', $data);
+        $this->load->view('admin/edit_group', $data);
+        $this->load->view('template/footer');
     }
 }

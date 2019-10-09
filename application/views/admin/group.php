@@ -93,8 +93,8 @@
                                         <td align="center" width="900px"><input type="text" class="form-control" value="<?= $getGroup['link'] ?>" readonly /></td>
                                         <td align="center"><img src="<?= base_url('assets/img/group/' . $getGroup['photo']); ?>" alt="" class="img-thumbnail" width="60px"></td>
                                         <td align="center">
-                                            <a href="javascript:;" title="Edit" class="btn btn-sm btn-clean btn-icon btn-icon-md" data-toggle="modal" data-target="#editGroup<?= $getGroup['id'] ?>"> <i class="la la-edit"></i> </a>
-                                            <a href="<?= base_url('cp-admin/delete-group/' . $getGroup['id']); ?>" title="Edit" class="btn btn-sm btn-clean btn-icon btn-icon-md delete-button"> <i class="la la-trash"></i> </a>
+                                            <a href="<?= base_url('cp-admin/profile/edit-group/' . $getGroup['id']); ?>" title="Edit" class="btn btn-sm btn-clean btn-icon btn-icon-md"> <i class="la la-edit"></i> </a>
+                                            <a href="<?= base_url('cp-admin/delete-group/' . $getGroup['id']); ?>" title="Delete" class="btn btn-sm btn-clean btn-icon btn-icon-md delete-button"> <i class="la la-trash"></i> </a>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>

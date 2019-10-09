@@ -91,8 +91,8 @@
                                         <td align="center" style="font-weight: bold;"><?= $getHistory['year'] ?></td>
                                         <td align="center"><a href="javascript:;" class="btn btn-sm btn-clean btn-icon btn-icon-md" data-toggle="modal" data-target="#viewHistory<?= $getHistory['id'] ?>"><i class="la la-search"></i></a></i></td>
                                         <td align="center">
-                                            <a href="javascript:;" title="Edit" class="btn btn-sm btn-clean btn-icon btn-icon-md" data-toggle="modal" data-target="#editHistory<?= $getHistory['id'] ?>"> <i class="la la-edit"></i> </a>
-                                            <a href="<?= base_url('cp-admin/delete-history/' . $getHistory['id']); ?>" title="Edit" class="btn btn-sm btn-clean btn-icon btn-icon-md delete-button"> <i class="la la-trash"></i> </a>
+                                            <a href="<?= base_url('cp-admin/profile/edit-history/' . $getHistory['id']); ?>" title="Edit" class="btn btn-sm btn-clean btn-icon btn-icon-md"> <i class="la la-edit"></i> </a>
+                                            <a href="<?= base_url('cp-admin/delete-history/' . $getHistory['id']); ?>" title="Delete" class="btn btn-sm btn-clean btn-icon btn-icon-md delete-button"> <i class="la la-trash"></i> </a>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
@@ -125,7 +125,7 @@
                         </div>
                         <div class="form-group">
                             <label for="about">Description</label>
-                            <textarea name="about" class="form-control" id="summernote" data-provide="markdown" rows="10"></textarea>
+                            <textarea name="about" class="form-control" id="summernote"></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -151,7 +151,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <textarea class="form-control" id="summernote" data-provide="markdown" rows="10" readonly><?= $getHistory['history'] ?></textarea>
+                            .<?= $getHistory['history'] ?>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -162,41 +162,5 @@
         </div>
     <?php endforeach; ?>
     <!-- End Modal View -->
-
-    <!-- Modal Edit -->
-    <?php foreach ($getHistories as $getHistory) : ?>
-        <div class="modal fade" id="editHistory<?= $getHistory['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="history" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                <div class="modal-content">
-                    <form action="<?= base_url('cp-admin/profile/history'); ?>" method="post">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="history">Edit History</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label for="year">Tahun</label>
-                                <input type="hidden" name="<?= $name; ?>" value="<?= $hash; ?>" />
-                                <input type="hidden" name="id" value="<?= $getHistory['id'] ?>">
-                                <input type="hidden" name="content" value="<?= $getHistory['content'] ?>">
-                                <input type="text" class="form-control" id="year" name="year" value="<?= $getHistory['year'] ?>">
-                            </div>
-                            <div class="form-group">
-                                <label for="about">Description</label>
-                                <textarea name="about" class="form-control" id="summernote2" data-provide="markdown" rows="10"><?= $getHistory['history'] ?></textarea>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
-                            <input type="submit" name="editHistory" class="btn btn-success" value="Simpan">
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    <?php endforeach; ?>
-    <!-- End Modal Edit -->
 
 </div>

@@ -89,12 +89,12 @@
                                 <input type="hidden" name="id" value="<?= $getNews['id']; ?>" />
                                 <input type="hidden" name="img_old" value="<?= $getNews['photo']; ?>" />
                                 <input type="hidden" name="admin_id" value="<?= $getNews['admin_id']; ?>" />
-                                <textarea name="news" class="form-control" id="summernote" data-provide="markdown" rows="10"><?= $getNews['news']; ?></textarea>
+                                <textarea name="news" class="form-control" id="summernote" rows="10"><?= $getNews['news']; ?></textarea>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="photo">Thumbnail</label>
+                                        <label for="photo">Thumbnail (Max. 2MB)</label>
                                         <input type="file" class="dropify" id="photo" name="photo" data-height="200" />
                                     </div>
                                 </div>

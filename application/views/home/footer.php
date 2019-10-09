@@ -78,8 +78,8 @@
 <script src="<?= base_url('assets/company/') ?>js/owl.carousel.min.js"></script>
 <script src="<?= base_url('assets/dist/') ?>wow/wow.min.js"></script>
 <script src="<?= base_url('assets/company/') ?>js/main.js"></script>
-<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-<script src="http://harvesthq.github.io/chosen/chosen.jquery.js"></script>
+<script src="<?= base_url('assets/company/'); ?>js/aos.js"></script>
+<script src="<?= base_url('assets/company/'); ?>js/chosen.jquery.js"></script>
 <script>
     $(function() {
         $('.chosen-select').chosen();

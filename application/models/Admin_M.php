@@ -181,6 +181,21 @@ class Admin_m extends CI_Model
         return $output;
     }
 
+    public function getSelectHistory($id)
+    {
+        return $this->db->get_where('wb_history', array('id' => $id))->row_array();
+    }
+
+    public function getSelectAchievement($id)
+    {
+        return $this->db->get_where('wb_achievement', array('id' => $id))->row_array();
+    }
+
+    public function getSelectGroup($id)
+    {
+        return $this->db->get_where('wb_group', array('id' => $id))->row_array();
+    }
+
     // Insert Data
     public function insertSeo($data)
     {

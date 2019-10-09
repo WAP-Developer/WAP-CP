@@ -1,6 +1,6 @@
 <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
 
-    <!-- begin:: Content Head -->
+    <!-- begin:: Subheader -->
     <div class="kt-subheader   kt-grid__item" id="kt_subheader">
         <div class="kt-subheader__main">
             <h3 class="kt-subheader__title">Dashboard</h3>
@@ -8,16 +8,8 @@
                 <a href="javascript:;" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
                 <span class="kt-subheader__breadcrumbs-separator"></span>
                 <a href="" class="kt-subheader__breadcrumbs-link">
-                    Visi & Misi </a>
+                    Group </a>
                 <span class="kt-subheader__breadcrumbs-separator"></span>
-
-                <!-- <span class="kt-subheader__breadcrumbs-link kt-subheader__breadcrumbs-link--active">Active link</span> -->
-            </div>
-            <div class="kt-input-icon kt-input-icon--right kt-subheader__search kt-hidden">
-                <input type="text" class="form-control" placeholder="Search order..." id="generalSearch">
-                <span class="kt-input-icon__icon kt-input-icon__icon--right">
-                    <span><i class="flaticon2-search-1"></i></span>
-                </span>
             </div>
         </div>
         <div class="kt-subheader__toolbar">
@@ -51,85 +43,63 @@
             </div>
         </div>
     </div>
-
-    <!-- end:: Content Head -->
+    <!-- end:: Subheader -->
 
     <!-- begin:: Content -->
     <div class="kt-content  kt-grid__item kt-grid__item--fluid" id="kt_content">
-        <!--Begin::Dashboard 1-->
-
-        <!--Begin::Section-->
         <div class="row justify-content-center">
-            <div class="col-md-6">
+            <div class="col-md-8">
                 <!--begin::Portlet-->
                 <div class="kt-portlet">
                     <div class="kt-portlet__head">
                         <div class="kt-portlet__head-label">
                             <span class="kt-portlet__head-icon">
-                                <i class="kt-font-brand flaticon-statistics "></i>
+                                <i class="kt-font-brand flaticon-chat-1"></i>
                             </span>
                             <h3 class="kt-portlet__head-title">
-                                Visi
+                                Edit Group
                             </h3>
                         </div>
                     </div>
 
                     <!--begin::Form-->
-                    <form class="kt-form" action="<?= base_url('cp-admin/profile/vm'); ?>" method="post" enctype="multipart/form-data">
+                    <form class="kt-form" action="<?= base_url('cp-admin/profile/group'); ?>" method="post" enctype="multipart/form-data">
                         <div class="kt-portlet__body">
-                            <?= $this->session->flashdata('notificationa'); ?>
+                            <?= $this->session->flashdata('notification'); ?>
                             <div class="form-group">
-                                <label>Visi</label>
+                                <label for="company">Company</label>
                                 <input type="hidden" name="<?= $name; ?>" value="<?= $hash; ?>" />
-                                <textarea name="visi" class="form-control" id="summernote" rows="10" required><?= $getVM['visi'] ?></textarea>
+                                <input type="hidden" name="id" value="<?= $getGroup['id']; ?>">
+                                <input type="hidden" name="img_old" value="<?= $getGroup['photo']; ?>">
+                                <input type="text" class="form-control" id="company" name="company" value="<?= $getGroup['company'] ?>">
                             </div>
-                        </div>
-                        <div class="kt-portlet__foot">
-                            <div class="kt-form__actions text-right">
-                                <input type="submit" class="btn btn-primary" name="sendvisi" value="Submit">
-                            </div>
-                        </div>
-                    </form>
-                    <!--end::Form-->
-                </div>
-                <!--end::Portlet-->
-            </div>
-            <div class="col-md-6">
-                <!--begin::Portlet-->
-                <div class="kt-portlet">
-                    <div class="kt-portlet__head">
-                        <div class="kt-portlet__head-label">
-                            <span class="kt-portlet__head-icon">
-                                <i class="kt-font-brand flaticon-diagram"></i>
-                            </span>
-                            <h3 class="kt-portlet__head-title">
-                                Misi
-                            </h3>
-                        </div>
-                    </div>
-
-                    <!--begin::Form-->
-                    <form class="kt-form" action="<?= base_url('cp-admin/profile/vm'); ?>" method="post" enctype="multipart/form-data">
-                        <div class="kt-portlet__body">
-                            <?= $this->session->flashdata('notificationb'); ?>
                             <div class="form-group">
-                                <label>Misi</label>
-                                <input type="hidden" name="<?= $name; ?>" value="<?= $hash; ?>" />
-                                <textarea name="misi" class="form-control" id="summernote2" rows="10" required><?= $getVM['misi'] ?></textarea>
+                                <label for="link">Link</label>
+                                <input type="text" class="form-control" id="link" name="link" value="<?= $getGroup['link'] ?>">
+                            </div>
+                            <div class="form-group">
+                                <label for="editor">Description</label>
+                                <textarea name="description" class="form-control" id="summernote" rows="10"><?= $getGroup['description'] ?></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="photo">Upload Foto (Max. 2MB)</label>
+                                <div class="col-md-6">
+                                    <input type="file" class="dropify" id="photo" name="photo" data-height="200" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row justify-content-end mr-1">
+                                    <a href="<?= base_url('cp-admin/profile/group'); ?>" class="btn btn-warning mr-2">Kembali</a>
+                                    <input type="submit" name="editGroup" class="btn btn-primary" value="Simpan">
+                                </div>
                             </div>
                         </div>
-                        <div class="kt-portlet__foot">
-                            <div class="kt-form__actions text-right">
-                                <input type="submit" class="btn btn-primary" name="sendmisi" value="Submit">
-                            </div>
-                        </div>
-                    </form>
-                    <!--end::Form-->
+                        <!--end::Form-->
                 </div>
                 <!--end::Portlet-->
             </div>
         </div>
-        <!--End::Dashboard 1-->
     </div>
     <!-- end:: Content -->
+
 </div>

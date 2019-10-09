@@ -155,9 +155,18 @@ class Landing extends CI_Controller
 
     public function gallery()
     {
+        $this->load->library('pagination');
+
+        $config['base_url'] = base_url('gallery/');
+        $config['total_rows'] = $this->db->get('wb_album')->num_rows();
+        $config['per_page'] = 12;
+        $from = $this->uri->segment(2);
+
+        $this->pagination->initialize($config);
+
         $data = array(
             'title' => "Galeri",
-            'getAlbums' => $this->user->getAlbum(),
+            'getAlbums' => $this->user->getAlbum($config['per_page'], $from),
             'check' => $this->db->get('wb_seo')->row_array()
         );
 
@@ -171,8 +180,22 @@ class Landing extends CI_Controller
     public function gallery_detail()
     {
         $idGallery = $this->uri->segment(3);
+
+        $this->load->library('pagination');
+
+        $config['base_url'] = base_url('gallery/');
+        $config['total_rows'] = $this->db->get('wb_album')->num_rows();
+        $config['per_page'] = 12;
+        if ($this->uri->segment(4)) {
+            $from = $this->uri->segment(4);
+        } else {
+            $from = 0;
+        }
+
+        $this->pagination->initialize($config);
+
         $data = array(
-            'getDetailAlbums' => $this->user->getDetailAlbum($idGallery),
+            'getDetailAlbums' => $this->user->getDetailAlbum($idGallery, $config['per_page'], $from),
             'title' => "Detail Album",
             'check' => $this->db->get('wb_seo')->row_array()
         );
@@ -292,5 +315,10 @@ class Landing extends CI_Controller
                 redirect('job/applied/' . $this->uri->segment(3) . "/" . $this->uri->segment(4));
             }
         }
+    }
+
+    public function under()
+    {
+        $this->load->view('under');
     }
 }

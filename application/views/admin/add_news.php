@@ -86,12 +86,12 @@
                             <div class="form-group">
                                 <label for="editor">Detail Berita</label>
                                 <input type="hidden" name="<?= $name; ?>" value="<?= $hash; ?>" />
-                                <textarea name="news" class="form-control" id="summernote" data-provide="markdown" rows="10"></textarea>
+                                <textarea name="news" class="form-control" id="summernote" rows="10"></textarea>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="photo">Thumbnail</label>
+                                        <label for="photo">Thumbnail (Max. 2MB)</label>
                                         <input type="file" class="dropify" id="photo" name="photo" data-height="200" />
                                     </div>
                                 </div>

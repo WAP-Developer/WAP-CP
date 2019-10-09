@@ -11,7 +11,7 @@
         <!-- Mobile -->
         <div class="col-4 mobile">
             <div class="box-presiden">
-                <img src="<?= base_url('assets/img/' . $getMessages['photo']); ?>" alt="" class="foto-presiden" data-aos="fade-up">
+                <img src="<?= base_url('assets/img/' . $getMessages['photo']); ?>" alt="" class="foto-presiden img-thumbnail" data-aos="fade-up">
             </div>
         </div>
         <div class="col-8 mobile">
@@ -32,7 +32,7 @@
 
         <!-- Desktop -->
         <div class="col-4 desktop">
-            <div class="box-presiden">
+            <div class="box-presiden crop-pres">
                 <img src="<?= base_url('assets/img/' . $getMessages['photo']); ?>" alt="" class="foto-presiden" data-aos="fade-up">
             </div>
         </div>

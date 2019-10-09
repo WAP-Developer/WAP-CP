@@ -86,7 +86,7 @@
                             <div class="form-group">
                                 <label for="editor">Detail Lowongan Pekerjaan</label>
                                 <input type="hidden" name="<?= $name; ?>" value="<?= $hash; ?>" />
-                                <textarea name="description" class="form-control" id="summernote" data-provide="markdown" rows="10"></textarea>
+                                <textarea name="description" class="form-control" id="summernote" rows="10"></textarea>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
